@@ -2,12 +2,26 @@
 .playlist-container {
     width: 270px;
     height: 450px;
-    background-color: #111111;
+    background: #1f1f1f;
     padding: 10px 15px;
     gap: 5px;
     font-family: "Quicksand", sans-serif;
     border-radius: 18px;
-    color: white
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fadeInLeft 0.8s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .playlist-header, .playlist-content, .playlist-name-section, .playlist-length-section, .playlist-controls-section, .playlist-footer {
@@ -81,7 +95,38 @@
 
 .playlist-controls-section {
     flex-direction: row;
-    gap: 20px
+    gap: 20px;
+}
+
+/* SVG Button Hover Animations */
+.playlist-controls-section svg,
+.playlist-name-section-right svg,
+.playlist-footer svg {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.playlist-controls-section svg:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+    color: #ffffff;
+}
+
+.playlist-controls-section svg:active {
+    transform: scale(0.95);
+}
+
+.playlist-name-section-right svg:hover {
+    transform: scale(1.1) rotate(90deg);
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+    color: #ffffff;
+}
+
+.playlist-footer svg:hover {
+    transform: translateY(-2px) scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.3));
+    color: #ffffff;
 }
 
 .playlist-footer {
@@ -89,3 +134,82 @@
     justify-content: space-between;
     margin-bottom: 10px;
 }
+
+/* ============================================
+   PLAYLIST RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablets Landscape (768px - 1024px) */
+@media (max-width: 1024px) {
+    .playlist-container {
+        width: 250px;
+        height: 420px;
+    }
+}
+
+/* Tablets Portrait & Mobile (< 768px) */
+@media (max-width: 768px) {
+    .playlist-container {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        min-height: 400px;
+    }
+
+    .playlist-content {
+        min-height: 200px;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .playlist-container {
+        width: 100%;
+        max-width: 280px;
+        padding: 8px 12px;
+    }
+
+    .playlist-header {
+        font-size: 0.85rem;
+    }
+
+    .playlist-name-section-left .playlist-name {
+        font-size: 0.85rem;
+    }
+
+    .playlist-name-section-left .playlist-artist {
+        font-size: 0.65rem;
+    }
+
+    .playlist-time-section {
+        font-size: 0.55rem;
+    }
+
+    .playlist-controls-section {
+        gap: 15px;
+    }
+
+    .playlist-controls-section svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .playlist-controls-section svg:nth-child(2) {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .playlist-container {
+        width: 240px;
+        height: auto;
+        min-height: 350px;
+    }
+
+    .playlist-content {
+        min-height: 180px;
+    }
+}
+

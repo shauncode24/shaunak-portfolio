@@ -1,4 +1,5 @@
 import './Playlist.css';
+import PixelTransition from './PixelTransition';
 
 export default function Playlist() {
     return (
@@ -8,6 +9,34 @@ export default function Playlist() {
             </div>
 
             <div className="default playlist-content">
+                <PixelTransition
+                    firstContent={
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+                            alt="default pixel transition content, a cat!"
+                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                    }
+                    secondContent={
+                        <div
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                display: "grid",
+                                placeItems: "center",
+                                backgroundColor: "#111"
+                            }}
+                        >
+                            <p style={{ fontWeight: 900, fontSize: "3rem", color: "#ffffff" }}>Meow!</p>
+                        </div>
+                    }
+                    gridSize={8}
+                    pixelColor='#ffffff'
+                    once={false}
+                    animationStepDuration={0.4}
+                    className="custom-pixel-card"
+                    pixelColor="#ffffff"
+                />
             </div>
 
             <div className="default playlist-name-section">
@@ -50,7 +79,7 @@ export default function Playlist() {
                     <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5" />
                 </svg>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5m3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5" />
                 </svg>
 
