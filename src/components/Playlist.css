@@ -1,0 +1,91 @@
+
+.playlist-container {
+    width: 270px;
+    height: 450px;
+    background-color: #111111;
+    padding: 10px 15px;
+    gap: 5px;
+    font-family: "Quicksand", sans-serif;
+    border-radius: 18px;
+    color: white
+}
+
+.playlist-header, .playlist-content, .playlist-name-section, .playlist-length-section, .playlist-controls-section, .playlist-footer {
+    width: 100%;
+}
+
+.playlist-header {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.playlist-content {
+    height: 100%;
+    background-color:#F4F4F4;
+    border-radius: 12px;
+}
+
+.playlist-name-section {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.playlist-name-section-left {
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.playlist-name-section-left .playlist-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.playlist-name-section-left .playlist-artist {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.playlist-name-section-right {
+    
+}
+
+.playlist-length-section {
+    gap: 3px
+}
+
+.playlist-length {
+    height: 4px;
+    width: 100%;
+    background-color: white;
+    border-radius: 9999px;
+}
+
+.playlist-time-section {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;    
+    font-size: 0.6rem;
+    font-weight: 500;
+}
+
+.playlist-time-section .playlist-time-start {
+    
+}
+
+.playlist-time-section .playlist-time-end {
+    
+}
+
+.playlist-controls-section {
+    flex-direction: row;
+    gap: 20px
+}
+
+.playlist-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

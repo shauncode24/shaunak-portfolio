@@ -1,0 +1,33 @@
+.about-container {
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.about-main-container {
+    padding: 30px;
+    width: 60%;
+    background-color: aqua; 
+    flex-direction: row;    
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-start;
+
+}
+
+.about-content {
+    width: calc(100% - 330px);
+    background-color: aquamarine;
+    height: 100%;
+    gap: 15px
+}
+
+.about-content-header {
+    font-size: 2rem;  
+    font-weight: 900;  
+}
+
+.about-content-body {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+}
