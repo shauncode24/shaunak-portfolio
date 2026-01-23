@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaDiscord } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import './AboutMe.css';
-import Playlist from '../components/Playlist';
-import FloatingLines from '../components/FloatingLines';
-import RotatingText from '../components/RotatingText';
+import Playlist from '@/components/AboutMe/Playlist';
+import FloatingLines from '@/components/AboutMe/FloatingLines';
+import RotatingText from '@/components/AboutMe/RotatingText';
 
 const contactLinks = [
     { icon: <FaLinkedin size={28} />, label: "LinkedIn", href: "https://linkedin.com/in/yourprofile", color: "#0077b5" },
