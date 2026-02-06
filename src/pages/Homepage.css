@@ -6,12 +6,16 @@
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .homepage-background {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: -5px;
+    left: -5px;
+    width: calc(100vw + 10px);
+    height: calc(100vh + 10px);
     object-fit: cover; 
     /* a46928 */
     z-index: 1;
@@ -19,7 +23,7 @@
 
 .homepage-fireplace {
     position: absolute;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -28,13 +32,14 @@
     filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.1);
 }
 
-.homepage-content {
+.homepage-content{
     position: relative;
     z-index: 2;
 
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
     width: 100%;
     height: 100%;
@@ -43,13 +48,12 @@
     font-family: "Minecraft", sans-serif;
     font-size: clamp(4.1rem, 6.8vw, 4.9rem);
     letter-spacing: 0.08em;
-    text-transform: uppercase;
 
     /* COLOR */
     color: #F6EED3; /* warm ivory, not pure white */
 
     /* PLACEMENT */
-    padding-top: 30vh; /* scene-aware vertical placement */
+    padding-top: 15vh; /* scene-aware vertical placement */
 
     /* PIXEL RENDERING */
     -webkit-font-smoothing: none;
@@ -61,4 +65,9 @@
         0 2px 6px rgba(0, 0, 0, 0.35);
 
     pointer-events: none; /* keeps scene feeling untouched */
+}
+
+.homepage-content span{
+    margin-top: 20px;
+    font-size: clamp(0.8rem, 2vw, 1.4rem);
 }

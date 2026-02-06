@@ -1,0 +1,72 @@
+.aboutme-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.aboutme-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.aboutme-sign-container {
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 60%;
+}
+
+.aboutme-sign {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.aboutme-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 1.5rem;
+    opacity: 0.7;
+}
+
+.aboutme-text h1 {
+    font-family: "Minecraft", sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    letter-spacing: 0.08em;
+    color: #2C1810;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+}
+
+.aboutme-text p {
+    font-family: "Minecraft", sans-serif;
+    font-size: clamp(0.5rem, 0.85vw, 0.7rem);
+    color: #2C1810;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.aboutme-text p:last-of-type {
+    margin-bottom: 0;
+}
