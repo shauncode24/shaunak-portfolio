@@ -14,19 +14,19 @@ export default function Projects({ project, onNextProject, currentPage, totalPag
                 />
                 <div className="projects-content">
                     <div className="project-display-div">
+                        <h2 className="project-title">{project.title}</h2>
                         <div className="project-preview">
                             <div className="preview-placeholder"><img src={project.preview} alt="Project Preview" width="100%" height="100%" /></div>
                         </div>
                         <div className="project-info">
-                            <h2 className="project-title">{project.title}</h2>
+                            <p className="project-description">
+                                {project.description}
+                            </p>
                             <div className="project-technologies">
                                 {project.technologies.map((tech, index) => (
                                     <span key={index} className="tech-badge">{tech}</span>
                                 ))}
                             </div>
-                            <p className="project-description">
-                                {project.description}
-                            </p>
                         </div>
                     </div>
                 </div>
