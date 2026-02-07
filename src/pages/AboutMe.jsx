@@ -53,12 +53,12 @@ export default function AboutMe() {
             />
             {/* <AboutMeInfo /> */}
 
-            <Projects
+            {/* <Projects
                 project={projectsData[currentProjectIndex]}
                 onNextProject={handleNextProject}
                 currentPage={currentProjectIndex + 1}
                 totalPages={projectsData.length}
-            />
+            /> */}
         </div>
     );
 }
