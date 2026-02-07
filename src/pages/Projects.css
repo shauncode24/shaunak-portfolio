@@ -78,8 +78,8 @@
 }
 
 .project-title {
-    font-family: "Minecraft", sans-serif;
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-family: "Minecraft-Regular";
+    font-size: clamp(1.2rem, 1.5vw, 1.8rem);
     color: #2C1810;
     margin: 0;
     -webkit-font-smoothing: none;

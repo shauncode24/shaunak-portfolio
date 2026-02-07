@@ -28,7 +28,7 @@ const projectsData = [
         title: "Weather Dashboard",
         technologies: ["React", "OpenWeather API", "Chart.js", "CSS"],
         description: "Interactive weather dashboard displaying current conditions, forecasts, and historical data with beautiful visualizations. Features location search and favorite locations.",
-        preview: "Project Preview"
+        preview: "https://s3-alpha.figma.com/hub/file/6422877612/800966cc-495a-4d7f-8afe-e5f2a3e89456-cover.png"
     },
     {
         title: "Social Media Analytics",
