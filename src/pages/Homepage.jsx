@@ -1,18 +1,31 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import './Homepage.css';
-import bg from '@/assets/bg_14.png';
-import fireplace from '@/assets/fireplace_2.gif';
+import bg from '@/assets/landing_page/bg_night.png';
+import fireplace from '@/assets/landing_page/fireplace_2.gif';
 import Hotbar from '@/components/Hotbar';
 import fireCrackling from '@/assets/audio/fire_cackling.mp3';
+import rainSFX from '@/assets/audio/rain.mp3';
+import bgMusic1 from '@/assets/audio/bg_music_1.mp3';
+import bgMusic2 from '@/assets/audio/bg_music_2.mp3';
+import bgMusic3 from '@/assets/audio/bg_music_3.mp3';
 import FireplaceEffects from '@/components/SmokeEffect';
+import RainEffect from '@/components/RainEffect';
 
 export default function Homepage() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const audioRef = useRef(null);
+    const sfxRef = useRef(null);
+    const rainRef = useRef(null);
+    const musicRef = useRef(null);
+
+    // Randomly select one of the background music tracks on mount
+    const selectedMusic = useMemo(() => {
+        const musicTracks = [bgMusic1, bgMusic2, bgMusic3];
+        return musicTracks[Math.floor(Math.random() * musicTracks.length)];
+    }, []);
 
     // Memoize fireflies data
     const fireflies = useMemo(() => {
-        return Array.from({ length: 30 }).map((_, i) => ({
+        return Array.from({ length: 10 }).map((_, i) => ({
             id: i,
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
@@ -40,29 +53,32 @@ export default function Homepage() {
     }, []);
 
     useEffect(() => {
-        // Play audio when component mounts
-        if (audioRef.current) {
-            audioRef.current.volume = 1; // Set volume to 100%
-            const playPromise = audioRef.current.play();
-
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log('Audio playing successfully');
-                    })
-                    .catch(error => {
-                        console.log('Audio autoplay prevented:', error);
-                        console.log('Click anywhere on the page to start audio');
-
-                        // Add click listener to start audio on user interaction
-                        const startAudio = () => {
-                            audioRef.current?.play();
-                            document.removeEventListener('click', startAudio);
-                        };
-                        document.addEventListener('click', startAudio);
-                    });
+        // Attempt to play audios on mount
+        const playAudios = () => {
+            if (sfxRef.current) {
+                sfxRef.current.volume = 0.6; // Fireplace slightly quieter
+                sfxRef.current.play().catch(() => { });
             }
-        }
+            if (rainRef.current) {
+                rainRef.current.volume = 0.5; // Rain soft in background
+                rainRef.current.play().catch(() => { });
+            }
+            if (musicRef.current) {
+                musicRef.current.volume = 0.4; // Music soft in background
+                musicRef.current.play().catch(() => { });
+            }
+        };
+
+        playAudios();
+
+        // Fallback: Play on first click anywhere if autoplay was prevented
+        const handleFirstClick = () => {
+            playAudios();
+            document.removeEventListener('click', handleFirstClick);
+        };
+        document.addEventListener('click', handleFirstClick);
+
+        return () => document.removeEventListener('click', handleFirstClick);
     }, []);
 
     // Subtle movement: max 10px in any direction
@@ -79,9 +95,19 @@ export default function Homepage() {
     };
 
     return (
-        <div className="homepage-container" onClick={() => audioRef.current?.play()}>
-            <audio ref={audioRef} loop autoPlay preload="auto">
+        <div className="homepage-container" onClick={() => {
+            sfxRef.current?.play();
+            rainRef.current?.play();
+            musicRef.current?.play();
+        }}>
+            <audio ref={sfxRef} loop autoPlay preload="auto">
                 <source src={fireCrackling} type="audio/mpeg" />
+            </audio>
+            <audio ref={rainRef} loop autoPlay preload="auto">
+                <source src={rainSFX} type="audio/mpeg" />
+            </audio>
+            <audio ref={musicRef} loop autoPlay preload="auto">
+                <source src={selectedMusic} type="audio/mpeg" />
             </audio>
 
             {/* Fireflies */}
@@ -104,6 +130,9 @@ export default function Homepage() {
 
             {/* Realistic Three.js Fire & Smoke */}
             <FireplaceEffects />
+
+            {/* Realistic Three.js Rain */}
+            <RainEffect />
 
             <img
                 className="homepage-background"
