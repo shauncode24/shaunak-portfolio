@@ -23,13 +23,18 @@
 
 .homepage-fireplace {
     position: absolute;
-    top: 65%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 12;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.1);
+    transition: filter 0.3s ease-in-out;
+}
+
+.homepage-fireplace:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.2);
 }
 
 .homepage-content{
@@ -71,3 +76,7 @@
     margin-top: 20px;
     font-size: clamp(0.8rem, 2vw, 1.4rem);
 }
+
+
+
+

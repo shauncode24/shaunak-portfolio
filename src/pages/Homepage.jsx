@@ -1,13 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import './Homepage.css';
 import bg from '@/assets/bg_14.png';
 import fireplace from '@/assets/fireplace_2.gif';
 import Hotbar from '@/components/Hotbar';
 import fireCrackling from '@/assets/audio/fire_cackling.mp3';
+import FireplaceEffects from '@/components/SmokeEffect';
 
 export default function Homepage() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const audioRef = useRef(null);
+
+    // Memoize fireflies data
+    const fireflies = useMemo(() => {
+        return Array.from({ length: 30 }).map((_, i) => ({
+            id: i,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            delay: `${Math.random() * 5}s`,
+            duration: `${5 + Math.random() * 10}s`,
+            color: Math.random() > 0.5 ? '#ffeb3b' : '#ffc107', // Yellowish-gold colors
+            size: `${1.5 + Math.random() * 1.5}px` // Around 2px as requested
+        }));
+    }, []);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -69,6 +83,28 @@ export default function Homepage() {
             <audio ref={audioRef} loop autoPlay preload="auto">
                 <source src={fireCrackling} type="audio/mpeg" />
             </audio>
+
+            {/* Fireflies */}
+            <div className="fireflies-container">
+                {fireflies.map((firefly) => (
+                    <div
+                        key={firefly.id}
+                        className="firefly"
+                        style={{
+                            top: firefly.top,
+                            left: firefly.left,
+                            '--delay': firefly.delay,
+                            '--duration': firefly.duration,
+                            '--color': firefly.color,
+                            '--size': firefly.size
+                        }}
+                    />
+                ))}
+            </div>
+
+            {/* Realistic Three.js Fire & Smoke */}
+            <FireplaceEffects />
+
             <img
                 className="homepage-background"
                 src={bg}
