@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Homepage.css';
 import bg from '@/assets/bg_14.png';
 import fireplace from '@/assets/fireplace_2.gif';
 import Hotbar from '@/components/Hotbar';
+import fireCrackling from '@/assets/audio/fire_cackling.mp3';
 
 export default function Homepage() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const audioRef = useRef(null);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -23,6 +25,32 @@ export default function Homepage() {
         };
     }, []);
 
+    useEffect(() => {
+        // Play audio when component mounts
+        if (audioRef.current) {
+            audioRef.current.volume = 1; // Set volume to 100%
+            const playPromise = audioRef.current.play();
+
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('Audio playing successfully');
+                    })
+                    .catch(error => {
+                        console.log('Audio autoplay prevented:', error);
+                        console.log('Click anywhere on the page to start audio');
+
+                        // Add click listener to start audio on user interaction
+                        const startAudio = () => {
+                            audioRef.current?.play();
+                            document.removeEventListener('click', startAudio);
+                        };
+                        document.addEventListener('click', startAudio);
+                    });
+            }
+        }
+    }, []);
+
     // Subtle movement: max 10px in any direction
     // Negative values so background moves opposite to cursor (revealing hidden edges)
     const bgTransform = {
@@ -37,7 +65,10 @@ export default function Homepage() {
     };
 
     return (
-        <div className="homepage-container">
+        <div className="homepage-container" onClick={() => audioRef.current?.play()}>
+            <audio ref={audioRef} loop autoPlay preload="auto">
+                <source src={fireCrackling} type="audio/mpeg" />
+            </audio>
             <img
                 className="homepage-background"
                 src={bg}
