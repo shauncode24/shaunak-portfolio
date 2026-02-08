@@ -69,9 +69,9 @@ export default function Skills() {
 
     return (
         <div className="mc-root">
-            {/* SIDEBAR TABS */}
+            {/* LEFT SIDEBAR TABS - First 3 categories */}
             <div className="rb-sidebar">
-                {tabNames.map((tabName, i) => (
+                {tabNames.slice(0, 3).map((tabName, i) => (
                     <div
                         key={i}
                         className={`rb-side-slot ${activeTab === i ? "active" : ""}`}
@@ -113,16 +113,26 @@ export default function Skills() {
 
                 <div className="ci-title ci-inv-title">Inventory</div>
 
+                {/* SINGLE ROW INVENTORY - 9 slots */}
+                <div className="ci-inventory-grid">
+                    {currentSkills.slice(0, 9).map((skill, i) => (
+                        <div key={i} className="ci-slot skill-slot" title={skill.name}>
+                            <img src={skill.icon} alt={skill.name} width="80%" />
+                        </div>
+                    ))}
+                    {/* Fill remaining slots if less than 9 */}
+                    {Array.from({ length: Math.max(0, 9 - currentSkills.length) }).map((_, i) => (
+                        <div key={`empty-${i}`} className="ci-slot" />
+                    ))}
+                </div>
+
+                {/* COMMENTED OUT: Original 3 rows + hotbar
                 <div className="ci-inventory-grid">
                     {currentSkills.map((skill, i) => (
                         <div key={i} className="ci-slot skill-slot" title={skill.name}>
-                            {/* <span className="skill-icon"> */}
                             <img src={skill.icon} alt={skill.name} width="80%" />
-                            {/* <span className="skill-count">64</span> */}
-                            {/* </span> */}
                         </div>
                     ))}
-                    {/* Fill remaining slots if less than 27 */}
                     {Array.from({ length: Math.max(0, 27 - currentSkills.length) }).map((_, i) => (
                         <div key={`empty-${i}`} className="ci-slot" />
                     ))}
@@ -133,6 +143,29 @@ export default function Skills() {
                         <div key={i} className="ci-slot" />
                     ))}
                 </div>
+                */}
+            </div>
+
+            {/* RIGHT SIDEBAR TABS - Last 3 categories */}
+            <div className="rb-sidebar rb-sidebar-right">
+                {tabNames.slice(3, 6).map((tabName, i) => (
+                    <div
+                        key={i + 3}
+                        className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""}`}
+                        onClick={() => setActiveTab(i + 3)}
+                    >
+                        <img
+                            src={tabIcons[tabName]}
+                            alt={tabName}
+                            className="tab-icon"
+                        />
+                        <span className="tab-label">
+                            {tabName === "frontend" ? "Frontend" :
+                                tabName === "aiml" ? "AI/ML" :
+                                    tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                        </span>
+                    </div>
+                ))}
             </div>
         </div>
     );

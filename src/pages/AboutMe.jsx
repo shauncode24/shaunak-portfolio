@@ -4,6 +4,10 @@ import Projects from './Projects';
 import aboutBg from '@/assets/about_me_bg_2.png';
 import AboutMeInfo from './AboutMeInfo';
 import Skills from './Skills';
+import chest from '@/assets/about_me/chest.png';
+import anvil from '@/assets/about_me/anvil.png';
+import craftingTable from '@/assets/about_me/crafting_table.png';
+import lecturn from '@/assets/about_me/lecturn.png';
 
 const projectsData = [
     {
@@ -52,9 +56,32 @@ export default function AboutMe() {
                 src={aboutBg}
                 alt="About Me Background"
             />
+
+            {/* Interactive Element Overlays */}
+            <img
+                className="aboutme-overlay aboutme-chest"
+                src={chest}
+                alt="Chest"
+            />
+            <img
+                className="aboutme-overlay aboutme-anvil"
+                src={anvil}
+                alt="Anvil"
+            />
+            <img
+                className="aboutme-overlay aboutme-crafting-table"
+                src={craftingTable}
+                alt="Crafting Table"
+            />
+            <img
+                className="aboutme-overlay aboutme-lecturn"
+                src={lecturn}
+                alt="Lecturn"
+            />
+
             {/* <AboutMeInfo /> */}
 
-            <Skills />
+            {/* <Skills /> */}
 
             {/* <Projects
                 project={projectsData[currentProjectIndex]}

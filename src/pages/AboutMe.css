@@ -19,3 +19,48 @@
   object-fit: cover;
   z-index: 1;
 }
+
+/* Interactive Element Overlays */
+.aboutme-overlay {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.aboutme-overlay:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+/* Chest - moved right and up */
+.aboutme-chest {
+  bottom: 23.5%;
+  left: 16.5%;
+  width: 11%;
+  height: auto;
+}
+
+/* Anvil - swapped with crafting table, now far left */
+.aboutme-anvil {
+  bottom: 23%;
+  left: 3%;
+  width: 12%;
+  height: auto;
+}
+
+/* Crafting Table - swapped with anvil, now bottom right */
+.aboutme-crafting-table {
+  bottom: 23%;
+  right: 15.5%;
+  width: 13%;
+  height: auto;
+}
+
+/* Lecturn - all the way to the right edge */
+.aboutme-lecturn {
+  bottom: 22%;
+  right: 1.1%;
+  width: 13%;
+  height: auto;
+}
