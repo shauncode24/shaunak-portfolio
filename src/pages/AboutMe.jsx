@@ -44,6 +44,7 @@ const projectsData = [
 
 export default function AboutMe() {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+    const [activeComponent, setActiveComponent] = useState(null); // null, 'about', 'skills', 'projects'
 
     const handleNextProject = () => {
         setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
@@ -57,38 +58,75 @@ export default function AboutMe() {
                 alt="About Me Background"
             />
 
-            {/* Interactive Element Overlays */}
-            <img
-                className="aboutme-overlay aboutme-chest"
-                src={chest}
-                alt="Chest"
-            />
-            <img
-                className="aboutme-overlay aboutme-anvil"
-                src={anvil}
-                alt="Anvil"
-            />
-            <img
-                className="aboutme-overlay aboutme-crafting-table"
-                src={craftingTable}
-                alt="Crafting Table"
-            />
-            <img
-                className="aboutme-overlay aboutme-lecturn"
-                src={lecturn}
-                alt="Lecturn"
-            />
+            {/* Interactive Element Overlays with Labels */}
+            <div
+                className="aboutme-interactive-wrapper"
+                onClick={() => setActiveComponent('about')}
+            >
+                <img
+                    className="aboutme-overlay aboutme-chest"
+                    src={chest}
+                    alt="Chest"
+                />
+                <div className="aboutme-label aboutme-label-chest">
+                    About Me
+                </div>
+            </div>
 
-            {/* <AboutMeInfo /> */}
+            <div
+                className="aboutme-interactive-wrapper"
+                onClick={() => setActiveComponent('s')}
+            >
+                <img
+                    className="aboutme-overlay aboutme-anvil"
+                    src={anvil}
+                    alt="Anvil"
+                />
+                <div className="aboutme-label aboutme-label-anvil">
+                    Anvil (WIP)
+                </div>
+            </div>
 
-            {/* <Skills /> */}
+            <div
+                className="aboutme-interactive-wrapper"
+                onClick={() => setActiveComponent('skills')}
+            >
+                <img
+                    className="aboutme-overlay aboutme-crafting-table"
+                    src={craftingTable}
+                    alt="Crafting Table"
+                />
+                <div className="aboutme-label aboutme-label-crafting">
+                    Skills
+                </div>
+            </div>
 
-            {/* <Projects
-                project={projectsData[currentProjectIndex]}
-                onNextProject={handleNextProject}
-                currentPage={currentProjectIndex + 1}
-                totalPages={projectsData.length}
-            /> */}
+            <div
+                className="aboutme-interactive-wrapper"
+                onClick={() => setActiveComponent('projects')}
+            >
+                <img
+                    className="aboutme-overlay aboutme-lecturn"
+                    src={lecturn}
+                    alt="Lecturn"
+                />
+                <div className="aboutme-label aboutme-label-lecturn">
+                    Projects
+                </div>
+            </div>
+
+            {/* Conditionally Rendered Components */}
+            {activeComponent === 'about' && <AboutMeInfo onClose={() => setActiveComponent(null)} />}
+            {activeComponent === 'skills' && <Skills onClose={() => setActiveComponent(null)} />}
+            {activeComponent === 'projects' && (
+                <Projects
+                    project={projectsData[currentProjectIndex]}
+                    onNextProject={handleNextProject}
+                    currentPage={currentProjectIndex + 1}
+                    totalPages={projectsData.length}
+                    onClose={() => setActiveComponent(null)}
+                />
+            )}
         </div>
     );
 }

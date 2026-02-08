@@ -3,15 +3,10 @@ import aboutBg from '@/assets/about_me_bg_2.png';
 import character from '@/assets/character_1.png';
 import RotatingText from '@/components/RotatingText';
 
-export default function AboutMeInfo() {
+export default function AboutMeInfo({ onClose }) {
     return (
-        <div className="aboutme-container">
-            <img
-                className="aboutme-background"
-                src={aboutBg}
-                alt="About Me Background"
-            />
-            <div className="aboutme-content-wrapper">
+        <div className="aboutmeinfo-container" onClick={onClose}>
+            <div className="aboutme-content-wrapper" onClick={(e) => e.stopPropagation()}>
                 <div className="aboutme-glass-panel">
                     <div className="aboutme-left">
                         <div className="minecraft-nametag">Shaunak Karve</div>

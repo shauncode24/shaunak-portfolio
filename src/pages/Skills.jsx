@@ -62,71 +62,72 @@ const tabIcons = {
     tools: "https://cdn-icons-png.flaticon.com/512/2620/2620885.png", // Tools icon
 };
 
-export default function Skills() {
+export default function Skills({ onClose }) {
     const [activeTab, setActiveTab] = useState(0);
 
     const currentSkills = skillsData[tabNames[activeTab]];
 
     return (
-        <div className="mc-root">
-            {/* LEFT SIDEBAR TABS - First 3 categories */}
-            <div className="rb-sidebar">
-                {tabNames.slice(0, 3).map((tabName, i) => (
-                    <div
-                        key={i}
-                        className={`rb-side-slot ${activeTab === i ? "active" : ""}`}
-                        onClick={() => setActiveTab(i)}
-                    >
-                        <img
-                            src={tabIcons[tabName]}
-                            alt={tabName}
-                            className="tab-icon"
-                        />
-                        <span className="tab-label">
-                            {tabName === "frontend" ? "Frontend" :
-                                tabName === "aiml" ? "AI/ML" :
-                                    tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                        </span>
+        <div className="skills-overlay" onClick={onClose}>
+            <div className="mc-root" onClick={(e) => e.stopPropagation()}>
+                {/* LEFT SIDEBAR TABS - First 3 categories */}
+                <div className="rb-sidebar">
+                    {tabNames.slice(0, 3).map((tabName, i) => (
+                        <div
+                            key={i}
+                            className={`rb-side-slot ${activeTab === i ? "active" : ""}`}
+                            onClick={() => setActiveTab(i)}
+                        >
+                            <img
+                                src={tabIcons[tabName]}
+                                alt={tabName}
+                                className="tab-icon"
+                            />
+                            <span className="tab-label">
+                                {tabName === "frontend" ? "Frontend" :
+                                    tabName === "aiml" ? "AI/ML" :
+                                        tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+
+                {/* CRAFTING + INVENTORY */}
+                <div className="ci-frame">
+                    <div className="ci-title">Crafting</div>
+
+                    <div className="ci-crafting-row">
+                        <div className="ci-slot-1 ci-result-slot-1" />
+
+                        <div className="ci-crafting-grid">
+                            {Array.from({ length: 9 }).map((_, i) => (
+                                <div key={i} className="ci-slot" />
+                            ))}
+                        </div>
+
+                        <div className="ci-arrow-space">
+                            <img src={arrow} alt="arrow" />
+                        </div>
+
+                        <div className="ci-slot-2 ci-result-slot" />
                     </div>
-                ))}
-            </div>
 
-            {/* CRAFTING + INVENTORY */}
-            <div className="ci-frame">
-                <div className="ci-title">Crafting</div>
+                    <div className="ci-title ci-inv-title">Inventory</div>
 
-                <div className="ci-crafting-row">
-                    <div className="ci-slot-1 ci-result-slot-1" />
-
-                    <div className="ci-crafting-grid">
-                        {Array.from({ length: 9 }).map((_, i) => (
-                            <div key={i} className="ci-slot" />
+                    {/* SINGLE ROW INVENTORY - 9 slots */}
+                    <div className="ci-inventory-grid">
+                        {currentSkills.slice(0, 9).map((skill, i) => (
+                            <div key={i} className="ci-slot skill-slot" title={skill.name}>
+                                <img src={skill.icon} alt={skill.name} width="80%" />
+                            </div>
+                        ))}
+                        {/* Fill remaining slots if less than 9 */}
+                        {Array.from({ length: Math.max(0, 9 - currentSkills.length) }).map((_, i) => (
+                            <div key={`empty-${i}`} className="ci-slot" />
                         ))}
                     </div>
 
-                    <div className="ci-arrow-space">
-                        <img src={arrow} alt="arrow" />
-                    </div>
-
-                    <div className="ci-slot-2 ci-result-slot" />
-                </div>
-
-                <div className="ci-title ci-inv-title">Inventory</div>
-
-                {/* SINGLE ROW INVENTORY - 9 slots */}
-                <div className="ci-inventory-grid">
-                    {currentSkills.slice(0, 9).map((skill, i) => (
-                        <div key={i} className="ci-slot skill-slot" title={skill.name}>
-                            <img src={skill.icon} alt={skill.name} width="80%" />
-                        </div>
-                    ))}
-                    {/* Fill remaining slots if less than 9 */}
-                    {Array.from({ length: Math.max(0, 9 - currentSkills.length) }).map((_, i) => (
-                        <div key={`empty-${i}`} className="ci-slot" />
-                    ))}
-                </div>
-
-                {/* COMMENTED OUT: Original 3 rows + hotbar
+                    {/* COMMENTED OUT: Original 3 rows + hotbar
                 <div className="ci-inventory-grid">
                     {currentSkills.map((skill, i) => (
                         <div key={i} className="ci-slot skill-slot" title={skill.name}>
@@ -144,28 +145,29 @@ export default function Skills() {
                     ))}
                 </div>
                 */}
-            </div>
+                </div>
 
-            {/* RIGHT SIDEBAR TABS - Last 3 categories */}
-            <div className="rb-sidebar rb-sidebar-right">
-                {tabNames.slice(3, 6).map((tabName, i) => (
-                    <div
-                        key={i + 3}
-                        className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""}`}
-                        onClick={() => setActiveTab(i + 3)}
-                    >
-                        <img
-                            src={tabIcons[tabName]}
-                            alt={tabName}
-                            className="tab-icon"
-                        />
-                        <span className="tab-label">
-                            {tabName === "frontend" ? "Frontend" :
-                                tabName === "aiml" ? "AI/ML" :
-                                    tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                        </span>
-                    </div>
-                ))}
+                {/* RIGHT SIDEBAR TABS - Last 3 categories */}
+                <div className="rb-sidebar rb-sidebar-right">
+                    {tabNames.slice(3, 6).map((tabName, i) => (
+                        <div
+                            key={i + 3}
+                            className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""}`}
+                            onClick={() => setActiveTab(i + 3)}
+                        >
+                            <img
+                                src={tabIcons[tabName]}
+                                alt={tabName}
+                                className="tab-icon"
+                            />
+                            <span className="tab-label">
+                                {tabName === "frontend" ? "Frontend" :
+                                    tabName === "aiml" ? "AI/ML" :
+                                        tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                            </span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

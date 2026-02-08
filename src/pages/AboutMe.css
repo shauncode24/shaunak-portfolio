@@ -21,10 +21,17 @@
 }
 
 /* Interactive Element Overlays */
-.aboutme-overlay {
+.aboutme-interactive-wrapper {
   position: absolute;
   z-index: 2;
   cursor: pointer;
+}
+
+.aboutme-overlay {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
@@ -33,34 +40,102 @@
   filter: brightness(1.2);
 }
 
+/* Glassmorphism Labels */
+.aboutme-label {
+  position: absolute;
+  z-index: 3;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Minecraft-Regular', monospace;
+  font-size: 14px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.aboutme-interactive-wrapper:hover .aboutme-label {
+  opacity: 1;
+}
+
 /* Chest - moved right and up */
-.aboutme-chest {
+.aboutme-interactive-wrapper:nth-child(2) {
   bottom: 23.5%;
   left: 16.5%;
   width: 11%;
+}
+
+.aboutme-chest {
+  width: 100%;
   height: auto;
+}
+
+.aboutme-label-chest {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
 }
 
 /* Anvil - swapped with crafting table, now far left */
-.aboutme-anvil {
+.aboutme-interactive-wrapper:nth-child(3) {
   bottom: 23%;
   left: 3%;
   width: 12%;
+}
+
+.aboutme-anvil {
+  width: 100%;
   height: auto;
+}
+
+.aboutme-label-anvil {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
 }
 
 /* Crafting Table - swapped with anvil, now bottom right */
-.aboutme-crafting-table {
+.aboutme-interactive-wrapper:nth-child(4) {
   bottom: 23%;
   right: 15.5%;
   width: 13%;
+}
+
+.aboutme-crafting-table {
+  width: 100%;
   height: auto;
 }
 
+.aboutme-label-crafting {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+}
+
 /* Lecturn - all the way to the right edge */
-.aboutme-lecturn {
+.aboutme-interactive-wrapper:nth-child(5) {
   bottom: 22%;
   right: 1.1%;
   width: 13%;
+}
+
+.aboutme-lecturn {
+  width: 100%;
   height: auto;
+}
+
+.aboutme-label-lecturn {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
 }

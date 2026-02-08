@@ -3,10 +3,10 @@ import projectsBg from '@/assets/about_me/lecturn_page.png';
 import pageButton from '@/assets/about_me/page_button.png';
 import pageButtonHover from '@/assets/about_me/page_button_hover.png';
 
-export default function Projects({ project, onNextProject, currentPage, totalPages }) {
+export default function Projects({ project, onNextProject, currentPage, totalPages, onClose }) {
     return (
-        <div className="projects-container">
-            <div className='projects-wrapper'>
+        <div className="projects-container" onClick={onClose}>
+            <div className='projects-wrapper' onClick={(e) => e.stopPropagation()}>
                 <img
                     className="projects-background"
                     src={projectsBg}
