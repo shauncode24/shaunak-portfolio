@@ -4,6 +4,7 @@
     height: 100vh;
     overflow-y: hidden;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    cursor: crosshair
 }
 
 ::-webkit-scrollbar {
@@ -17,8 +18,14 @@
     width: calc(100vw + 10px);
     height: calc(100vh + 10px);
     object-fit: cover; 
-    /* a46928 */
     z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 0.3s ease-out;
+    pointer-events: none;
+}
+
+.homepage-background.active {
+    opacity: 1;
 }
 
 .homepage-fireplace {
@@ -30,11 +37,16 @@
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.1);
-    transition: filter 0.3s ease-in-out;
+    transition: opacity 3s ease-out 0.5s, filter 0.8s ease-in-out, transform 0.3s ease-out, drop-shadow 0.8s ease-in-out;
+    opacity: 0;
+}
+
+.homepage-fireplace.appear {
+    opacity: 1;
 }
 
 .homepage-fireplace:hover {
-    filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.2);
+    filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.5);
 }
 
 .homepage-content{
@@ -58,7 +70,7 @@
     color: #F6EED3; /* warm ivory, not pure white */
 
     /* PLACEMENT */
-    padding-top: 15vh; /* scene-aware vertical placement */
+    padding-top: 10vh; /* scene-aware vertical placement */
 
     /* PIXEL RENDERING */
     -webkit-font-smoothing: none;
@@ -70,6 +82,16 @@
         0 2px 6px rgba(0, 0, 0, 0.35);
 
     pointer-events: none; /* keeps scene feeling untouched */
+
+    /* ENTRY */
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 1.8s ease-out 0.3s, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.homepage-content.appear {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .homepage-content span{
@@ -130,3 +152,293 @@
         transform: scale(1.2);
     }
 }
+
+/* Atmosphere Controls */
+.homepage-controls {
+    position: absolute;
+    bottom: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* ENTRY */
+    opacity: 0;
+    transition: opacity 1.5s ease-out 1.2s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
+}
+
+.scene-controls {
+    left: 20px;
+    transform: translateX(-40px);
+}
+
+.effects-controls {
+    right: 20px;
+    transform: translateX(40px);
+}
+
+.homepage-controls.appear {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.control-group.row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.pixel-button {
+    font-family: "Minecraft-Regular", sans-serif;
+    background: rgba(246, 238, 211, 0.03);
+    border: 1px solid rgba(246, 238, 211, 0.2);
+    color: #F6EED3;
+    padding: 6px 10px;
+    padding-top: 8px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    outline: none;
+    text-transform: uppercase;
+    min-width: 80px;
+}
+
+.pixel-button:hover {
+    background: rgba(246, 238, 211, 0.1);
+    border-color: rgba(246, 238, 211, 0.4);
+    box-shadow: 0 0 10px rgba(246, 238, 211, 0.2);
+}
+
+.pixel-button.active {
+    background: rgba(246, 238, 211, 0.2);
+    border-color: #F6EED3;
+    box-shadow: 0 0 15px rgba(246, 238, 211, 0.3);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Subtitle */
+.homepage-subtitle {
+    display: block;
+    font-size: clamp(0.8rem, 1.5vw, 1.2rem) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+    margin-top: 10px;
+    letter-spacing: 0.3em;
+    font-family: "Minecraft", sans-serif;
+}
+
+/* Enter World Button */
+.homepage-enter-container {
+    position: absolute;
+    bottom: 50px; /* Positioned above the hotbar */
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    z-index: 100;
+
+    /* ENTRY */
+    opacity: 0;
+    transition: opacity 1.5s ease-out 0.8s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
+}
+
+.homepage-enter-container.appear {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.mc-button {
+    background-color: #7c7c7c;
+    border: 2px solid #000000;
+    padding: 12px 40px;
+    color: #ffffff;
+    font-family: "Minecraft-Regular", sans-serif;
+    font-size: 1rem;
+    text-shadow: 2px 2px 0px #3f3f3f;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    outline: none;
+    box-shadow: inset -2px -2px 0px #565656, inset 2px 2px 0px #A6A6A6;
+}
+
+.mc-button:hover {
+    background-color: #8c8c8c;
+    color: #ffffa0;
+    border: 2px solid #ffffff;
+    box-shadow: inset -2px -2px 0px #565656, inset 2px 2px 0px #000000;
+}
+
+.mc-button:active {
+    transform: translateY(2px);
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    box-shadow: inset 2px 2px 0px #4a4a4a, inset -2px -2px 0px #b5b5b5;
+}
+
+/* Top Status Bar */
+.homepage-top-status {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    z-index: 100;
+    display: flex;
+    opacity: 0;
+    transition: opacity 1s ease-out 1.5s, transform 1s ease-out 1.5s;
+    pointer-events: none;
+}
+
+.homepage-top-status.appear {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.status-text {
+    font-family: "Minecraft-Regular", sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #F6EED3;
+    background: none;
+    padding: 0;
+    text-transform: none; /* Keep the 'Currently' and 'chill' casing */
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Responsive adjustments for all screens */
+@media (max-width: 1024px) {
+    .homepage-content {
+        padding-top: 15vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-top-status {
+        width: 100%;
+        top: 15px;
+        justify-content: center;
+    }
+    .status-text {
+        font-size: 0.55rem;
+        letter-spacing: 0.05em;
+        text-align: center;
+        width: 90%;
+    }
+
+    .homepage-content {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        padding-top: 18vh;
+    }
+
+    /* Shift controls to prevent overlap in portrait */
+    .homepage-controls {
+        bottom: 15px;
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .scene-controls {
+        left: 15px;
+    }
+
+    .effects-controls {
+        right: 15px;
+    }
+
+    .pixel-button {
+        min-width: 60px;
+        font-size: 0.6rem;
+        padding: 5px 8px;
+    }
+    
+    .homepage-enter-container {
+        bottom: 120px;
+    }
+
+    .mc-button {
+        padding: 10px 30px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Specific logic for extra small screens and mobile portrait */
+@media (max-width: 480px) {
+    .homepage-content {
+        font-size: 2.8rem;
+        letter-spacing: 0.02em;
+        padding-top: 22vh;
+    }
+
+    .homepage-subtitle {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.15em;
+        margin-top: 15px;
+    }
+
+    .homepage-controls {
+        width: calc(50% - 25px);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .control-group.row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .pixel-button {
+        min-width: 45%;
+        flex-grow: 1;
+    }
+
+    .homepage-enter-container {
+        bottom: 180px; /* Moved up above stacked controls */
+    }
+}
+
+/* Landscape Mobile (Short screens) */
+@media (max-height: 500px) {
+    .homepage-content {
+        padding-top: 5vh;
+        font-size: clamp(2rem, 8vh, 3.5rem);
+    }
+    
+    .homepage-subtitle {
+        margin-top: 5px;
+    }
+
+    .homepage-enter-container {
+        bottom: 15px;
+        left: auto;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    /* Hide sidebar controls or slim them down to stay out of the center */
+    .homepage-controls {
+        bottom: 10px;
+    }
+
+    .mc-button {
+        padding: 8px 25px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Portrait orientation specific tweaks */
+@media (orientation: portrait) {
+    .homepage-background {
+        height: 100vh;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%) !important;
+    }
+}
+
+

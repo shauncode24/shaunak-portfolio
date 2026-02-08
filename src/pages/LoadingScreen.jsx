@@ -32,7 +32,6 @@ export default function LoadingScreen({ onLoadComplete }) {
                 alt="Loading..."
                 className="loading-gif"
             />
-            <p className="loading-hint">Click to continue</p>
         </div>
     );
 }
