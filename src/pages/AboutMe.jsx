@@ -3,6 +3,7 @@ import './AboutMe.css';
 import Projects from './Projects';
 import aboutBg from '@/assets/about_me_bg_2.png';
 import AboutMeInfo from './AboutMeInfo';
+import Skills from './Skills';
 
 const projectsData = [
     {
@@ -52,6 +53,8 @@ export default function AboutMe() {
                 alt="About Me Background"
             />
             {/* <AboutMeInfo /> */}
+
+            <Skills />
 
             {/* <Projects
                 project={projectsData[currentProjectIndex]}

@@ -1,0 +1,277 @@
+/* ROOT */
+.mc-root {
+  display: inline-flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* ========================= */
+/* RECIPE BOOK (LEFT PANEL) */
+/* ========================= */
+
+.rb-frame {
+  display: flex;
+  background: #C6C6C6;
+  border: 6px solid #ffffff;
+  border-top-color: #e5e5e5;
+  border-left-color: #e5e5e5;
+  border-right-color: #555555;
+  border-bottom-color: #555555;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 20px;
+}
+
+.rb-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.rb-side-slot {
+  width: 90px;
+  height: 72px;
+  background: #9a9a9a;
+  border-top: 3px solid #FFFFFF;
+  border-bottom: 3px solid #555555;
+  border-left: 4px solid #FFFFFF;
+  border-right: 3px solid #000000;
+  border-radius: 10px 0px 0px 10px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tab-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: brightness(0.9);
+  transition: filter 0.1s ease;
+}
+
+.tab-label {
+  font-size: 11px;
+  color: #000000;
+  font-family: 'Minecraft-Regular', monospace;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.rb-side-slot:hover .tab-icon,
+.rb-side-slot.active .tab-icon {
+  filter: brightness(1.1);
+}
+
+.rb-side-slot:hover {
+  width: 100px;
+  margin-left: -14px;
+  transform: translateX(6px);
+  border-right: 6px solid #C6C6C6;
+  background-color: #C6C6C6;
+}
+
+.rb-side-slot.active {
+  width: 100px;
+  margin-left: -14px;
+  transform: translateX(6px);
+  border-right: 6px solid #C6C6C6;
+  background-color: #C6C6C6;
+}
+
+.rb-main {
+  background: #373737;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border: 6px solid #ffffff;
+  border-right-color: #555555;
+  border-bottom-color: #555555;
+  border-top-color: #e5e5e5;
+  border-left-color: #e5e5e5;
+}
+
+.rb-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.rb-search {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.rb-search-icon {
+  width: 27px;
+  height: 27px;
+  background: #6f6f6f;
+  border: 3px solid #2b2b2b;
+}
+
+.rb-search-box {
+  width: 300px;
+  height: 39px;
+  background: #1e1e1e;
+  color: #9a9a9a;
+  padding: 6px 9px;
+  border: 3px solid #5a5a5a;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.rb-green-btn {
+  width: 48px;
+  height: 48px;
+  background: #6aa84f;
+  border: 4px solid;
+  border-color: #b6e7a7 #2f5d1f #2f5d1f #b6e7a7;
+}
+
+.rb-inner-panel {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.rb-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.rb-slot {
+  width: 72px;
+  height: 72px;
+  background: #9a9a9a;
+  border: 6px solid;
+  border-color: #d0d0d0 #ffffff #ffffff #d0d0d0;
+}
+
+/* ============================= */
+/* CRAFTING + INVENTORY (RIGHT) */
+/* ============================= */
+
+.ci-frame {
+  background: #c6c6c6;
+  padding: 18px;
+  border-radius: 5px;
+}
+
+.ci-title {
+  font-size: 24px;
+  color: #3F3F3F;
+  margin-bottom: 12px;
+  font-family: 'Minecraft-Regular', monospace;
+  margin-left: 89px;
+}
+
+.ci-inv-title {
+  margin-top: 24px;
+  margin-left: 0px;
+}
+
+.ci-crafting-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ci-crafting-grid {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+}
+
+.ci-arrow-space {
+  width: fit-content;
+  margin-left: 20px;
+}
+
+.ci-result-slot {
+  margin-left: 20px;
+}
+
+.ci-result-slot-1 {
+  margin-right: 18px;
+}
+
+.ci-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 64px);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ci-hotbar {
+  display: grid;
+  grid-template-columns: repeat(9, 64px);
+  gap: 8px;
+}
+
+.ci-slot,
+.ci-slot-1,
+.ci-slot-2   {
+  width: 64px;
+  height: 64px;
+  background: #8B8B8B;
+  border: 4px solid;
+  border-color: #343434 #ffffff #ffffff #343434;
+}
+
+.ci-slot-1 {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  border: 4px solid black;
+  background-color: #8892C9;
+}
+
+.ci-slot-2 {
+  width: 96px;
+  height: 96px;
+  border: 4px solid;
+  border-color: #303030 #FFFFFF #FFFFFF #303030;
+}
+
+/* SKILL SLOTS */
+.skill-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.skill-slot:hover {
+  background-color: #a0a0a0;
+  transform: scale(1.05);
+}
+
+.skill-count {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;   
+  transform: translate(50%, 50%);
+  font-size: 15px;
+  color: #FFFFFF;
+  font-family: 'Minecraft-Regular', monospace;
+  pointer-events: none;
+}
+
+
