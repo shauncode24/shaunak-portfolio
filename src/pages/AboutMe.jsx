@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import './AboutMe.css';
 import Projects from './Projects';
 import aboutBg from '@/assets/about_me/about_me_bg_10.png';
@@ -114,6 +115,22 @@ export default function AboutMe() {
 
         return () => clearTimeout(timeoutId);
     }, []);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && activeComponent) {
+                if (activeComponent === 'about' && chestCloseRef.current) {
+                    chestCloseRef.current.volume = 0.2;
+                    chestCloseRef.current.currentTime = 0;
+                    chestCloseRef.current.play().catch(e => console.error("Error playing close sound:", e));
+                }
+                setActiveComponent(null);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [activeComponent]);
 
     const handleNextProject = () => {
         setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
@@ -253,26 +270,57 @@ export default function AboutMe() {
             />
 
             {/* Conditionally Rendered Components */}
-            {activeComponent === 'about' && (
-                <AboutMeInfo onClose={() => {
-                    if (chestCloseRef.current) {
-                        chestCloseRef.current.volume = 0.2;
-                        chestCloseRef.current.currentTime = 0;
-                        chestCloseRef.current.play().catch(e => console.error("Error playing close sound:", e));
-                    }
-                    setActiveComponent(null);
-                }} />
-            )}
-            {activeComponent === 'skills' && <Skills onClose={() => setActiveComponent(null)} />}
-            {activeComponent === 'projects' && (
-                <Projects
-                    project={projectsData[currentProjectIndex]}
-                    onNextProject={handleNextProject}
-                    currentPage={currentProjectIndex + 1}
-                    totalPages={projectsData.length}
-                    onClose={() => setActiveComponent(null)}
-                />
-            )}
+            <AnimatePresence mode="wait">
+                {activeComponent === 'about' && (
+                    <motion.div
+                        key="about"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 50 }}
+                    >
+                        <AboutMeInfo onClose={() => {
+                            if (chestCloseRef.current) {
+                                chestCloseRef.current.volume = 0.2;
+                                chestCloseRef.current.currentTime = 0;
+                                chestCloseRef.current.play().catch(e => console.error("Error playing close sound:", e));
+                            }
+                            setActiveComponent(null);
+                        }} />
+                    </motion.div>
+                )}
+                {activeComponent === 'skills' && (
+                    <motion.div
+                        key="skills"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 50 }}
+                    >
+                        <Skills onClose={() => setActiveComponent(null)} />
+                    </motion.div>
+                )}
+                {activeComponent === 'projects' && (
+                    <motion.div
+                        key="projects"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 50 }}
+                    >
+                        <Projects
+                            project={projectsData[currentProjectIndex]}
+                            onNextProject={handleNextProject}
+                            currentPage={currentProjectIndex + 1}
+                            totalPages={projectsData.length}
+                            onClose={() => setActiveComponent(null)}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

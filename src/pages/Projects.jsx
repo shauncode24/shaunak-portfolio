@@ -2,11 +2,19 @@ import './Projects.css';
 import projectsBg from '@/assets/about_me/lecturn_page.png';
 import pageButton from '@/assets/about_me/page_button.png';
 import pageButtonHover from '@/assets/about_me/page_button_hover.png';
+import { motion } from 'motion/react';
 
 export default function Projects({ project, onNextProject, currentPage, totalPages, onClose }) {
     return (
         <div className="projects-container" onClick={onClose}>
-            <div className='projects-wrapper' onClick={(e) => e.stopPropagation()}>
+            <motion.div
+                className='projects-wrapper'
+                onClick={(e) => e.stopPropagation()}
+                initial={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+                animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
+                exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
                 <img
                     className="projects-background"
                     src={projectsBg}
@@ -41,7 +49,7 @@ export default function Projects({ project, onNextProject, currentPage, totalPag
                     onMouseEnter={(e) => e.currentTarget.src = pageButtonHover}
                     onMouseLeave={(e) => e.currentTarget.src = pageButton}
                 />
-            </div>
+            </motion.div>
         </div>
     );
 }

@@ -2,6 +2,7 @@ import "./Skills.css";
 import { useState } from "react";
 import arrow from "@/assets/about_me/crafting_arrow.png";
 import java from "@/assets/skills/java.png";
+import { motion } from 'motion/react';
 
 // Tech stack icons - using emoji for now, replace with actual icon URLs
 const skillsData = {
@@ -69,7 +70,14 @@ export default function Skills({ onClose }) {
 
     return (
         <div className="skills-overlay" onClick={onClose}>
-            <div className="mc-root" onClick={(e) => e.stopPropagation()}>
+            <motion.div
+                className="mc-root"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+                animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
+                exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
                 {/* LEFT SIDEBAR TABS - First 3 categories */}
                 <div className="rb-sidebar">
                     {tabNames.slice(0, 3).map((tabName, i) => (
@@ -168,7 +176,7 @@ export default function Skills({ onClose }) {
                         </div>
                     ))}
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }

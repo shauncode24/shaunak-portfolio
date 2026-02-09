@@ -2,11 +2,19 @@ import './AboutMeInfo.css';
 import aboutBg from '@/assets/about_me_bg_2.png';
 import character from '@/assets/character_1.png';
 import RotatingText from '@/components/RotatingText';
+import { motion } from 'motion/react';
 
 export default function AboutMeInfo({ onClose }) {
     return (
         <div className="aboutmeinfo-container" onClick={onClose}>
-            <div className="aboutme-content-wrapper" onClick={(e) => e.stopPropagation()}>
+            <motion.div
+                className="aboutme-content-wrapper"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+                animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
+                exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+            >
                 <div className="aboutme-glass-panel">
                     <div className="aboutme-left">
                         <div className="minecraft-nametag">Shaunak Karve</div>
@@ -46,7 +54,7 @@ export default function AboutMeInfo({ onClose }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
