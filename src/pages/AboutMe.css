@@ -60,82 +60,77 @@
   white-space: nowrap;
 }
 
-.aboutme-interactive-wrapper:hover .aboutme-label {
-  opacity: 1;
-}
-
-/* Chest - moved right and up */
-.aboutme-interactive-wrapper:nth-child(2) {
-  bottom: 23.5%;
-  left: 16.5%;
-  width: 11%;
-}
-
-.aboutme-chest {
-  width: 100%;
-  height: auto;
-}
-
-.aboutme-label-chest {
-  bottom: 100%;
+/* Items Container - Centered */
+.aboutme-items-container {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 10px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4vw;
+  width: auto;
+  z-index: 2;
 }
 
-/* Anvil - swapped with crafting table, now far left */
-.aboutme-interactive-wrapper:nth-child(3) {
-  bottom: 23%;
-  left: 3%;
-  width: 12%;
+.aboutme-interactive-wrapper {
+  position: relative;
+  /* Resetting unwanted absolute properties if any leaked */
+  bottom: auto;
+  left: auto;
+  right: auto;
 }
 
-.aboutme-anvil {
-  width: 100%;
-  height: auto;
+/* Specific component sizing */
+.chest-wrapper {
+  width: 10vw;
+  max-width: 160px;
 }
 
-.aboutme-label-anvil {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 10px;
+.crafting-wrapper {
+  width: 10.5vw;
+  max-width: 168px;
 }
 
-/* Crafting Table - swapped with anvil, now bottom right */
-.aboutme-interactive-wrapper:nth-child(4) {
-  bottom: 23%;
-  right: 15.5%;
-  width: 13%;
+.lecturn-wrapper {
+  width: 10vw;
+  max-width: 168px;
 }
 
-.aboutme-crafting-table {
-  width: 100%;
-  height: auto;
-}
-
-.aboutme-label-crafting {
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 10px;
-}
-
-/* Lecturn - all the way to the right edge */
-.aboutme-interactive-wrapper:nth-child(5) {
-  bottom: 22%;
-  right: 1.1%;
-  width: 13%;
-}
-
-.aboutme-lecturn {
-  width: 100%;
-  height: auto;
-}
-
+/* Adjust labels relative to the new relative wrappers */
+.aboutme-label-chest,
+.aboutme-label-crafting,
 .aboutme-label-lecturn {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  white-space: nowrap;
+}
+
+/* Dog */
+.aboutme-dog {
+  position: absolute;
+  bottom: 13%;
+  left: 10%;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Fireplace */
+.aboutme-fireplace {
+  position: absolute;
+  top: 47%;
+  right: 16%; /* Adjust distance from right edge as needed */
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  height: 20vh;
+  max-height: 40vh; /* Prevent it from being too huge */
+  z-index: 10;
+  pointer-events: none;
+  filter: brightness(0.8);
 }

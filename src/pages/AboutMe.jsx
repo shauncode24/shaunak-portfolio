@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './AboutMe.css';
 import Projects from './Projects';
-import aboutBg from '@/assets/about_me_bg_2.png';
+import aboutBg from '@/assets/about_me/about_me_bg_10.png';
 import AboutMeInfo from './AboutMeInfo';
 import Skills from './Skills';
 import chest from '@/assets/about_me/chest.png';
-import anvil from '@/assets/about_me/anvil.png';
 import craftingTable from '@/assets/about_me/crafting_table.png';
-import lecturn from '@/assets/about_me/lecturn.png';
+import lecturn from '@/assets/about_me/lecturn_1.png';
+import dogGif from '@/assets/about_me/dog.gif';
+import dogStill from '@/assets/about_me/dog_still.png';
+import fireplace from '@/assets/about_me/campfire.gif';
+import FireplaceEffects from '../components/SmokeEffect';
 
 const projectsData = [
     {
@@ -45,6 +48,30 @@ const projectsData = [
 export default function AboutMe() {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
     const [activeComponent, setActiveComponent] = useState(null); // null, 'about', 'skills', 'projects'
+    const [isDogMoving, setIsDogMoving] = useState(false);
+
+    useEffect(() => {
+        let timeoutId;
+
+        const scheduleDogMovement = () => {
+            // Wait random time between 5s and 15s
+            const delay = Math.random() * 10000 + 5000;
+
+            timeoutId = setTimeout(() => {
+                setIsDogMoving(true);
+
+                // Let the gif play for 3 seconds then stop
+                setTimeout(() => {
+                    setIsDogMoving(false);
+                    scheduleDogMovement(); // Schedule next movement
+                }, 3000);
+            }, delay);
+        };
+
+        scheduleDogMovement();
+
+        return () => clearTimeout(timeoutId);
+    }, []);
 
     const handleNextProject = () => {
         setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
@@ -58,62 +85,77 @@ export default function AboutMe() {
                 alt="About Me Background"
             />
 
-            {/* Interactive Element Overlays with Labels */}
-            <div
-                className="aboutme-interactive-wrapper"
-                onClick={() => setActiveComponent('about')}
-            >
-                <img
-                    className="aboutme-overlay aboutme-chest"
-                    src={chest}
-                    alt="Chest"
-                />
-                <div className="aboutme-label aboutme-label-chest">
-                    About Me
+            <div className="aboutme-items-container">
+                <div
+                    className="aboutme-interactive-wrapper chest-wrapper"
+                    onClick={() => setActiveComponent('about')}
+                >
+                    <img
+                        className="aboutme-overlay aboutme-chest"
+                        src={chest}
+                        alt="Chest"
+                    />
+                    <div className="aboutme-label aboutme-label-chest">
+                        About Me
+                    </div>
                 </div>
+
+                <div
+                    className="aboutme-interactive-wrapper lecturn-wrapper"
+                    onClick={() => setActiveComponent('projects')}
+                >
+                    <img
+                        className="aboutme-overlay aboutme-lecturn"
+                        src={lecturn}
+                        alt="Lecturn"
+                    />
+                    <div className="aboutme-label aboutme-label-lecturn">
+                        Projects
+                    </div>
+                </div>
+
+                <div
+                    className="aboutme-interactive-wrapper crafting-wrapper"
+                    onClick={() => setActiveComponent('skills')}
+                >
+                    <img
+                        className="aboutme-overlay aboutme-crafting-table"
+                        src={craftingTable}
+                        alt="Crafting Table"
+                    />
+                    <div className="aboutme-label aboutme-label-crafting">
+                        Skills
+                    </div>
+                </div>
+
+
             </div>
 
-            <div
-                className="aboutme-interactive-wrapper"
-                onClick={() => setActiveComponent('s')}
-            >
-                <img
-                    className="aboutme-overlay aboutme-anvil"
-                    src={anvil}
-                    alt="Anvil"
-                />
-                <div className="aboutme-label aboutme-label-anvil">
-                    Anvil (WIP)
-                </div>
-            </div>
+            <img
+                className="aboutme-dog"
+                src={isDogMoving ? dogGif : dogStill}
+                alt="Dog"
+            />
 
-            <div
-                className="aboutme-interactive-wrapper"
-                onClick={() => setActiveComponent('skills')}
-            >
-                <img
-                    className="aboutme-overlay aboutme-crafting-table"
-                    src={craftingTable}
-                    alt="Crafting Table"
-                />
-                <div className="aboutme-label aboutme-label-crafting">
-                    Skills
-                </div>
-            </div>
+            <img
+                className="aboutme-fireplace"
+                src={fireplace}
+                alt="Fireplace"
+            />
 
-            <div
-                className="aboutme-interactive-wrapper"
-                onClick={() => setActiveComponent('projects')}
-            >
-                <img
-                    className="aboutme-overlay aboutme-lecturn"
-                    src={lecturn}
-                    alt="Lecturn"
-                />
-                <div className="aboutme-label aboutme-label-lecturn">
-                    Projects
-                </div>
-            </div>
+            <FireplaceEffects
+                style={{
+                    top: '47%',
+                    right: '7%',
+                    left: 'auto',
+                    transform: 'translate(25%, -40%) scale(0.5)',
+                    width: '600px',
+                    height: '600px',
+                    opacity: 0.8,
+                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)',
+                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)'
+                }}
+            />
 
             {/* Conditionally Rendered Components */}
             {activeComponent === 'about' && <AboutMeInfo onClose={() => setActiveComponent(null)} />}

@@ -145,18 +145,23 @@ function FireParticles({ count = 30 }) {
     );
 }
 
-export default function FireplaceEffects() {
+export default function FireplaceEffects({ style, className }) {
+    const defaultStyle = {
+        position: 'absolute',
+        top: '62%',
+        left: '50%',
+        transform: 'translate(-50%, -100%)',
+        width: '1000px',
+        height: '1000px',
+        pointerEvents: 'none',
+        zIndex: 10,
+    };
+
     return (
-        <div style={{
-            position: 'absolute',
-            top: '62%',
-            left: '50%',
-            transform: 'translate(-50%, -100%)',
-            width: '1000px',
-            height: '1000px',
-            pointerEvents: 'none',
-            zIndex: 10,
-        }}>
+        <div
+            className={className}
+            style={{ ...defaultStyle, ...style }}
+        >
             <Canvas camera={{ position: [0, 0, 15], fov: 45 }} alpha={true}>
                 <SmokeParticles count={25} />
                 <FireParticles count={40} />
