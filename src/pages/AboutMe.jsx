@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import './AboutMe.css';
 import Projects from './Projects';
 import aboutBg from '@/assets/about_me/about_me_bg_10.png';
@@ -11,6 +11,11 @@ import dogGif from '@/assets/about_me/dog.gif';
 import dogStill from '@/assets/about_me/dog_still.png';
 import fireplace from '@/assets/about_me/campfire.gif';
 import FireplaceEffects from '../components/SmokeEffect';
+import bgMusic1 from '@/assets/audio/bg_music_1.mp3';
+import bgMusic2 from '@/assets/audio/bg_music_2.mp3';
+import bgMusic3 from '@/assets/audio/bg_music_3.mp3';
+import fireCrackling from '@/assets/audio/fire_cackling.mp3';
+import dogBark from '@/assets/audio/dog_bark.mp3';
 
 const projectsData = [
     {
@@ -49,6 +54,35 @@ export default function AboutMe() {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
     const [activeComponent, setActiveComponent] = useState(null); // null, 'about', 'skills', 'projects'
     const [isDogMoving, setIsDogMoving] = useState(false);
+    const [isMusicOn, setIsMusicOn] = useState(false);
+
+    const sfxRef = useRef(null);
+    const musicRef = useRef(null);
+    const dogBarkRef = useRef(null);
+
+    // Randomly select one of the background music tracks on mount
+    const selectedMusic = useMemo(() => {
+        const musicTracks = [bgMusic1, bgMusic2, bgMusic3];
+        return musicTracks[Math.floor(Math.random() * musicTracks.length)];
+    }, []);
+
+    // Audio volume and playback management based on state
+    useEffect(() => {
+        if (sfxRef.current) {
+            sfxRef.current.volume = isMusicOn ? 0.6 : 0;
+            if (isMusicOn) {
+                sfxRef.current.play().catch(() => { });
+            }
+        }
+        if (musicRef.current) {
+            musicRef.current.volume = isMusicOn ? 0.4 : 0;
+            if (isMusicOn) {
+                musicRef.current.play().catch(() => {
+                    console.log('Music play deferred until interaction');
+                });
+            }
+        }
+    }, [isMusicOn]);
 
     useEffect(() => {
         let timeoutId;
@@ -79,6 +113,22 @@ export default function AboutMe() {
 
     return (
         <div className="aboutme-container">
+            <audio ref={sfxRef} loop autoPlay={false} preload="auto">
+                <source src={fireCrackling} type="audio/mpeg" />
+            </audio>
+            <audio ref={musicRef} loop autoPlay={false} preload="auto">
+                <source src={selectedMusic} type="audio/mpeg" />
+            </audio>
+
+            <div className="aboutme-controls">
+                <button
+                    className={`pixel-button ${isMusicOn ? 'active' : ''}`}
+                    onClick={() => setIsMusicOn(!isMusicOn)}
+                >
+                    MUSIC: {isMusicOn ? 'ON' : 'OFF'}
+                </button>
+            </div>
+
             <img
                 className="aboutme-background"
                 src={aboutBg}
@@ -131,10 +181,21 @@ export default function AboutMe() {
 
             </div>
 
+            <audio ref={dogBarkRef} preload="auto">
+                <source src={dogBark} type="audio/mpeg" />
+            </audio>
+
             <img
                 className="aboutme-dog"
                 src={isDogMoving ? dogGif : dogStill}
                 alt="Dog"
+                onClick={() => {
+                    if (dogBarkRef.current) {
+                        dogBarkRef.current.volume = 0.2;
+                        dogBarkRef.current.currentTime = 0;
+                        dogBarkRef.current.play().catch(e => console.error("Error playing audio:", e));
+                    }
+                }}
             />
 
             <img

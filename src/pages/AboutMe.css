@@ -117,7 +117,43 @@
   width: auto;
   height: auto;
   z-index: 2;
-  pointer-events: none;
+  cursor: pointer;
+}
+
+/* Controls */
+.aboutme-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 20;
+}
+
+.pixel-button {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: 'Minecraft-Regular', monospace;
+  font-size: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 #000;
+  image-rendering: pixelated;
+  backdrop-filter: blur(4px);
+}
+
+.pixel-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.pixel-button.active {
+  background: rgba(100, 100, 255, 0.4);
+  border-color: rgba(150, 150, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(100, 100, 255, 0.2);
 }
 
 /* Fireplace */
