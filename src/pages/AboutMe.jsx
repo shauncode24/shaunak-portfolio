@@ -16,6 +16,11 @@ import bgMusic2 from '@/assets/audio/bg_music_2.mp3';
 import bgMusic3 from '@/assets/audio/bg_music_3.mp3';
 import fireCrackling from '@/assets/audio/fire_cackling.mp3';
 import dogBark from '@/assets/audio/dog_bark.mp3';
+import chestOpenSound from '@/assets/audio/chest_open.ogg';
+import chestCloseSound from '@/assets/audio/chest_close.ogg';
+import RoomAtmosphere from '../components/RoomAtmosphere';
+import resumePdf from '@/assets/resume.pdf';
+import sign from '@/assets/about_me/about_me_sign.png';
 
 const projectsData = [
     {
@@ -54,11 +59,14 @@ export default function AboutMe() {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
     const [activeComponent, setActiveComponent] = useState(null); // null, 'about', 'skills', 'projects'
     const [isDogMoving, setIsDogMoving] = useState(false);
+    const [isDogHovered, setIsDogHovered] = useState(false);
     const [isMusicOn, setIsMusicOn] = useState(false);
 
     const sfxRef = useRef(null);
     const musicRef = useRef(null);
     const dogBarkRef = useRef(null);
+    const chestOpenRef = useRef(null);
+    const chestCloseRef = useRef(null);
 
     // Randomly select one of the background music tracks on mount
     const selectedMusic = useMemo(() => {
@@ -129,16 +137,34 @@ export default function AboutMe() {
                 </button>
             </div>
 
+            <a
+                href={resumePdf}
+                download="Shaun_Resume.pdf"
+                className="aboutme-resume-wrapper"
+            >
+                <img src={sign} alt="Resume Sign" className="aboutme-sign-img" />
+                <span className="aboutme-resume-text">RESUME</span>
+            </a>
+
             <img
                 className="aboutme-background"
                 src={aboutBg}
                 alt="About Me Background"
             />
 
+            <RoomAtmosphere />
+
             <div className="aboutme-items-container">
                 <div
                     className="aboutme-interactive-wrapper chest-wrapper"
-                    onClick={() => setActiveComponent('about')}
+                    onClick={() => {
+                        if (chestOpenRef.current) {
+                            chestOpenRef.current.volume = 0.2;
+                            chestOpenRef.current.currentTime = 0;
+                            chestOpenRef.current.play().catch(e => console.error("Error playing open sound:", e));
+                        }
+                        setActiveComponent('about');
+                    }}
                 >
                     <img
                         className="aboutme-overlay aboutme-chest"
@@ -184,11 +210,19 @@ export default function AboutMe() {
             <audio ref={dogBarkRef} preload="auto">
                 <source src={dogBark} type="audio/mpeg" />
             </audio>
+            <audio ref={chestOpenRef} preload="auto">
+                <source src={chestOpenSound} type="audio/ogg" />
+            </audio>
+            <audio ref={chestCloseRef} preload="auto">
+                <source src={chestCloseSound} type="audio/ogg" />
+            </audio>
 
             <img
                 className="aboutme-dog"
-                src={isDogMoving ? dogGif : dogStill}
+                src={(isDogMoving || isDogHovered) ? dogGif : dogStill}
                 alt="Dog"
+                onMouseEnter={() => setIsDogHovered(true)}
+                onMouseLeave={() => setIsDogHovered(false)}
                 onClick={() => {
                     if (dogBarkRef.current) {
                         dogBarkRef.current.volume = 0.2;
@@ -219,7 +253,16 @@ export default function AboutMe() {
             />
 
             {/* Conditionally Rendered Components */}
-            {activeComponent === 'about' && <AboutMeInfo onClose={() => setActiveComponent(null)} />}
+            {activeComponent === 'about' && (
+                <AboutMeInfo onClose={() => {
+                    if (chestCloseRef.current) {
+                        chestCloseRef.current.volume = 0.2;
+                        chestCloseRef.current.currentTime = 0;
+                        chestCloseRef.current.play().catch(e => console.error("Error playing close sound:", e));
+                    }
+                    setActiveComponent(null);
+                }} />
+            )}
             {activeComponent === 'skills' && <Skills onClose={() => setActiveComponent(null)} />}
             {activeComponent === 'projects' && (
                 <Projects

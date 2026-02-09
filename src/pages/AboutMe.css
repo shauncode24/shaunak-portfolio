@@ -102,7 +102,7 @@
 .aboutme-label-chest,
 .aboutme-label-crafting,
 .aboutme-label-lecturn {
-  bottom: 100%;
+  bottom: 99%;
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 15px;
@@ -141,6 +141,43 @@
   text-shadow: 1px 1px 0 #000;
   image-rendering: pixelated;
   backdrop-filter: blur(4px);
+}
+
+.aboutme-resume-wrapper {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  z-index: 20;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px; /* Adjust based on sign image aspect ratio */
+  height: auto;
+}
+
+.aboutme-resume-wrapper:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.aboutme-sign-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
+}
+
+.aboutme-resume-text {
+  position: absolute;
+  top: 45%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Minecraft-Regular', monospace;
+  color: #3f2a14; /* Dark wood color for text contrast */
+  font-size: 18px;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.2);
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .pixel-button:hover {
