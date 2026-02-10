@@ -30,7 +30,7 @@
 .aboutme-content-wrapper {
   position: relative;
   z-index: 2;
-  max-width: 1100px;
+  max-width: 1300px;
   width: 90%;
   display: flex;
   align-items: center;
@@ -42,12 +42,12 @@
   backdrop-filter: blur(9px) saturate(130%);
   border: 1px solid rgba(255, 200, 150, 0.3);
   border-radius: 16px;
-  padding: 44px 52px;
+  padding: 54px 52px;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   display: flex;
-  gap: 48px;
+  gap: 100px;
   align-items: center;
   width: 100%;
 }
@@ -71,7 +71,7 @@
   font-weight: 400;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
-  color: #FFFFFF;
+  color: #7DD3FC;
   background: rgba(0, 0, 0, 0.3);
   padding: 4px 12px;
   border-radius: 3px;
@@ -91,6 +91,7 @@
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+  margin-bottom: 20px;
 }
 
 .aboutme-right {
@@ -102,18 +103,18 @@
   font-family: "Minecraft", sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   letter-spacing: 0.08em;
-  color: #FFF8E7;
+  color: #F5F1E6;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 2px 4px rgba(255, 255, 255, 0.54);
   margin-bottom: 50px;
 }
 
 .aboutme-body {
   font-family: "Inter", "Quicksand", system-ui, sans-serif;
   font-size: clamp(0.95rem, 1.05vw, 1.1rem);
-  color: #FFEFD5;
+  color: #f8f8f8;
   line-height: 2.1;
   letter-spacing: 0.3px;
   font-weight: 400;
@@ -152,7 +153,7 @@
 .rotating-text-gradient {
   display: inline-flex;
   white-space: nowrap;
-  color: #FFD89B;
+  color: #FCD34D;
   font-weight: 700;
 }
 

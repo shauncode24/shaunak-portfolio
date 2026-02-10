@@ -4,19 +4,28 @@ import aboutBg from '@/assets/about_me_bg_2.png';
 import characterGif from '@/assets/character_2.gif';
 import characterStill from '@/assets/character_2.png';
 import RotatingText from '@/components/RotatingText';
+import ContactCard from '@/components/ContactCard';
 import { motion } from 'motion/react';
 
 export default function AboutMeInfo({ onClose }) {
-    const [isGifPlaying, setIsGifPlaying] = useState(true);
+    const [isGifPlaying, setIsGifPlaying] = useState(false);
     const [gifKey, setGifKey] = useState(0);
 
+    // Trigger GIF start after entrance delay
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsGifPlaying(true);
+        }, 800); // Sync with entrance animation delay
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Handle GIF duration and cleanup
     useEffect(() => {
         let timer;
         if (isGifPlaying) {
-            // Adjust this duration to match the length of your GIF
             timer = setTimeout(() => {
                 setIsGifPlaying(false);
-            }, 2000);
+            }, 1880); // Play for slightly longer than 2s to ensure loop completes if needed
         }
         return () => clearTimeout(timer);
     }, [isGifPlaying, gifKey]);
@@ -25,6 +34,8 @@ export default function AboutMeInfo({ onClose }) {
         setGifKey(prev => prev + 1);
         setIsGifPlaying(true);
     };
+
+    const text = "Hey There!";
 
     return (
         <div className="aboutmeinfo-container" onClick={onClose}>
@@ -38,33 +49,106 @@ export default function AboutMeInfo({ onClose }) {
             >
                 <div className="aboutme-glass-panel">
                     <div className="aboutme-left">
-                        <div className="minecraft-nametag">Shaunak Karve</div>
-                        <img
-                            key={isGifPlaying ? `gif-${gifKey}` : 'still'}
-                            className="aboutme-character"
-                            src={isGifPlaying ? characterGif : characterStill}
-                            alt="Character"
+                        <motion.div
+                            className="minecraft-nametag"
+                            initial={{ opacity: 0, y: -10, x: "-50%" }}
+                            animate={{ opacity: 1, y: 0, x: "-50%" }}
+                            transition={{ delay: 0.5, duration: 0.5 }}
+                        >
+                            Shaunak Karve
+                        </motion.div>
+
+                        <motion.div
+                            className="character-container"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.8, duration: 0.5 }}
                             onClick={handleCharacterClick}
-                            style={{ cursor: 'pointer' }}
-                        />
+                            style={{ position: 'relative', cursor: 'pointer', display: 'flex', justifyContent: 'center' }}
+                        >
+                            {/* Static Image - Foundation (Always Visible) */}
+                            <img
+                                className="aboutme-character"
+                                src={characterStill}
+                                alt="Character Static"
+                                style={{
+                                    opacity: isGifPlaying ? 0 : 1,
+                                    transition: 'opacity 0.2s ease-in-out'
+                                }}
+                            />
+
+                            {/* GIF Overlay - Plays on top */}
+                            {isGifPlaying && (
+                                <img
+                                    key={gifKey}
+                                    className="aboutme-character"
+                                    src={characterGif}
+                                    alt="Character Animation"
+                                    style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: '50%',
+                                        transform: 'translateX(-50%)',
+                                        zIndex: 2
+                                    }}
+                                />
+                            )}
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 3.0, duration: 0.5 }}
+                            style={{ marginTop: '1.5rem', width: '100%' }}
+                        >
+                            <ContactCard />
+                        </motion.div>
                     </div>
                     <div className="aboutme-right">
-                        <div className="aboutme-heading">Hey There!</div>
-                        <div className="aboutme-body">
-                            <p>
-                                I'm a Full Stack Developer who transforms ideas into seamless digital experiences.
-                            </p>
-                            <p>
-                                I specialize in building web applications where clean code meets thoughtful design. From responsive frontends to scalable backends, I create solutions that don't just work—they feel right.
-                            </p>
-                            <p>
-                                Currently based in Mumbai and open to remote opportunities worldwide. I work across the modern web stack—React, Node.js, TypeScript—and whatever tools best serve the project.
-                            </p>
+                        <div className="aboutme-heading">
+                            {text.split("").map((letter, index) => (
+                                <motion.span
+                                    key={index}
+                                    initial={{ opacity: 0, filter: 'blur(10px)' }}
+                                    animate={{ opacity: 1, filter: 'blur(0px)' }}
+                                    transition={{
+                                        duration: 0.3,
+                                        delay: index * 0.05,
+                                    }}
+                                >
+                                    {letter}
+                                </motion.span>
+                            ))}
                         </div>
-                        <div className='about-content-body-rotating-text'>
-                            When I'm not coding, you'll find me&nbsp;
+                        <div className="aboutme-body">
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.0, duration: 0.5 }}
+                            >
+                                I’m a full-stack developer who enjoys turning rough ideas into things people actually enjoy using.                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.5, duration: 0.5 }}
+                            >
+                                I like working on web apps where the details matter — from how smooth an interaction feels to how clean and readable the code is behind the scenes. I try to build things that feel natural, thoughtful, and just…right.                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 2.0, duration: 0.5 }}
+                            >
+                                I’m currently based in <span style={{ color: '#60A5FA', fontWeight: 'bold' }}>Mumbai</span> and comfortable working across the entire web stack. I usually pick whatever tools make the most sense for the problem, not just what’s trendy.                            </motion.p>
+                        </div>
+                        <motion.div
+                            className='about-content-body-rotating-text'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 2.5, duration: 0.8 }}
+                        >
+                            Away from the keyboard, I’m usually&nbsp;
                             <RotatingText
-                                texts={['sketching', 'writing stories', 'playing Minecraft', 'listening to music', 'reading history', 'watching films']}
+                                texts={['sketching', 'writing stories', 'playing Minecraft', 'listening to music', 'reading history', 'watching movies']}
                                 mainClassName="rotating-text-gradient"
                                 staggerFrom={"last"}
                                 initial={{ y: "100%" }}
@@ -75,7 +159,9 @@ export default function AboutMeInfo({ onClose }) {
                                 transition={{ type: "spring", damping: 30, stiffness: 400 }}
                                 rotationInterval={3000}
                             />
-                        </div>
+                        </motion.div>
+
+
                     </div>
                 </div>
             </motion.div>
