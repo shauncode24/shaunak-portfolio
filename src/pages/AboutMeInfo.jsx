@@ -1,10 +1,31 @@
+import { useState, useEffect } from 'react';
 import './AboutMeInfo.css';
 import aboutBg from '@/assets/about_me_bg_2.png';
-import character from '@/assets/character_1.png';
+import characterGif from '@/assets/character_2.gif';
+import characterStill from '@/assets/character_2.png';
 import RotatingText from '@/components/RotatingText';
 import { motion } from 'motion/react';
 
 export default function AboutMeInfo({ onClose }) {
+    const [isGifPlaying, setIsGifPlaying] = useState(true);
+    const [gifKey, setGifKey] = useState(0);
+
+    useEffect(() => {
+        let timer;
+        if (isGifPlaying) {
+            // Adjust this duration to match the length of your GIF
+            timer = setTimeout(() => {
+                setIsGifPlaying(false);
+            }, 2000);
+        }
+        return () => clearTimeout(timer);
+    }, [isGifPlaying, gifKey]);
+
+    const handleCharacterClick = () => {
+        setGifKey(prev => prev + 1);
+        setIsGifPlaying(true);
+    };
+
     return (
         <div className="aboutmeinfo-container" onClick={onClose}>
             <motion.div
@@ -19,9 +40,12 @@ export default function AboutMeInfo({ onClose }) {
                     <div className="aboutme-left">
                         <div className="minecraft-nametag">Shaunak Karve</div>
                         <img
+                            key={isGifPlaying ? `gif-${gifKey}` : 'still'}
                             className="aboutme-character"
-                            src={character}
+                            src={isGifPlaying ? characterGif : characterStill}
                             alt="Character"
+                            onClick={handleCharacterClick}
+                            style={{ cursor: 'pointer' }}
                         />
                     </div>
                     <div className="aboutme-right">

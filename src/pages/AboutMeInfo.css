@@ -64,7 +64,7 @@
 
 .minecraft-nametag {
   position: absolute;
-  top: 0;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   font-family: "Silkscreen", sans-serif;
@@ -87,7 +87,7 @@
 }
 
 .aboutme-character {
-  height: 280px;
+  height: 320px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
@@ -185,4 +185,50 @@
   .about-content-body-rotating-text {
     flex-wrap: wrap;
   }
+}
+
+@media (max-width: 768px) {
+    .aboutme-content-wrapper {
+        width: 95%;
+        max-height: 90vh; /* Prevent it from being taller than screen */
+        overflow-y: auto; /* Allow scrolling inside if needed */
+    }
+
+    .aboutme-glass-panel {
+        padding: 24px;
+        gap: 20px;
+    }
+
+    .aboutme-heading {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .aboutme-left {
+        padding-top: 10px;
+    }
+
+    .aboutme-character {
+        height: 150px;
+    }
+    
+    .aboutme-body {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutme-glass-panel {
+        padding: 16px;
+    }
+    
+    .aboutme-heading {
+        font-size: 1.8rem;
+    }
+    
+    .aboutme-body p {
+        margin-bottom: 1rem;
+    }
 }

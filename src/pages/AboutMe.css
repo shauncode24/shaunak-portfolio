@@ -207,3 +207,119 @@
   pointer-events: none;
   filter: brightness(0.8);
 }
+
+@media (max-width: 1024px) {
+  .aboutme-items-container {
+      gap: 3vw;
+  }
+  
+  .chest-wrapper { width: 14vw; }
+  .crafting-wrapper { width: 14.5vw; }
+  .lecturn-wrapper { width: 14vw; }
+  
+  .aboutme-resume-wrapper {
+      top: 15%;
+      right: 10%;
+      width: 120px;
+  }
+  
+  .aboutme-fireplace {
+      height: 15vh;
+      right: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutme-items-container {
+      gap: 2vw;
+      width: 90%;
+      flex-wrap: nowrap;
+  }
+
+  .chest-wrapper, .lecturn-wrapper, .crafting-wrapper { 
+      width: 25vw;
+      max-width: 120px;
+  }
+
+  .aboutme-label {
+      font-size: 12px;
+      padding: 6px 10px;
+  }
+
+  /* Reposition fireplace for mobile portrait/landscape */
+  .aboutme-fireplace {
+     right: 5%;
+     height: 12vh;
+  }
+
+  .aboutme-dog {
+      width: 20vw;
+      bottom: 15%;
+  }
+  
+  .aboutme-resume-wrapper {
+      top: 10%;
+      right: 5%;
+      width: 100px;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .aboutme-items-container {
+      flex-direction: column;
+      align-items: center;
+      top: 60%;
+      gap: 4vh;
+  }
+  
+  .chest-wrapper, .lecturn-wrapper, .crafting-wrapper { 
+      width: 35vw;
+      max-width: 150px;
+  }
+  
+  .aboutme-dog {
+      left: 5%;
+      bottom: 5%;
+      width: 30vw;
+  }
+  
+  .aboutme-fireplace {
+      top: auto;
+      bottom: 5%;
+      right: 5%;
+      transform: none;
+  }
+
+  .aboutme-label-chest,
+  .aboutme-label-crafting,
+  .aboutme-label-lecturn {
+      bottom: 50%;
+      left: 105%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-bottom: 0;
+      margin-left: 15px;
+  }
+
+  .aboutme-resume-wrapper {
+      top: 5%;
+      right: 5%;
+  }
+  
+  .aboutme-controls {
+      top: 5%;
+      left: 5%;
+      bottom: auto;
+      right: auto;
+  }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+   .aboutme-items-container {
+       top: 55%;
+   }
+   
+   .chest-wrapper, .lecturn-wrapper, .crafting-wrapper {
+       width: 40vw;
+   }
+}
