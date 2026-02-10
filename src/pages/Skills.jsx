@@ -1,5 +1,5 @@
 import "./Skills.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import arrow from "@/assets/about_me/crafting_arrow.png";
 import java from "@/assets/skills/java.png";
 import { motion } from 'motion/react';
@@ -65,8 +65,83 @@ const tabIcons = {
 
 export default function Skills({ onClose }) {
     const [activeTab, setActiveTab] = useState(0);
+    const [craftingGrid, setCraftingGrid] = useState(Array(9).fill(null));
+    const [craftedItem, setCraftedItem] = useState(null);
 
     const currentSkills = skillsData[tabNames[activeTab]];
+
+    const recipes = [
+        { ingredients: ["HTML 5", "CSS", "JavaScript"], result: "Static Website" },
+        { ingredients: ["HTML 5", "CSS", "JavaScript", "Bootstrap"], result: "Responsive Website" },
+        { ingredients: ["HTML 5", "CSS", "JavaScript", "TypeScript"], result: "Large Frontend Project" },
+        { ingredients: ["JavaScript", "React", "HTML 5", "CSS"], result: "React Web App" },
+        { ingredients: ["TypeScript", "React", "HTML 5", "CSS"], result: "Production Frontend App" },
+        { ingredients: ["JavaScript", "Angular", "HTML 5", "CSS"], result: "Angular Web App" },
+        { ingredients: ["Node.js", "Express.js"], result: "Backend API" },
+        { ingredients: ["Node.js", "Express.js", "MongoDB"], result: "Backend with Database" },
+        { ingredients: ["Node.js", "Express.js", "PostgreSQL"], result: "SQL Backend API" },
+        { ingredients: ["React", "Node.js", "Express.js", "MongoDB"], result: "MERN Stack App" },
+        { ingredients: ["PostgreSQL", "Express.js", "React", "Node.js"], result: "PERN Stack App" },
+        { ingredients: ["Angular", "Node.js", "Express.js", "PostgreSQL"], result: "Enterprise Web App" },
+    ];
+
+    useEffect(() => {
+        const currentIngredients = craftingGrid
+            .filter(item => item !== null)
+            .map(item => item.name)
+            .sort();
+
+        const match = recipes.find(recipe => {
+            const recipeIngredients = [...recipe.ingredients].sort();
+            return JSON.stringify(recipeIngredients) === JSON.stringify(currentIngredients);
+        });
+
+        if (match) {
+            setCraftedItem({ name: match.result, icon: "https://cdn-icons-png.flaticon.com/512/1005/1005141.png" }); // Generic code/success icon
+        } else {
+            setCraftedItem(null);
+        }
+    }, [craftingGrid]);
+
+    const handleDragStart = (e, skill) => {
+        e.dataTransfer.setData("skill", JSON.stringify(skill));
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e, index) => {
+        e.preventDefault();
+        try {
+            const skillData = e.dataTransfer.getData("skill");
+            if (skillData) {
+                const skill = JSON.parse(skillData);
+                const newGrid = [...craftingGrid];
+
+                // Check if skill is already in grid, if so, remove it from old position? 
+                // Alternatively, allow duplicates (user didn't specify). 
+                // Assuming unique ingredients for recipes, but duplicate icons in grid might handle differently.
+                // Let's iterate grid to remove duplicates if we want unique slots logic, 
+                // OR just place it. Minecraft allows splitting, so duplicates are fine, 
+                // but for this logic, only presence matters. I'll allow "duplicates" visual 
+                // but the recipe checker handles names.
+                // Actually to keep it clean, let's remove existing instance if present?
+                // Nah, simpler is just overwrite slot.
+
+                newGrid[index] = skill;
+                setCraftingGrid(newGrid);
+            }
+        } catch (err) {
+            console.error("Drop error", err);
+        }
+    };
+
+    const handleSlotClick = (index) => {
+        const newGrid = [...craftingGrid];
+        newGrid[index] = null;
+        setCraftingGrid(newGrid);
+    };
 
     return (
         <div className="skills-overlay" onClick={onClose}>
@@ -78,6 +153,9 @@ export default function Skills({ onClose }) {
                 exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
+                {/* NEW RECIPE BOOK - LEFTMOST PANEL */}
+
+
                 {/* LEFT SIDEBAR TABS - First 3 categories */}
                 <div className="rb-sidebar">
                     {tabNames.slice(0, 3).map((tabName, i) => (
@@ -102,14 +180,24 @@ export default function Skills({ onClose }) {
 
                 {/* CRAFTING + INVENTORY */}
                 <div className="ci-frame">
-                    <div className="ci-title">Crafting</div>
+                    <div className="ci-title">Skills</div>
 
                     <div className="ci-crafting-row">
                         <div className="ci-slot-1 ci-result-slot-1" />
 
                         <div className="ci-crafting-grid">
-                            {Array.from({ length: 9 }).map((_, i) => (
-                                <div key={i} className="ci-slot" />
+                            {craftingGrid.map((slot, i) => (
+                                <div
+                                    key={i}
+                                    className="ci-slot"
+                                    onDragOver={handleDragOver}
+                                    onDrop={(e) => handleDrop(e, i)}
+                                    onClick={() => handleSlotClick(i)}
+                                    title={slot ? slot.name : "Empty Slot"}
+                                    style={{ cursor: slot ? 'pointer' : 'default', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                >
+                                    {slot && <img src={slot.icon} alt={slot.name} width="80%" />}
+                                </div>
                             ))}
                         </div>
 
@@ -117,7 +205,18 @@ export default function Skills({ onClose }) {
                             <img src={arrow} alt="arrow" />
                         </div>
 
-                        <div className="ci-slot-2 ci-result-slot" />
+                        <div className="ci-slot-2 ci-result-slot" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '5px' }}>
+                            {craftedItem && (
+                                <motion.div
+                                    initial={{ scale: 0.5, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}
+                                >
+                                    <img src={craftedItem.icon} alt={craftedItem.name} style={{ width: '60%', height: 'auto' }} />
+                                    <span style={{ fontSize: '10px', color: '#333', fontFamily: 'Minecraft-Regular' }}>{craftedItem.name}</span>
+                                </motion.div>
+                            )}
+                        </div>
                     </div>
 
                     <div className="ci-title ci-inv-title">Inventory</div>
@@ -125,7 +224,14 @@ export default function Skills({ onClose }) {
                     {/* SINGLE ROW INVENTORY - 9 slots */}
                     <div className="ci-inventory-grid">
                         {currentSkills.slice(0, 9).map((skill, i) => (
-                            <div key={i} className="ci-slot skill-slot" title={skill.name}>
+                            <div
+                                key={i}
+                                className="ci-slot skill-slot"
+                                title={skill.name}
+                                draggable
+                                onDragStart={(e) => handleDragStart(e, skill)}
+                                style={{ cursor: 'grab' }}
+                            >
                                 <img src={skill.icon} alt={skill.name} width="80%" />
                             </div>
                         ))}
@@ -134,25 +240,6 @@ export default function Skills({ onClose }) {
                             <div key={`empty-${i}`} className="ci-slot" />
                         ))}
                     </div>
-
-                    {/* COMMENTED OUT: Original 3 rows + hotbar
-                <div className="ci-inventory-grid">
-                    {currentSkills.map((skill, i) => (
-                        <div key={i} className="ci-slot skill-slot" title={skill.name}>
-                            <img src={skill.icon} alt={skill.name} width="80%" />
-                        </div>
-                    ))}
-                    {Array.from({ length: Math.max(0, 27 - currentSkills.length) }).map((_, i) => (
-                        <div key={`empty-${i}`} className="ci-slot" />
-                    ))}
-                </div>
-
-                <div className="ci-hotbar">
-                    {Array.from({ length: 9 }).map((_, i) => (
-                        <div key={i} className="ci-slot" />
-                    ))}
-                </div>
-                */}
                 </div>
 
                 {/* RIGHT SIDEBAR TABS - Last 3 categories */}
