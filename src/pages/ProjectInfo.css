@@ -1,0 +1,224 @@
+.project-info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.project-info-content {
+    background: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
+    width: 90%;
+    max-width: 1000px;
+    height: 85vh;
+    border-radius: 12px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.project-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.pi-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pi-title {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.pi-meta-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.pi-date, .pi-role {
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+    color: #888;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.pi-close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    line-height: 1;
+}
+
+.pi-close-btn:hover {
+    opacity: 1;
+}
+
+.project-info-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding: 2rem 3rem;
+    gap: 3rem;
+}
+
+.pi-left-col {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.pi-right-col {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pi-preview-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000;
+}
+
+.pi-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.pi-description {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #ccc;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    white-space: pre-line;
+}
+
+.pi-section-title {
+    font-family: 'Minecraft-Regular', monospace;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.pi-tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.pi-tech-Badge {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+}
+
+.pi-tech-Badge:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.pi-links-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.pi-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.pi-btn-github {
+    background: #24292e;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.pi-btn-live {
+    background: #218756;
+    color: #fff;
+    border: 1px solid #2ea46d;
+}
+
+.pi-action-btn:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+/* Scrollbar for left col */
+.pi-left-col::-webkit-scrollbar {
+    width: 6px;
+}
+.pi-left-col::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+.pi-left-col::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}

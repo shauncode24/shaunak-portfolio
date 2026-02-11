@@ -5,7 +5,7 @@ import './Homepage.css';
 import bgNight from '@/assets/landing_page/bg_night.png';
 import bgDay from '@/assets/landing_page/bg_day.png';
 import bgSunrise from '@/assets/landing_page/bg_sunrise.png';
-import bgSunset from '@/assets/landing_page/bg_sunset.png';
+import bgSunset from '@/assets/landing_page/bg_sunset_1.png';
 
 import fireplace from '@/assets/landing_page/fireplace_2.gif';
 import Hotbar from '@/components/Hotbar';
