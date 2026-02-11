@@ -20,7 +20,7 @@
     object-fit: cover; 
     z-index: 1;
     opacity: 0;
-    transition: opacity 1s ease-in-out, transform 0.3s ease-out;
+    transition: opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease-out;
     pointer-events: none;
 }
 
@@ -37,7 +37,7 @@
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.1);
-    transition: opacity 3s ease-out 0.5s, filter 0.8s ease-in-out, transform 0.3s ease-out, drop-shadow 0.8s ease-in-out;
+    transition: opacity 2s ease-out 0.5s, filter 0.8s ease-in-out, transform 0.3s ease-out, drop-shadow 0.8s ease-in-out;
     opacity: 0;
 }
 
@@ -45,13 +45,22 @@
     opacity: 1;
 }
 
+.homepage-smoke {
+    opacity: 0;
+    transition: opacity 2s ease-out 0.5s;
+}
+
+.homepage-smoke.appear {
+    opacity: 1;
+}
+
 .homepage-fireplace:hover {
     filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.3)) brightness(1.5);
 }
 
-.homepage-content{
+.homepage-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
 
     display: flex;
     flex-direction: column;
@@ -66,27 +75,32 @@
     font-size: clamp(4.1rem, 6.8vw, 4.9rem);
     letter-spacing: 0.08em;
 
-    /* COLOR */
-    color: #F6EED3; /* warm ivory, not pure white */
+    /* COLOR & STROKE - DYNAMIC */
+    /* Default fallback */
+    color: #F5E6C8;
+
+    -webkit-text-stroke: 2px #1E140B;
+    stroke: 2px #1E140B;
+    paint-order: stroke fill;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.65));
+
+    /* TRANSITIONS */
+    transition: color 0.4s ease, -webkit-text-stroke 0.4s ease, filter 0.4s ease;
 
     /* PLACEMENT */
-    padding-top: 10vh; /* scene-aware vertical placement */
+    padding-top: 10vh;
 
     /* PIXEL RENDERING */
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
 
-    /* SHADOW — VERY IMPORTANT */
-    text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.35);
-
-    pointer-events: none; /* keeps scene feeling untouched */
+    pointer-events: none;
 
     /* ENTRY */
     opacity: 0;
-    transform: translateY(-30px);
-    transition: opacity 1.8s ease-out 0.3s, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    transform: translateY(-40px);
+    transition: opacity 1.8s ease-out 1.5s, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 1.5s, color 0.4s ease;
 }
 
 .homepage-content.appear {
@@ -94,10 +108,56 @@
     transform: translateY(0);
 }
 
-.homepage-content span{
+.homepage-content span {
     margin-top: 20px;
     font-size: clamp(0.8rem, 2vw, 1.4rem);
+
+    -webkit-text-stroke: 0px #1E140B;
+    stroke: 0px #1E140B;
+    paint-order: stroke fill;
+
+    transition: color 0.4s ease, opacity 1.5s ease-out 2.0s;
+    opacity: 0;
 }
+
+.homepage-content.appear span {
+    opacity: 0.9;
+}
+
+/* --- SCENE SPECIFIC COLORS --- */
+
+/* 1. DAY SCENE - Vibrant Orange */
+.homepage-content.day {
+    color: #fbda94;    
+}
+.homepage-content.day span {
+    color: #000000;
+}
+
+/* 2. SUNRISE SCENE - Vibrant Orange */
+.homepage-content.sunrise {
+    color: #eaf3ff;
+}
+.homepage-content.sunrise span {
+    color: #000000;
+}
+
+/* 3. SUNSET SCENE - Torchlight Parchment (Reverted) */
+.homepage-content.sunset {
+    color: #F5E6C8;
+}
+.homepage-content.sunset span {
+    color: #ffffff;
+}
+
+/* 4. NIGHT SCENE - Torchlight Parchment */
+.homepage-content.night {
+    color: #F5E6C8;
+}
+.homepage-content.night span {
+    color: #ffffff;
+}
+
 
 
 
@@ -113,6 +173,21 @@
     pointer-events: none;
     z-index: 5;
     overflow: hidden;
+    opacity: 0;
+    transition: opacity 3s ease-in-out 1s;
+}
+
+.fireflies-container.appear {
+    opacity: 1;
+}
+
+.rain-container {
+    opacity: 0;
+    transition: opacity 2s ease-in-out 1s;
+}
+
+.rain-container.appear {
+    opacity: 1;
 }
 
 .firefly {
@@ -167,7 +242,7 @@
 
     /* ENTRY */
     opacity: 0;
-    transition: opacity 1.5s ease-out 1.2s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
+    transition: opacity 1.5s ease-out 3.0s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 3.0s;
 }
 
 .scene-controls {
@@ -224,12 +299,12 @@
 /* Subtitle */
 .homepage-subtitle {
     display: block;
-    font-size: clamp(0.8rem, 1.5vw, 1.2rem) !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    opacity: 0.9;
+    font-size: clamp(0.5rem, 1.2vw, 0.9rem) !important;
+    opacity: 0; /* Handled by parent span selector above */
     margin-top: 10px;
-    letter-spacing: 0.3em;
-    font-family: "Minecraft", sans-serif;
+    letter-spacing: 0.5em;
+    font-weight: 400;
+    font-family: "Minecraft-Regular", sans-serif;
 }
 
 /* Enter World Button */
@@ -242,7 +317,7 @@
 
     /* ENTRY */
     opacity: 0;
-    transition: opacity 1.5s ease-out 0.8s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
+    transition: opacity 1.5s ease-out 2.5s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2.5s;
 }
 
 .homepage-enter-container.appear {
@@ -289,7 +364,7 @@
     z-index: 100;
     display: flex;
     opacity: 0;
-    transition: opacity 1s ease-out 1.5s, transform 1s ease-out 1.5s;
+    transition: opacity 1.5s ease-out 3.0s, transform 1.5s ease-out 3.0s;
     pointer-events: none;
 }
 
@@ -302,12 +377,24 @@
     font-family: "Minecraft-Regular", sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.15em;
-    color: #F6EED3;
+    color: #ffffff;
     background: none;
     padding: 0;
     text-transform: none; /* Keep the 'Currently' and 'chill' casing */
     white-space: nowrap;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.status-time {
+    color: #000000;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+/* Sunrise Time Color */
+.homepage-top-status.night .status-time {
+    color: #ffd700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
 /* Responsive adjustments for all screens */
