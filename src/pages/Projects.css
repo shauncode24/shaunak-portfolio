@@ -208,3 +208,13 @@
 .page-button:hover {
     transform: scale(1.05);
 }
+
+.page-button-prev {
+    right: auto;
+    left: 5.55rem;
+    transform: scaleX(-1);
+}
+
+.page-button-prev:hover {
+    transform: scaleX(-1) scale(1.05);
+}

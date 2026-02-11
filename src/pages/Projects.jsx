@@ -4,7 +4,7 @@ import pageButton from '@/assets/about_me/page_button.png';
 import pageButtonHover from '@/assets/about_me/page_button_hover.png';
 import { motion } from 'motion/react';
 
-export default function Projects({ project, onNextProject, currentPage, totalPages, onClose }) {
+export default function Projects({ project, onNextProject, onPrevProject, currentPage, totalPages, onClose }) {
     return (
         <div className="projects-container" onClick={onClose}>
             <motion.div
@@ -46,6 +46,14 @@ export default function Projects({ project, onNextProject, currentPage, totalPag
                     src={pageButton}
                     alt="Next Page"
                     onClick={onNextProject}
+                    onMouseEnter={(e) => e.currentTarget.src = pageButtonHover}
+                    onMouseLeave={(e) => e.currentTarget.src = pageButton}
+                />
+                <img
+                    className="page-button page-button-prev"
+                    src={pageButton}
+                    alt="Previous Page"
+                    onClick={onPrevProject}
                     onMouseEnter={(e) => e.currentTarget.src = pageButtonHover}
                     onMouseLeave={(e) => e.currentTarget.src = pageButton}
                 />

@@ -136,6 +136,10 @@ export default function AboutMe() {
         setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % projectsData.length);
     };
 
+    const handlePrevProject = () => {
+        setCurrentProjectIndex((prevIndex) => (prevIndex - 1 + projectsData.length) % projectsData.length);
+    };
+
     return (
         <div className="aboutme-container">
             <audio ref={sfxRef} loop autoPlay={false} preload="auto">
@@ -314,6 +318,7 @@ export default function AboutMe() {
                         <Projects
                             project={projectsData[currentProjectIndex]}
                             onNextProject={handleNextProject}
+                            onPrevProject={handlePrevProject}
                             currentPage={currentProjectIndex + 1}
                             totalPages={projectsData.length}
                             onClose={() => setActiveComponent(null)}
