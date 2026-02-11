@@ -222,6 +222,8 @@ export default function Homepage() {
         }));
     }, []);
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     useEffect(() => {
         const handleMouseMove = (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -293,11 +295,21 @@ export default function Homepage() {
         transform: `translate(calc(-50% + ${-mousePosition.x * 5}px), calc(-50% + ${-mousePosition.y * 5}px))`
     };
 
+    // Close menu when clicking outside or on a selection
+    const handleMenuSelection = (action) => {
+        action();
+        // Keep menu open? User didn't specify, but usually selecting an option might close it or keep it for more changes. 
+        // Let's keep it open for multi-select (like music toggle), but maybe close on scene change? 
+        // Actually, let's just keep it open until user closes it.
+    };
+
     return (
         <div className="homepage-container" onClick={() => {
             if (isMusicOn) sfxRef.current?.play();
             if (isRainOn) rainRef.current?.play();
             if (isMusicOn) musicRef.current?.play();
+            // Do not close menu on background click if we want to separate UI logic, but standard behavior is close.
+            // setIsMenuOpen(false); 
         }}>
             <audio ref={sfxRef} loop autoPlay preload="auto">
                 <source src={fireCrackling} type="audio/mpeg" />
@@ -309,15 +321,53 @@ export default function Homepage() {
                 <source src={selectedMusic} type="audio/mpeg" />
             </audio>
 
-            {/* Top Status Bar */}
+            {/* Top Status Bar - Split Lines */}
             <div className={`homepage-top-status ${timeOfDay} ${isLoaded ? 'appear' : ''}`}>
-                <span className="status-text">
-                    <span className="status-time">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</span> in Mumbai, {atmospherePhrases[timeOfDay][weatherDesc] || "checking the skies..."}.
-                </span>
+                <div className="status-container">
+                    <div className="status-line primary">
+                        <span className="status-time">{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</span> in Mumbai,
+                    </div>
+                    <div className="status-line secondary">
+                        {atmospherePhrases[timeOfDay][weatherDesc] || "checking the skies..."}
+                    </div>
+                </div>
             </div>
 
-            {/* Atmosphere Controls: Bottom Left (Scenes) */}
-            <div className={`homepage-controls scene-controls ${isLoaded ? 'appear' : ''}`}>
+            {/* Mobile Menu Toggle */}
+            <div
+                className={`mobile-menu-toggle ${isMenuOpen ? 'open' : ''} ${isLoaded ? 'appear' : ''}`}
+                onClick={(e) => { e.stopPropagation(); setIsMenuOpen(!isMenuOpen); }}
+            >
+                <div className="bar"></div>
+                <div className="bar"></div>
+                <div className="bar"></div>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
+                <div className="mobile-menu-content">
+                    <div className="mobile-control-group">
+                        <h3>SCENE</h3>
+                        <div className="mobile-buttons-row">
+                            <button className={`pixel-button ${isAutoMode ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsAutoMode(true); }}>AUTO</button>
+                            <button className={`pixel-button ${!isAutoMode && timeOfDay === 'sunrise' ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setTimeOfDay('sunrise'); setIsAutoMode(false); }}>SUNRISE</button>
+                            <button className={`pixel-button ${!isAutoMode && timeOfDay === 'day' ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setTimeOfDay('day'); setIsAutoMode(false); }}>DAY</button>
+                            <button className={`pixel-button ${!isAutoMode && timeOfDay === 'sunset' ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setTimeOfDay('sunset'); setIsAutoMode(false); }}>SUNSET</button>
+                            <button className={`pixel-button ${!isAutoMode && timeOfDay === 'night' ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setTimeOfDay('night'); setIsAutoMode(false); }}>NIGHT</button>
+                        </div>
+                    </div>
+                    <div className="mobile-control-group">
+                        <h3>EFFECTS</h3>
+                        <div className="mobile-buttons-row">
+                            <button className={`pixel-button ${isMusicOn ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsMusicOn(!isMusicOn); }}>MUSIC: {isMusicOn ? 'ON' : 'OFF'}</button>
+                            <button className={`pixel-button ${isRainOn ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsRainOn(!isRainOn); setIsAutoMode(false); }}>RAIN: {isRainOn ? 'ON' : 'OFF'}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop Atmosphere Controls: Bottom Left (Scenes) */}
+            <div className={`homepage-controls scene-controls desktop-only ${isLoaded ? 'appear' : ''}`}>
                 <div className="control-group row">
                     <button
                         className={`pixel-button ${isAutoMode ? 'active' : ''}`}
@@ -333,8 +383,8 @@ export default function Homepage() {
                 </div>
             </div>
 
-            {/* Atmosphere Controls: Bottom Right (Effects) */}
-            <div className={`homepage-controls effects-controls ${isLoaded ? 'appear' : ''}`}>
+            {/* Desktop Atmosphere Controls: Bottom Right (Effects) */}
+            <div className={`homepage-controls effects-controls desktop-only ${isLoaded ? 'appear' : ''}`}>
                 <div className="control-group row">
                     <button className={`pixel-button ${isMusicOn ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsMusicOn(!isMusicOn); }}>MUSIC: {isMusicOn ? 'ON' : 'OFF'}</button>
                     <button className={`pixel-button ${isRainOn ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsRainOn(!isRainOn); setIsAutoMode(false); }}>RAIN: {isRainOn ? 'ON' : 'OFF'}</button>
