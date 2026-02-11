@@ -2,7 +2,17 @@ import "./Skills.css";
 import { useState, useEffect } from "react";
 import arrow from "@/assets/about_me/crafting_arrow.png";
 import java from "@/assets/skills/java.png";
-import { motion } from 'motion/react';
+import craftingBook from "@/assets/skills/crafting_book.png";
+import craftingBookSelected from "@/assets/skills/crafting_book_selected.png";
+import craftingBookCheck from "@/assets/skills/crafting_book_check.png";
+import { motion, AnimatePresence } from 'motion/react';
+
+// ... (existing skillsData and helper objects remain unchanged, I will skip them in replacement if possible, but replace_file_content replaces a block)
+// I will target the imports area first, then function body.
+
+// Wait, I can't do multiple disparate blocks with one replace_file_content unless I use multi_replace.
+// I will use multi_replace_file_content.
+
 
 // Tech stack icons - using emoji for now, replace with actual icon URLs
 const skillsData = {
@@ -67,22 +77,24 @@ export default function Skills({ onClose }) {
     const [activeTab, setActiveTab] = useState(0);
     const [craftingGrid, setCraftingGrid] = useState(Array(9).fill(null));
     const [craftedItem, setCraftedItem] = useState(null);
+    const [isRecipeBookOpen, setIsRecipeBookOpen] = useState(false);
+    const [isBookHovered, setIsBookHovered] = useState(false);
 
     const currentSkills = skillsData[tabNames[activeTab]];
 
     const recipes = [
-        { ingredients: ["HTML 5", "CSS", "JavaScript"], result: "Static Website" },
-        { ingredients: ["HTML 5", "CSS", "JavaScript", "Bootstrap"], result: "Responsive Website" },
-        { ingredients: ["HTML 5", "CSS", "JavaScript", "TypeScript"], result: "Large Frontend Project" },
-        { ingredients: ["JavaScript", "React", "HTML 5", "CSS"], result: "React Web App" },
-        { ingredients: ["TypeScript", "React", "HTML 5", "CSS"], result: "Production Frontend App" },
-        { ingredients: ["JavaScript", "Angular", "HTML 5", "CSS"], result: "Angular Web App" },
-        { ingredients: ["Node.js", "Express.js"], result: "Backend API" },
-        { ingredients: ["Node.js", "Express.js", "MongoDB"], result: "Backend with Database" },
-        { ingredients: ["Node.js", "Express.js", "PostgreSQL"], result: "SQL Backend API" },
-        { ingredients: ["React", "Node.js", "Express.js", "MongoDB"], result: "MERN Stack App" },
-        { ingredients: ["PostgreSQL", "Express.js", "React", "Node.js"], result: "PERN Stack App" },
-        { ingredients: ["Angular", "Node.js", "Express.js", "PostgreSQL"], result: "Enterprise Web App" },
+        { ingredients: ["HTML 5", "CSS", "JavaScript"], result: "Static Website", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968267.png" },
+        { ingredients: ["HTML 5", "CSS", "JavaScript", "Bootstrap"], result: "Responsive Website", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png" },
+        { ingredients: ["HTML 5", "CSS", "JavaScript", "TypeScript"], result: "Large Frontend Project", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968381.png" },
+        { ingredients: ["JavaScript", "React", "HTML 5", "CSS"], result: "React Web App", icon: "https://i.sstatic.net/0hlcD.png" },
+        { ingredients: ["TypeScript", "React", "HTML 5", "CSS"], result: "Production Frontend App", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968381.png" },
+        { ingredients: ["JavaScript", "Angular", "HTML 5", "CSS"], result: "Angular Web App", icon: "https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-svg-download-png-1720094.png" },
+        { ingredients: ["Node.js", "Express.js"], result: "Backend API", icon: "https://cdn.iconscout.com/icon/free/png-256/free-node-js-logo-icon-svg-download-png-3030179.png" },
+        { ingredients: ["Node.js", "Express.js", "MongoDB"], result: "Backend with Database", icon: "https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2415%2FPNG%2F512%2Fmongodb_original_wordmark_logo_icon_146425.png&id=146425&pack_or_individual=pack" },
+        { ingredients: ["Node.js", "Express.js", "PostgreSQL"], result: "SQL Backend API", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png" },
+        { ingredients: ["React", "Node.js", "Express.js", "MongoDB"], result: "MERN Stack App", icon: "https://i.sstatic.net/0hlcD.png" },
+        { ingredients: ["PostgreSQL", "Express.js", "React", "Node.js"], result: "PERN Stack App", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png" },
+        { ingredients: ["Angular", "Node.js", "Express.js", "PostgreSQL"], result: "Enterprise Web App", icon: "https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-svg-download-png-1720094.png" },
     ];
 
     useEffect(() => {
@@ -97,7 +109,7 @@ export default function Skills({ onClose }) {
         });
 
         if (match) {
-            setCraftedItem({ name: match.result, icon: "https://cdn-icons-png.flaticon.com/512/1005/1005141.png" }); // Generic code/success icon
+            setCraftedItem({ name: match.result, icon: match.icon });
         } else {
             setCraftedItem(null);
         }
@@ -143,6 +155,18 @@ export default function Skills({ onClose }) {
         setCraftingGrid(newGrid);
     };
 
+    const handleRecipeClick = (recipe) => {
+        const allSkills = Object.values(skillsData).flat();
+        const newGrid = Array(9).fill(null);
+        recipe.ingredients.forEach((ingName, idx) => {
+            if (idx < 9) {
+                const skill = allSkills.find(s => s.name === ingName);
+                if (skill) newGrid[idx] = skill;
+            }
+        });
+        setCraftingGrid(newGrid);
+    };
+
     return (
         <div className="skills-overlay" onClick={onClose}>
             <motion.div
@@ -154,7 +178,52 @@ export default function Skills({ onClose }) {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
                 {/* NEW RECIPE BOOK - LEFTMOST PANEL */}
+                <AnimatePresence>
+                    {isRecipeBookOpen && (
+                        <motion.div
+                            initial={{ width: 0, opacity: 0, marginRight: 0 }}
+                            animate={{ width: "auto", opacity: 1, marginRight: 20 }}
+                            exit={{ width: 0, opacity: 0, marginRight: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            style={{ overflow: 'hidden' }}
+                        >
+                            <div className="default recipe-container" style={{ margin: 0 }}>
+                                <div className="recipe-book-panel">
+                                    <div className="rb-search-row">
+                                        <div className="rb-search-input-wrapper">
+                                            <input
+                                                type="text"
+                                                className="rb-search-input"
+                                                placeholder="Search..."
+                                            />
+                                        </div>
+                                        <div className="rb-toggle-btn">
+                                            <img src={craftingBookCheck} alt="Toggle" style={{ height: '100%', objectFit: 'contain' }} />
+                                        </div>
+                                    </div>
 
+                                    <div className="rb-grid">
+                                        {recipes.map((recipe, i) => (
+                                            <div
+                                                key={i}
+                                                className="rb-grid-slot"
+                                                onClick={() => handleRecipeClick(recipe)}
+                                                title={recipe.result}
+                                                style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                            >
+                                                <img src={recipe.icon} alt={recipe.result} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
+                                            </div>
+                                        ))}
+                                        {/* Fill remaining slots up to 15 */}
+                                        {Array.from({ length: Math.max(0, 15 - recipes.length) }).map((_, i) => (
+                                            <div key={`empty-${i}`} className="rb-grid-slot" />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* LEFT SIDEBAR TABS - First 3 categories */}
                 <div className="rb-sidebar">
@@ -183,7 +252,19 @@ export default function Skills({ onClose }) {
                     <div className="ci-title">Skills</div>
 
                     <div className="ci-crafting-row">
-                        <div className="ci-slot-1 ci-result-slot-1" />
+                        <div
+                            className="ci-slot-1 ci-result-slot-1"
+                            onClick={() => setIsRecipeBookOpen(!isRecipeBookOpen)}
+                            onMouseEnter={() => setIsBookHovered(true)}
+                            onMouseLeave={() => setIsBookHovered(false)}
+                            style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 0 }}
+                        >
+                            <img
+                                src={isBookHovered || isRecipeBookOpen ? craftingBookSelected : craftingBook}
+                                alt="Recipe Book"
+                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                            />
+                        </div>
 
                         <div className="ci-crafting-grid">
                             {craftingGrid.map((slot, i) => (

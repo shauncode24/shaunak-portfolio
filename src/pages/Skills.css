@@ -206,7 +206,7 @@
   color: #3F3F3F;
   margin-bottom: 12px;
   font-family: 'Minecraft-Regular', monospace;
-  margin-left: 106px;
+  margin-left: 100px;
 }
 
 .ci-inv-title {
@@ -233,10 +233,6 @@
 
 .ci-result-slot {
   margin-left: 20px;
-}
-
-.ci-result-slot-1 {
-  margin-right: 18px;
 }
 
 .ci-inventory-grid {
@@ -280,6 +276,12 @@
   border-color: #303030 #FFFFFF #FFFFFF #303030;
 }
 
+.ci-result-slot-1 {
+  background: transparent;
+  border: none;
+  margin-right: 18px;
+}
+
 /* SKILL SLOTS */
 .skill-slot {
   display: flex;
@@ -308,63 +310,76 @@
   pointer-events: none;
 }
 
+/* RECIPE BOOK CONTAINER (Outer Light Bevel) */
+.recipe-container {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  background-color: #C6C6C6;
+  border: 6px solid #C6C6C6;
+  border-color: #FFFFFF #555555 #555555 #FFFFFF;
+  align-self: center; /* Vertically center relative to sidebar */
+  margin-right: 20px;
+  border-radius: 5px; /* Gap prevents overlap */
+}
 
-
-/* RECIPE BOOK PANEL (New Interface) */
+/* RECIPE BOOK PANEL (Inner Dark Box) */
 .recipe-book-panel {
   background-color: #373737;
-  border: 6px solid #C6C6C6;
-  border-color: #C6C6C6 #555555 #555555 #C6C6C6;
-  border-radius: 5px;
-  width: 200px; /* Rough estimation based on aspect ratio */
-  height: 100%; /* Match parent or stretch */
-  min-height: 480px;
-  padding: 8px;
+  width: 320px;
+  min-height: 430px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-right: 15px;
-  box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+  gap: 16px;
   position: relative;
+}
+
+/* WRAPPER */
+.recipe-book-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background-color: #C6C6C6;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 /* Search Row */
 .rb-search-row {
   display: flex;
   align-items: center;
-  gap: 5px;
-  height: 32px;
+  gap: 10px;
+  height: 48px;
 }
 
 .rb-search-input-wrapper {
   flex: 1;
   background-color: #000000;
-  border: 2px solid #5a5a5a;
-  border-right-color: #a0a0a0;
-  border-bottom-color: #a0a0a0;
-  height: 100%;
+  border: 3px solid #A5A5A5;
+  height: 80%;
   display: flex;
   align-items: center;
-  padding: 0 4px;
+  padding: 0 12px;
 }
 
 .rb-search-icon {
-    /* Simple CSS magnifying glass approximation or placeholder icon */
-    width: 14px;
-    height: 14px;
-    border: 2px solid #55FFFF; /* Cyan-ish */
+    width: 20px;
+    height: 20px;
+    border: 3px solid #55FFFF;
     border-radius: 50%;
     position: relative;
-    margin-right: 6px;
+    margin-right: 10px;
 }
 .rb-search-icon::after {
     content: '';
     position: absolute;
-    width: 6px;
-    height: 2px;
-    background: #8B4513; /* Brown handle */
-    bottom: -3px;
-    right: -4px;
+    width: 8px;
+    height: 3px;
+    background: #8B4513; 
+    bottom: -4px;
+    right: -5px;
     transform: rotate(45deg);
 }
 
@@ -373,7 +388,7 @@
   border: none;
   color: #FFFFFF;
   font-family: 'Minecraft-Regular', monospace;
-  font-size: 14px;
+  font-size: 18px;
   width: 100%;
   outline: none;
 }
@@ -385,25 +400,15 @@
 
 /* Green Toggle Button */
 .rb-toggle-btn {
-  width: 32px;
-  height: 32px;
-  background-color: #5E7C16; /* Dark Green base */
-  border: 2px solid #FFFFFF; /* Highlight */
-  border-right-color: #2F3E0B; /* Shadow */
-  border-bottom-color: #2F3E0B; /* Shadow */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3);
+  height: 100%;
+
 }
 
 .rb-toggle-icon {
-    /* Representing the crafting table icon or checkmark */
-    width: 16px;
-    height: 16px;
-    background: #C69C6D; /* Wood color */
-    border: 1px solid #000;
+    width: 24px;
+    height: 24px;
+    background: #C69C6D; 
+    border: 2px solid #000;
 }
 
 /* Item Grid */
@@ -411,33 +416,30 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: max-content;
-  gap: 4px;
   overflow-y: auto;
-  padding-right: 4px;
   flex: 1;
+  gap: 3px
 }
 
 /* Scrollbar for grid */
 .rb-grid::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 .rb-grid::-webkit-scrollbar-track {
   background: #000;
 }
 .rb-grid::-webkit-scrollbar-thumb {
   background: #808080;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
 }
 
+/* Grid Slot Styling */
 .rb-grid-slot {
   aspect-ratio: 1;
   background-color: #8B8B8B;
-  border: 2px solid #373737;
-  border-left-color: #FFFFFF; /* Highlight */
-  border-top-color: #FFFFFF; /* Highlight */
-  border-right-color: #555555; /* Shadow */
-  border-bottom-color: #555555; /* Shadow */
-  /* The image shows a white outline on valid slots, let's try to match the 'button' look */
+  border: 3px solid #373737;
+  border-color: #CCCCCC #D6D6D6 #D6D6D6 #CCCCCC;
+  box-shadow: inset 3px 3px 0px #4A4A4A, inset -3px -3px 0px #FFFFFF;
   position: relative;
 }
 
