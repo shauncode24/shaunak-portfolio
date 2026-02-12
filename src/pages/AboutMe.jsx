@@ -21,7 +21,7 @@ import chestOpenSound from '@/assets/audio/chest_open.ogg';
 import chestCloseSound from '@/assets/audio/chest_close.ogg';
 import RoomAtmosphere from '../components/RoomAtmosphere';
 import resumePdf from '@/assets/resume.pdf';
-import sign from '@/assets/about_me/about_me_sign.png';
+import sign from '@/assets/about_me/item_frame.png';
 
 const projectsData = [
     {
@@ -100,6 +100,13 @@ export default function AboutMe() {
         return musicTracks[Math.floor(Math.random() * musicTracks.length)];
     }, []);
 
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoaded(true), 100);
+        return () => clearTimeout(timer);
+    }, []);
+
     // Audio volume and playback management based on state
     useEffect(() => {
         if (sfxRef.current) {
@@ -174,7 +181,7 @@ export default function AboutMe() {
                 <source src={selectedMusic} type="audio/mpeg" />
             </audio>
 
-            <div className="aboutme-controls">
+            <div className={`aboutme-controls ${isLoaded ? 'appear' : ''}`}>
                 <button
                     className={`pixel-button ${isMusicOn ? 'active' : ''}`}
                     onClick={() => setIsMusicOn(!isMusicOn)}
@@ -186,21 +193,21 @@ export default function AboutMe() {
             <a
                 href={resumePdf}
                 download="Shaun_Resume.pdf"
-                className="aboutme-resume-wrapper"
+                className={`aboutme-resume-wrapper ${isLoaded ? 'appear' : ''}`}
             >
                 <img src={sign} alt="Resume Sign" className="aboutme-sign-img" />
                 <span className="aboutme-resume-text">RESUME</span>
             </a>
 
             <img
-                className="aboutme-background"
+                className={`aboutme-background ${isLoaded ? 'appear' : ''}`}
                 src={aboutBg}
                 alt="About Me Background"
             />
 
             <RoomAtmosphere />
 
-            <div className="aboutme-items-container">
+            <div className={`aboutme-items-container ${isLoaded ? 'appear' : ''}`}>
                 <div
                     className="aboutme-interactive-wrapper chest-wrapper"
                     onClick={() => {
@@ -264,7 +271,7 @@ export default function AboutMe() {
             </audio>
 
             <img
-                className="aboutme-dog"
+                className={`aboutme-dog ${isLoaded ? 'appear' : ''}`}
                 src={(isDogMoving || isDogHovered) ? dogGif : dogStill}
                 alt="Dog"
                 onMouseEnter={() => setIsDogHovered(true)}
@@ -279,24 +286,26 @@ export default function AboutMe() {
             />
 
             <img
-                className="aboutme-fireplace"
+                className={`aboutme-fireplace ${isLoaded ? 'appear' : ''}`}
                 src={fireplace}
                 alt="Fireplace"
             />
 
-            <FireplaceEffects
-                style={{
-                    top: '47%',
-                    right: '7%',
-                    left: 'auto',
-                    transform: 'translate(25%, -40%) scale(0.5)',
-                    width: '600px',
-                    height: '600px',
-                    opacity: 0.8,
-                    maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)',
-                    WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)'
-                }}
-            />
+            <div className={`aboutme-fire-effects ${isLoaded ? 'appear' : ''}`}>
+                <FireplaceEffects
+                    style={{
+                        top: '47%',
+                        right: '7%',
+                        left: 'auto',
+                        transform: 'translate(25%, -40%) scale(0.5)',
+                        width: '600px',
+                        height: '600px',
+                        opacity: 0.8,
+                        maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)',
+                        WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)'
+                    }}
+                />
+            </div>
 
             {/* Conditionally Rendered Components */}
             <AnimatePresence mode="wait">
