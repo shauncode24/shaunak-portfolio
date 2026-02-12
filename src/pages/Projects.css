@@ -257,24 +257,935 @@
 .project-title {
     position: relative;
     cursor: pointer;
-    padding-right: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    width: auto;
+    padding-right: 0;
 }
 
 .project-info-icon {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
     font-size: 1.2rem;
     color: rgba(44, 24, 16, 0.6);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    padding-bottom: 0.7rem;
 }
 
 .project-title:hover .project-info-icon {
     color: #2C1810;
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE & TABLET
+   ======================================== */
+
+/* Large Tablet Portrait (900px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 901px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 92vw;
+        max-height: 92vh;
+    }
+
+    .projects-background {
+        max-width: 92vw;
+        max-height: 92vh;
+    }
+
+    .projects-content {
+        padding: 4rem 5rem;
+    }
+
+    .project-display-div {
+        gap: 1rem;
+    }
+
+    .project-title {
+        font-size: clamp(2rem, 3.5vw, 2.5rem);
+        padding-bottom: 0.8rem;
+    }
+
+    .project-info-icon {
+        font-size: 1.8rem;
+        }
+
+    .project-preview {
+        width: 94%;
+    }
+
+    .project-info {
+        gap: 1.2rem;
+    }
+
+    .project-description {
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        line-height: 1.75;
+        width: 94%;
+    }
+
+    .project-technologies {
+        gap: 0.5rem;
+    }
+
+    .tech-badge {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.7rem;
+    }
+
+    .project-overlay {
+        gap: 3.5rem;
+    }
+
+    .project-link {
+        width: 55px;
+        height: 55px;
+    }
+
+    .project-link svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .page-button {
+        height: 34px;
+        bottom: 3rem;
+        right: 5.5rem;
+    }
+
+    .page-button-prev {
+        left: 5.5rem;
+    }
+
+    .page-counter {
+        bottom: 3rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Medium Tablet Portrait (768px - 900px) */
+@media screen and (max-width: 900px) and (min-width: 769px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 94vw;
+        max-height: 94vh;
+    }
+
+    .projects-background {
+        max-width: 94vw;
+        max-height: 94vh;
+    }
+
+    .projects-content {
+        padding: 3.5rem 4.5rem;
+    }
+
+    .project-display-div {
+        gap: 0.9rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.8rem, 3.2vw, 2.2rem);
+        padding-bottom: 0.7rem;
+    }
+
+    .project-info-icon {
+        font-size: 1.6rem;
+        }
+
+    .project-preview {
+        width: 95%;
+    }
+
+    .project-info {
+        gap: 1rem;
+    }
+
+    .project-description {
+        font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+        line-height: 1.72;
+        width: 95%;
+    }
+
+    .project-technologies {
+        gap: 0.45rem;
+    }
+
+    .tech-badge {
+        font-size: 0.75rem;
+        padding: 0.32rem 0.65rem;
+    }
+
+    .project-overlay {
+        gap: 3.2rem;
+    }
+
+    .project-link {
+        width: 52px;
+        height: 52px;
+    }
+
+    .project-link svg {
+        width: 23px;
+        height: 23px;
+    }
+
+    .page-button {
+        height: 32px;
+        bottom: 2.8rem;
+        right: 5.3rem;
+    }
+
+    .page-button-prev {
+        left: 5.3rem;
+    }
+
+    .page-counter {
+        bottom: 2.8rem;
+        font-size: 0.88rem;
+    }
+}
+
+/* Large Landscape (1366px - 1368px) - Text too small fix */
+@media screen and (max-width: 1368px) and (min-width: 1366px) and (orientation: landscape) {
+    .project-description {
+        font-size: clamp(0.85rem, 1.5vw, 1rem);
+        line-height: 1.65;
+    }
+
+    .tech-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .page-counter {
+        font-size: 0.75rem;
+    }
+}
+
+/* Medium Landscape (927px - 1024px) - Includes 932px, text too small fix */
+@media screen and (max-width: 1024px) and (min-width: 927px) and (orientation: landscape) {
+    .projects-content {
+        padding: 1.3rem 2.2rem;
+    }
+
+    .project-display-div {
+        gap: 0.5rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.05rem, 1.85vw, 1.25rem);
+        padding-bottom: 0.45rem;
+        margin-bottom: 0.25rem;
+        margin-top: 0.2rem;
+    }
+
+    .project-info-icon {
+        font-size: 0.95rem;
+        }
+
+    .project-preview {
+        width: 97%;
+    }
+
+    .project-info {
+        gap: 0.55rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.58rem, 1.25vw, 0.72rem);
+        line-height: 1.6;
+        width: 97%;
+    }
+
+    .project-technologies {
+        gap: 0.28rem;
+    }
+
+    .tech-badge {
+        font-size: 0.52rem;
+        padding: 0.2rem 0.42rem;
+    }
+
+    .page-button {
+        height: 24px;
+        bottom: 1.75rem;
+        right: 3.9rem;
+    }
+
+    .page-button-prev {
+        left: 3.9rem;
+    }
+
+    .page-counter {
+        bottom: 1.75rem;
+        font-size: 0.62rem;
+    }
+}
+
+/* Small-Medium Landscape (880px - 926px) - Includes 882px, content too big except display */
+@media screen and (max-width: 926px) and (min-width: 880px) and (orientation: landscape) {
+    .projects-content {
+        padding: 1.2rem 2rem;
+    }
+
+    .project-display-div {
+        gap: 0.5rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.05rem, 1.9vw, 1.3rem);
+        padding-bottom: 0.48rem;
+        margin-bottom: 0.28rem;
+    }
+
+    .project-info-icon {
+        font-size: 0.98rem;
+        }
+
+    .project-preview {
+        width: 97%;
+        aspect-ratio: 16/9;
+    }
+
+    .project-info {
+        gap: 0.55rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.48rem, 1.15vw, 0.62rem);
+        line-height: 1.58;
+        width: 97%;
+    }
+
+    .project-technologies {
+        gap: 0.28rem;
+        padding: 0;
+    }
+
+    .tech-badge {
+        font-size: 0.46rem;
+        padding: 0.17rem 0.36rem;
+    }
+
+    .project-overlay {
+        gap: 1.9rem;
+    }
+
+    .project-link {
+        width: 39px;
+        height: 39px;
+    }
+
+    .project-link svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .page-button {
+        height: 21px;
+        bottom: 1.7rem;
+        right: 3.8rem;
+    }
+
+    .page-button-prev {
+        left: 3.8rem;
+    }
+
+    .page-counter {
+        bottom: 1.7rem;
+        font-size: 0.58rem;
+    }
+}
+
+/* Mobile Landscap (up to 879px) */
+@media screen and (max-width: 879px) and (orientation: landscape) {
+    .projects-wrapper {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .projects-background {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .projects-content {
+        padding: 1.5rem 2.5rem;
+    }
+
+    .project-display-div {
+        gap: 0.5rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .project-info-icon {
+        font-size: 1rem;
+        }
+
+    .project-preview {
+        width: 97%;
+        aspect-ratio: 16/9;
+    }
+
+    .project-info {
+        gap: 0.6rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.5rem, 1.2vw, 0.65rem);
+        line-height: 1.6;
+        width: 97%;
+    }
+
+    .project-technologies {
+        gap: 0.3rem;
+        padding: 0;
+    }
+
+    .tech-badge {
+        font-size: 0.48rem;
+        padding: 0.18rem 0.38rem;
+    }
+
+    .project-overlay {
+        gap: 2rem;
+    }
+
+    .project-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .project-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .page-button {
+        height: 22px;
+        bottom: 1.8rem;
+        right: 4rem;
+    }
+
+    .page-button-prev {
+        left: 4rem;
+    }
+
+    .page-counter {
+        bottom: 1.8rem;
+        font-size: 0.6rem;
+    }
+}
+
+/* Large Mobile Portrait (600px - 768px) */
+@media screen and (max-width: 768px) and (min-width: 601px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    .projects-background {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    .projects-content {
+        padding: 3.5rem 4rem;
+    }
+
+    .project-display-div {
+        gap: 0.8rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.6rem, 3.5vw, 2rem);
+        padding-bottom: 0.6rem;
+    }
+
+    .project-info-icon {
+        font-size: 1.4rem;
+        }
+
+    .project-preview {
+        width: 95%;
+    }
+
+    .project-info {
+        gap: 0.9rem;
+    }
+
+    .project-description {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        line-height: 1.7;
+        width: 95%;
+    }
+
+    .project-technologies {
+        gap: 0.4rem;
+    }
+
+    .tech-badge {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .project-overlay {
+        gap: 3rem;
+    }
+
+    .project-link {
+        width: 50px;
+        height: 50px;
+    }
+
+    .project-link svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .page-button {
+        height: 30px;
+        bottom: 2.5rem;
+        right: 5rem;
+    }
+
+    .page-button-prev {
+        left: 5rem;
+    }
+
+    .page-counter {
+        bottom: 2.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Medium Mobile Portrait (460px - 600px) */
+@media screen and (max-width: 600px) and (min-width: 461px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 96vw;
+        max-height: 96vh;
+    }
+
+    .projects-background {
+        max-width: 96vw;
+        max-height: 96vh;
+    }
+
+    .projects-content {
+        padding: 3rem 3.5rem;
+    }
+
+    .project-display-div {
+        gap: 0.7rem;
+    }
+
+    .project-title {
+        font-size: clamp(1.4rem, 3.2vw, 1.8rem);
+        padding-bottom: 0.55rem;
+    }
+
+    .project-info-icon {
+        font-size: 1.2rem;
+        }
+
+    .project-preview {
+        width: 96%;
+    }
+
+    .project-info {
+        gap: 0.8rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+        line-height: 1.65;
+        width: 96%;
+    }
+
+    .project-technologies {
+        gap: 0.35rem;
+    }
+
+    .tech-badge {
+        font-size: 0.65rem;
+        padding: 0.28rem 0.55rem;
+    }
+
+    .project-overlay {
+        gap: 2.8rem;
+    }
+
+    .project-link {
+        width: 48px;
+        height: 48px;
+    }
+
+    .project-link svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .page-button {
+        height: 29px;
+        bottom: 2.3rem;
+        right: 4.8rem;
+    }
+
+    .page-button-prev {
+        left: 4.8rem;
+    }
+
+    .page-counter {
+        bottom: 2.3rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Small Mobile Portrait (375px - 460px) */
+@media screen and (max-width: 460px) and (min-width: 376px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 97vw;
+        max-height: 97vh;
+    }
+
+    .projects-background {
+        max-width: 97vw;
+        max-height: 97vh;
+    }
+
+    .projects-content {
+        padding: 2.5rem 2.5rem;
+    }
+
+    .project-display-div {
+        gap: 0.5rem;
+    }
+
+    .project-title {
+        font-size: clamp(1rem, 4vw, 1.3rem);
+        padding-bottom: 0.4rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .project-info-icon {
+        font-size: 0.95rem;
+        }
+
+    .project-preview {
+        width: 97%;
+    }
+
+    .project-info {
+        gap: 0.5rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.7rem, 3vw, 0.85rem);
+        line-height: 1.55;
+        width: 97%;
+    }
+
+    .project-technologies {
+        gap: 0.25rem;
+        padding: 0;
+    }
+
+    .tech-badge {
+        font-size: 0.52rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .project-overlay {
+        gap: 1.8rem;
+    }
+
+    .project-link {
+        width: 38px;
+        height: 38px;
+    }
+
+    .project-link svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .link-arrow {
+        font-size: 1rem;
+    }
+
+    .page-button {
+        height: 24px;
+        bottom: 1.8rem;
+        right: 3.5rem;
+    }
+
+    .page-button-prev {
+        left: 3.5rem;
+    }
+
+    .page-counter {
+        bottom: 1.8rem;
+        font-size: 0.65rem;
+    }
+}
+
+/* Extra Small Mobile Portrait (361px - 375px) */
+@media screen and (max-width: 376px) and (min-width: 361px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .projects-background {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .projects-content {
+        padding: 3.5rem;
+    }
+
+    .project-display-div {
+        gap: 0.7rem;
+    }
+
+    .project-title {
+        font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+        padding-bottom: 0.38rem;
+    }
+
+    .project-info-icon {
+        font-size: 0.92rem;
+        }
+
+    .project-preview {
+        width: 97%;
+    }
+
+    .project-info {
+        gap: 0.45rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.55rem, 3.2vw, 0.68rem);
+        line-height: 1.52;
+        width: 97%;
+    }
+
+    .project-technologies {
+        gap: 0.22rem;
+    }
+
+    .tech-badge {
+        font-size: 0.5rem;
+        padding: 0.19rem 0.38rem;
+    }
+
+    .project-overlay {
+        gap: 1.6rem;
+    }
+
+    .project-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    .project-link svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .page-button {
+        height: 23px;
+        bottom: 1.6rem;
+        right: 3.2rem;
+    }
+
+    .page-button-prev {
+        left: 3.2rem;
+    }
+
+    .page-counter {
+        bottom: 1.6rem;
+        font-size: 0.62rem;
+    }
+}
+
+/* Tiny Mobile Portrait (≤360px) */
+@media screen and (max-width: 360px) and (orientation: portrait) {
+    .projects-wrapper {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .projects-background {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .projects-content {
+        padding: 3rem;
+    }
+
+    .project-display-div {
+        gap: 0.6rem;
+    }
+
+    .project-title {
+        font-size: clamp(0.88rem, 4.8vw, 1.15rem);
+        padding-bottom: 0.35rem;
+    }
+
+    .project-info-icon {
+        font-size: 0.88rem;
+        }
+
+    .project-preview {
+        width: 98%;
+    }
+
+    .project-info {
+        gap: 0.4rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.5rem, 3.3vw, 0.62rem);
+        line-height: 1.5;
+        width: 98%;
+    }
+
+    .project-technologies {
+        gap: 0.2rem;
+    }
+
+    .tech-badge {
+        font-size: 0.48rem;
+        padding: 0.18rem 0.35rem;
+    }
+
+    .project-overlay {
+        gap: 1.5rem;
+    }
+
+    .project-link {
+        width: 35px;
+        height: 35px;
+    }
+
+    .project-link svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .page-button {
+        height: 22px;
+        bottom: 1.5rem;
+        right: 3rem;
+    }
+
+    .page-button-prev {
+        left: 3rem;
+    }
+
+    .page-counter {
+        bottom: 1.5rem;
+        font-size: 0.6rem;
+    }
+}
+
+/* Small Mobile Landscap (up to 667px) */
+@media screen and (max-width: 667px) and (orientation: landscape) {
+    .projects-wrapper {
+        max-width: 99vw;
+        max-height: 99vh;
+    }
+
+    .projects-background {
+        max-width: 99vw;
+        max-height: 99vh;
+    }
+
+    .projects-content {
+        padding: 1rem 2rem;
+    }
+
+    .project-display-div {
+        gap: 0.3rem;
+    }
+
+    .project-title {
+        font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+        padding-bottom: 0.35rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .project-info-icon {
+        font-size: 0.9rem;
+        }
+
+    .project-preview {
+        width: 98%;
+        aspect-ratio: 16/9;
+    }
+
+    .project-info {
+        gap: 0.4rem;
+    }
+
+    .project-description {
+        font-size: clamp(0.45rem, 1.2vw, 0.55rem);
+        line-height: 1.5;
+        width: 98%;
+    }
+
+    .project-technologies {
+        gap: 0.25rem;
+        padding: 0;
+    }
+
+    .tech-badge {
+        font-size: 0.42rem;
+        padding: 0.15rem 0.32rem;
+    }
+
+    .project-overlay {
+        gap: 1.5rem;
+    }
+
+    .project-link {
+        width: 35px;
+        height: 35px;
+    }
+
+    .project-link svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .page-button {
+        height: 18px;
+        bottom: 1.3rem;
+        right: 3rem;
+    }
+
+    .page-button-prev {
+        left: 3rem;
+    }
+
+    .page-counter {
+        bottom: 1.3rem;
+        font-size: 0.52rem;
+    }
 }
