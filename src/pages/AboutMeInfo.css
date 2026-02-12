@@ -157,79 +157,455 @@
   font-weight: 700;
 }
 
+/* Tablet Landscape (1024px - 1280px) */
+@media (max-width: 1280px) and (min-width: 1025px) {
+  .aboutme-content-wrapper {
+    width: 92%;
+    max-width: 1200px;
+  }
+
+  .aboutme-glass-panel {
+    padding: 48px 44px;
+    gap: 80px;
+  }
+
+  .aboutme-character {
+    height: 280px;
+  }
+
+  .aboutme-heading {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    margin-bottom: 40px;
+  }
+
+  .aboutme-body {
+    font-size: clamp(0.92rem, 1.02vw, 1.05rem);
+  }
+}
+
+/* Tablet Portrait & Small Laptops (768px - 1024px) */
 @media (max-width: 1024px) {
+  .aboutme-content-wrapper {
+    width: 94%;
+    max-width: 900px;
+  }
+
   .aboutme-glass-panel {
     flex-direction: column;
     align-items: center;
-    padding: 36px;
+    padding: 40px 36px;
+    gap: 40px;
   }
   
+  .aboutme-left {
+    padding-top: 20px;
+  }
+
   .aboutme-character {
-    height: 240px;
+    height: 260px;
   }
   
   .aboutme-right {
     width: 100%;
   }
+
+  .aboutme-heading {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 35px;
+    text-align: center;
+  }
+
+  .aboutme-body {
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    line-height: 1.9;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: clamp(0.9rem, 1vw, 1.05rem);
+    justify-content: center;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
 }
 
-@media (max-width: 768px) {
+/* Tablet Landscape (768px - 1024px landscape) */
+@media (max-width: 1024px) and (orientation: landscape) and (min-width: 769px) {
+  .aboutme-content-wrapper {
+    width: 96%;
+    max-height: 92vh;
+    overflow-x: hidden;
+    align-items: flex-start;
+  }
+
   .aboutme-glass-panel {
-    padding: 28px;
-    gap: 24px;
+    flex-direction: row;
+    padding: 32px 40px;
+    gap: 60px;
+  }
+
+  .aboutme-left {
+    padding-top: 15px;
+  }
+
+  .aboutme-character {
+    height: 220px;
+  }
+
+  .aboutme-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .aboutme-body {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 1.2rem;
+  }
+
+  .about-content-body-rotating-text {
+    padding-top: 1rem;
+    font-size: 0.88rem;
+    justify-content: flex-start;
+  }
+}
+
+/* Mobile Landscape (481px - 768px landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+  .aboutme-content-wrapper {
+    width: 98%;
+    max-height: 94vh;
+    overflow-y: auto;
+  }
+
+  .aboutme-glass-panel {
+    flex-direction: row;
+    padding: 24px 28px;
+    gap: 40px;
+  }
+
+  .aboutme-left {
+    padding-top: 10px;
+    flex-shrink: 0;
+  }
+
+  .aboutme-character {
+    height: 180px;
+    margin-bottom: 10px;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+
+  .aboutme-heading {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .aboutme-body {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 1rem;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: 0.82rem;
+    padding-top: 0.8rem;
+    justify-content: flex-start;
+  }
+}
+
+/* Tablet Portrait & Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .aboutme-content-wrapper {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .aboutme-glass-panel {
+    flex-direction: column;
+    padding: 28px 24px;
+    gap: 28px;
   }
   
+  .aboutme-left {
+    padding-top: 25px;
+  }
+
   .aboutme-character {
     height: 200px;
   }
   
+  .aboutme-heading {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .aboutme-body {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 1.4rem;
+  }
+
   .about-content-body-rotating-text {
     flex-wrap: wrap;
+    font-size: 0.9rem;
+    justify-content: center;
+    padding-top: 1.2rem;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.75rem;
+    padding: 3px 9px;
+    top: 0px;
   }
 }
 
-@media (max-width: 768px) {
-    .aboutme-content-wrapper {
-        width: 95%;
-        max-height: 90vh; /* Prevent it from being taller than screen */
-        overflow-y: auto; /* Allow scrolling inside if needed */
-    }
+/* Mobile Portrait (max-width: 640px) */
+@media (max-width: 640px) and (orientation: portrait) {
+  .aboutme-content-wrapper {
+    width: 96%;
+    max-height: 88vh;
+    overflow-x: hidden;
+    align-items: flex-start;
+  }
 
-    .aboutme-glass-panel {
-        padding: 24px;
-        gap: 20px;
-    }
+  .aboutme-glass-panel {
+    padding: 28px 20px 24px 20px;
+    gap: 24px;
+  }
 
-    .aboutme-heading {
-        font-size: 2rem;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+  .aboutme-left {
+    padding-top: 30px;
+  }
 
-    .aboutme-left {
-        padding-top: 10px;
-    }
+  .minecraft-nametag {
+    top: 2px;
+  }
 
-    .aboutme-character {
-        height: 150px;
-    }
-    
-    .aboutme-body {
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
+  .aboutme-character {
+    height: 170px;
+  }
+
+  .aboutme-heading {
+    font-size: 1.85rem;
+    margin-bottom: 20px;
+  }
+
+  .aboutme-body {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 1.2rem;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: 0.88rem;
+    padding-top: 1rem;
+  }
 }
 
-@media (max-width: 480px) {
-    .aboutme-glass-panel {
-        padding: 16px;
-    }
-    
-    .aboutme-heading {
-        font-size: 1.8rem;
-    }
-    
-    .aboutme-body p {
-        margin-bottom: 1rem;
-    }
+/* Small Mobile Portrait (max-width: 480px) */
+@media (max-width: 480px) and (orientation: portrait) {
+  .aboutme-content-wrapper {
+    width: 97%;
+    max-height: 86vh;
+  }
+
+  .aboutme-glass-panel {
+    padding: 64px 16px 20px 16px;
+    gap: 20px;
+  }
+  
+  .aboutme-left {
+    padding-top: 28px;
+  }
+
+  .aboutme-character {
+    height: 150px;
+    margin-bottom: 12px;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    top: 2px;
+  }
+  
+  .aboutme-heading {
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+  }
+
+  .aboutme-body {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 1rem;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: 0.85rem;
+    padding-top: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile Portrait (max-width: 380px) */
+@media (max-width: 380px) and (orientation: portrait) {
+  .aboutme-content-wrapper {
+    width: 98%;
+    max-height: 84vh;
+  }
+
+  .aboutme-glass-panel {
+    padding: 24px 12px 16px 12px;
+    gap: 16px;
+  }
+
+  .aboutme-left {
+    padding-top: 26px;
+  }
+
+  .aboutme-character {
+    height: 130px;
+    margin-bottom: 10px;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    top: 2px;
+  }
+
+  .aboutme-heading {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  .aboutme-body {
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 0.9rem;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: 0.8rem;
+    padding-top: 0.8rem;
+  }
+}
+
+/* Small Mobile Landscape (max-width: 640px landscape) */
+@media (max-width: 640px) and (orientation: landscape) {
+  .aboutme-content-wrapper {
+    width: 98%;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+
+  .aboutme-glass-panel {
+    flex-direction: row;
+    padding: 20px 24px;
+    gap: 32px;
+  }
+
+  .aboutme-left {
+    padding-top: 8px;
+  }
+
+  .aboutme-character {
+    height: 160px;
+    margin-bottom: 8px;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+  }
+
+  .aboutme-heading {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .aboutme-body {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 0.9rem;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: 0.78rem;
+    padding-top: 0.7rem;
+    justify-content: flex-start;
+  }
+}
+
+/* Extra Small Mobile Landscape (max-width: 480px landscape) */
+@media (max-width: 480px) and (orientation: landscape) {
+  .aboutme-content-wrapper {
+    width: 99%;
+    max-height: 94vh;
+  }
+
+  .aboutme-glass-panel {
+    padding: 16px 20px;
+    gap: 24px;
+  }
+
+  .aboutme-character {
+    height: 140px;
+    margin-bottom: 6px;
+  }
+
+  .minecraft-nametag {
+    font-size: 0.62rem;
+    padding: 2px 6px;
+  }
+
+  .aboutme-heading {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+
+  .aboutme-body {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .aboutme-body p {
+    margin-bottom: 0.8rem;
+  }
+
+  .about-content-body-rotating-text {
+    font-size: 0.75rem;
+    padding-top: 0.6rem;
+  }
 }
