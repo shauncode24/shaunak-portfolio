@@ -83,7 +83,7 @@
   position: absolute;
   z-index: 3;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -100,7 +100,7 @@
 /* Items Container - Centered */
 .aboutme-items-container {
   position: absolute;
-  top: 50%;
+  top: 51%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -118,20 +118,20 @@
   right: auto;
 }
 
-/* Specific component sizing */
+/* Specific component sizing - Updated for better visibility v2 */
 .chest-wrapper {
-  width: 10vw;
-  max-width: 160px;
+  width: 10vw !important;
+  max-width: 160px !important;
 }
 
 .crafting-wrapper {
-  width: 10.5vw;
-  max-width: 168px;
+  width: 10.5vw !important;
+  max-width: 168px !important;
 }
 
 .lecturn-wrapper {
-  width: 10vw;
-  max-width: 168px;
+  width: 10vw !important;
+  max-width: 168px !important;
 }
 
 /* Adjust labels relative to the new relative wrappers */
@@ -145,12 +145,13 @@
   white-space: nowrap;
 }
 
-/* Dog */
+/* Dog - Updated for better visibility v2 */
 .aboutme-dog {
   position: absolute;
   bottom: 13%;
   left: 15%;
-  width: auto;
+  width: auto !important;
+  max-width: none !important;
   height: auto;
   z-index: 2;
   cursor: pointer;
@@ -286,24 +287,51 @@
     opacity: 1;
 }
 
+.aboutme-fireplace-canvas {
+    top: 47% !important;
+    right: 7% !important;
+    left: auto !important;
+    transform: translate(25%, -40%) scale(0.5) !important;
+    width: 600px !important;
+    height: 600px !important;
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+}
+
 @media (max-width: 1024px) {
   .aboutme-items-container {
       gap: 3vw;
+      top: 50% !important; /* Move blocks up */
   }
   
-  .chest-wrapper { width: 14vw; }
-  .crafting-wrapper { width: 14.5vw; }
-  .lecturn-wrapper { width: 14vw; }
+  .chest-wrapper { width: 24vw !important; max-width: 260px !important; }
+  .crafting-wrapper { width: 24vw !important; max-width: 260px !important; }
+  .lecturn-wrapper { width: 24vw !important; max-width: 260px !important; }
+  
+  .aboutme-dog {
+      width: 20vw !important;
+      max-width: 270px !important;
+  }
   
   .aboutme-resume-wrapper {
-      top: 15%;
-      right: 10%;
+      top: 16% !important;
+      right: 2.5% !important;
+      left: auto !important;
       width: 120px;
   }
   
+  /* Hide fireplace on split-screen/tablet */
   .aboutme-fireplace {
-      height: 15vh;
-      right: 10%;
+      display: none;
+  }
+
+  .aboutme-fireplace-canvas {
+      display: none !important;
+  }
+  
+  .aboutme-fire-effects {
+      display: none;
   }
 }
 
@@ -315,8 +343,8 @@
   }
 
   .chest-wrapper, .lecturn-wrapper, .crafting-wrapper { 
-      width: 25vw;
-      max-width: 120px;
+      width: 35vw !important;
+      max-width: 180px !important;
   }
 
   .aboutme-label {
@@ -324,14 +352,9 @@
       padding: 6px 10px;
   }
 
-  /* Reposition fireplace for mobile portrait/landscape */
-  .aboutme-fireplace {
-     right: 5%;
-     height: 12vh;
-  }
-
   .aboutme-dog {
-      width: 20vw;
+      width: 30vw !important;
+      max-width: 150px !important;
       bottom: 15%;
   }
   
@@ -340,64 +363,175 @@
       right: 5%;
       width: 100px;
   }
+  
+  /* Fireplace already hidden by parent media query */
 }
+
 
 @media (max-width: 768px) and (orientation: portrait) {
   .aboutme-items-container {
-      flex-direction: column;
-      align-items: center;
-      top: 60%;
-      gap: 4vh;
+      flex-direction: row; /* Keep horizontal layout */
+      align-items: flex-end;
+      top: 55%;
+      gap: 3vw;
   }
   
   .chest-wrapper, .lecturn-wrapper, .crafting-wrapper { 
-      width: 35vw;
-      max-width: 150px;
+      width: 32vw !important;
+      max-width: 140px !important;
+  }
+  
+  .aboutme-label {
+      font-size: 10px;
+      padding: 4px 8px;
+      margin-bottom: 8px;
   }
   
   .aboutme-dog {
-      left: 5%;
-      bottom: 5%;
-      width: 30vw;
+      left: 8%;
+      bottom: 12%;
+      width: 42vw !important;
+      max-width: 220px !important;
   }
   
+  /* Hide fireplace on portrait mobile */
   .aboutme-fireplace {
-      top: auto;
-      bottom: 5%;
-      right: 5%;
-      transform: none;
+      display: none;
   }
-
-  .aboutme-label-chest,
-  .aboutme-label-crafting,
-  .aboutme-label-lecturn {
-      bottom: 50%;
-      left: 105%;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-bottom: 0;
-      margin-left: 15px;
+  
+  .aboutme-fireplace-canvas {
+      display: none !important;
+  }
+  
+  .aboutme-fire-effects {
+      display: none;
   }
 
   .aboutme-resume-wrapper {
-      top: 5%;
-      right: 5%;
+      top: 8%;
+      right: 8%;
+      width: 70px;
+  }
+  
+  .aboutme-resume-text {
+      font-size: 10px;
+      padding: 4px 8px;
+      top: -28px;
   }
   
   .aboutme-controls {
-      top: 5%;
-      left: 5%;
-      bottom: auto;
-      right: auto;
+      bottom: 12px;
+      right: 12px;
+  }
+  
+  .pixel-button {
+      font-size: 10px;
+      padding: 5px 10px;
   }
 }
 
 @media (max-width: 480px) and (orientation: portrait) {
    .aboutme-items-container {
-       top: 55%;
+       top: 54% !important;
+       gap: 2.5vw;
    }
    
    .chest-wrapper, .lecturn-wrapper, .crafting-wrapper {
-       width: 40vw;
+       width: 30vw !important;
+       max-width: 120px !important;
    }
+   
+   .aboutme-label {
+       font-size: 8px;
+       padding: 3px 6px;
+       margin-bottom: 6px;
+   }
+   
+   .aboutme-dog {
+       width: 45vw !important;
+       max-width: 240px !important;
+       left: 5%;
+       bottom: 10%;
+   }
+   
+   /* Fireplace already hidden by parent media query */
+   
+   .aboutme-resume-wrapper {
+       width: 60px;
+       top: 5%;
+       right: 5%;
+   }
+   
+   .aboutme-resume-text {
+       font-size: 8px;
+       padding: 3px 6px;
+       top: -24px;
+   }
+   
+   .aboutme-controls {
+       bottom: 8px;
+       right: 8px;
+   }
+   
+   .pixel-button {
+       font-size: 9px;
+       padding: 4px 8px;
+   }
+}
+
+/* Mobile Landscape Support */
+@media (max-width: 1024px) and (orientation: landscape) {
+    .aboutme-items-container {
+        top: 60%;
+        gap: 2vw;
+    }
+
+    .chest-wrapper, .lecturn-wrapper, .crafting-wrapper {
+        width: 12vw;
+        max-width: 100px;
+    }
+    
+    .aboutme-label {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .aboutme-fireplace {
+        height: 18vh;
+        right: 8%;
+        top: 50%; /* Re-center vertically if needed */
+    }
+    
+    .aboutme-fireplace-canvas {
+        width: 300px !important;
+        height: 300px !important;
+        right: 5% !important;
+        top: 50% !important;
+        transform: translate(25%, -40%) scale(0.6) !important; 
+    }
+
+    .aboutme-dog {
+        display: none; /* Hide dog on mobile landscape */
+    }
+
+    .aboutme-resume-wrapper {
+        width: 80px;
+        top: 10%;
+        right: 10%;
+    }
+    
+    .aboutme-resume-text {
+        font-size: 10px;
+        top: -30px;
+    }
+    
+    .aboutme-controls {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .pixel-button {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
 }

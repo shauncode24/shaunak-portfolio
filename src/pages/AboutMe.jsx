@@ -293,17 +293,8 @@ export default function AboutMe() {
 
             <div className={`aboutme-fire-effects ${isLoaded ? 'appear' : ''}`}>
                 <FireplaceEffects
-                    style={{
-                        top: '47%',
-                        right: '7%',
-                        left: 'auto',
-                        transform: 'translate(25%, -40%) scale(0.5)',
-                        width: '600px',
-                        height: '600px',
-                        opacity: 0.8,
-                        maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)',
-                        WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%)'
-                    }}
+                    className="aboutme-fireplace-canvas"
+                    style={{ opacity: 0.8 }}
                 />
             </div>
 
