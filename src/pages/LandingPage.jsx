@@ -196,7 +196,7 @@ export default function LandingPage() {
                     className="default mc-button"
                     onClick={(e) => {
                         e.stopPropagation();
-                        navigate('/about');
+                        navigate('/homepage');
                     }}
                 >
                     ENTER  &nbsp;WORLD

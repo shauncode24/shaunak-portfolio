@@ -57,6 +57,26 @@ export default function Homepage() {
     } = useAboutMeInteractions(actions.playChestClose);
 
     useEffect(() => {
+        const baseTitle = "Shaunak Karve | ";
+        switch (activeComponent) {
+            case 'projects':
+                document.title = baseTitle + "Projects";
+                break;
+            case 'skills':
+                document.title = baseTitle + "Skills";
+                break;
+            case 'experience':
+                document.title = baseTitle + "Experience";
+                break;
+            case 'about':
+                document.title = baseTitle + "About Me";
+                break;
+            default:
+                document.title = baseTitle + "Homepage";
+        }
+    }, [activeComponent]);
+
+    useEffect(() => {
         const timer = setTimeout(() => setIsLoaded(true), 100);
         return () => clearTimeout(timer);
     }, []);

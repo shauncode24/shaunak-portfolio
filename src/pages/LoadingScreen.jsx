@@ -12,11 +12,21 @@ const LoadingScreen = ({ onFinished }) => {
     const progress = Math.max(realProgress, fakeProgress);
 
     useEffect(() => {
-        // Simulate progress to ensure we don't get stuck at 0% if no assets triggered the loader
+        // Randomized, accelerating progress simulation
         if (fakeProgress < 100) {
+            // As progress increases, the potential delay decreases (acceleration)
+            // Base delay range: 50ms - 500ms
+            // Acceleration factor: (100 - fakeProgress) / 100 -> 1.0 down to 0.0
+            const acceleration = Math.max(0.1, (100 - fakeProgress) / 100);
+            const randomDelay = Math.random() * 400 * acceleration + 50;
+
+            // Random chunk size: 1% to 15%
+            const randomIncrement = Math.floor(Math.random() * 15) + 1;
+
             const timeout = setTimeout(() => {
-                setFakeProgress(prev => Math.min(prev + 10, 100)); // Increment significantly to reach 100% in ~500-1000ms steps or faster
-            }, 200);
+                setFakeProgress(prev => Math.min(prev + randomIncrement, 100));
+            }, randomDelay);
+
             return () => clearTimeout(timeout);
         }
     }, [fakeProgress]);
