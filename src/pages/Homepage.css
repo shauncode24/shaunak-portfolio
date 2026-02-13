@@ -5,6 +5,8 @@
   overflow: hidden;
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   cursor: crosshair;
+  /* Prevent scrolling on mobile when nav is present */
+  overflow: hidden; 
 }
 
 ::-webkit-scrollbar {
@@ -51,6 +53,10 @@
 
 .homepage-items-container.appear .crafting-wrapper {
     animation-delay: 1.4s;
+}
+
+.homepage-items-container.appear .exp-wrapper {
+    animation-delay: 1.7s;
 }
 
 @keyframes popInEmphasis {
@@ -130,6 +136,14 @@
   max-width: 168px !important;
 }
 
+.exp-wrapper {
+  /* Positioning relative to the homepage-items-container which is already centered */
+  width: 20vw !important;
+  max-width: 500px !important;
+  /* Since it's in the flex container, order might matter. */
+  /* If we want it dead center, and there are 4 items now, flex will space them. */
+}
+
 .lecturn-wrapper {
   width: 10vw !important;
   max-width: 168px !important;
@@ -138,7 +152,8 @@
 /* Adjust labels relative to the new relative wrappers */
 .homepage-label-chest,
 .homepage-label-crafting,
-.homepage-label-lecturn {
+.homepage-label-lecturn,
+.homepage-label-exp {
   bottom: 99%;
   left: 50%;
   transform: translateX(-50%);
@@ -195,17 +210,45 @@
 
 .homepage-resume-wrapper {
   position: absolute;
-  top: 20%;
-  right: 17%;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto;
   z-index: 20;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 1.5s ease-out 3.2s;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px; /* Reduced size */
+  width: 100px;
   height: auto;
   opacity: 0;
+}
+
+.exp-wrapper {
+  position: absolute;
+  top: 8%;
+  right: 13%;
+  z-index: 15;
+  cursor: pointer;
+  width: 100px;
+  height: auto;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 1s ease-out 1.5s;
+}
+
+.exp-wrapper.appear {
+    opacity: 1;
+}
+
+.exp-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.homepage-exp-btn {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
 }
 
 .homepage-resume-wrapper.appear {
@@ -256,6 +299,57 @@
   border-color: rgba(150, 150, 255, 0.8);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 10px rgba(100, 100, 255, 0.2);
+}
+
+/* Mobile Navigation Bar */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.85); /* Dark background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease-out 3.5s;
+    padding-bottom: env(safe-area-inset-bottom); /* Handle iPhone notches */
+}
+
+.mobile-nav.appear {
+    opacity: 1;
+}
+
+.mobile-nav-item {
+    color: #ffffff;
+    font-family: 'Minecraft-Regular', monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    transition: background 0.2s;
+}
+
+.mobile-nav-item:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Minecraft-Regular', monospace;
+    font-size: 18px;
+    padding-bottom: 2px;
 }
 
 /* Fireplace */
@@ -309,17 +403,20 @@
   .chest-wrapper { width: 24vw !important; max-width: 260px !important; }
   .crafting-wrapper { width: 24vw !important; max-width: 260px !important; }
   .lecturn-wrapper { width: 24vw !important; max-width: 260px !important; }
+
   
   .homepage-dog {
       width: 20vw !important;
       max-width: 270px !important;
   }
   
-  .homepage-resume-wrapper {
-      top: 16% !important;
-      right: 2.5% !important;
-      left: auto !important;
-      width: 120px;
+  .homepage-resume-wrapper,
+  .exp-wrapper {
+      display: none !important;
+  }
+
+  .mobile-nav {
+      display: flex;
   }
   
   /* Hide fireplace on split-screen/tablet */
@@ -359,11 +456,7 @@
       bottom: 15%;
   }
   
-  .homepage-resume-wrapper {
-      top: 10%;
-      right: 5%;
-      width: 100px;
-  }
+
   
   /* Fireplace already hidden by parent media query */
 }
@@ -408,11 +501,7 @@
       display: none;
   }
 
-  .homepage-resume-wrapper {
-      top: 8%;
-      right: 8%;
-      width: 70px;
-  }
+
   
   .homepage-resume-text {
       font-size: 10px;
@@ -457,10 +546,13 @@
    
    /* Fireplace already hidden by parent media query */
    
-   .homepage-resume-wrapper {
-       width: 60px;
-       top: 5%;
-       right: 5%;
+   .homepage-resume-wrapper,
+   .exp-wrapper {
+       display: none !important;
+   }
+
+   .mobile-nav {
+       display: flex;
    }
    
    .homepage-resume-text {
@@ -515,11 +607,7 @@
         display: none; /* Hide dog on mobile landscape */
     }
 
-    .homepage-resume-wrapper {
-        width: 80px;
-        top: 10%;
-        right: 10%;
-    }
+
     
     .homepage-resume-text {
         font-size: 10px;
@@ -549,6 +637,19 @@
 @media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape) {
     .homepage-fireplace {
         display: none;
+    }
+}
+
+/* Specific targeting for iPads/Tablets in landscape (Touch devices) up to 1368px */
+/* This excludes laptops which typically have fine pointers */
+@media (max-width: 1368px) and (orientation: landscape) and (pointer: coarse) {
+    .homepage-resume-wrapper,
+    .exp-wrapper {
+        display: none !important;
+    }
+
+    .mobile-nav {
+        display: flex;
     }
 }
 

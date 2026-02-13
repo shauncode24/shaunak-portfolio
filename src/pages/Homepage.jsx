@@ -15,7 +15,7 @@ import FireplaceEffects from '../components/SmokeEffect';
 import RoomAtmosphere from '../components/RoomAtmosphere';
 import resumePdf from '@/assets/resume.pdf';
 import sign from '@/assets/about_me/item_frame.png';
-
+import expButton from '@/assets/experience/exp_button.png';
 import { projectsData } from '../data/projectsData';
 import { useAboutMeAudio } from '../hooks/useAboutMeAudio';
 import { useDogAnimation } from '../hooks/useDogAnimation';
@@ -87,6 +87,20 @@ export default function Homepage() {
                 <span className="homepage-resume-text">RESUME</span>
             </a>
 
+            <div
+                className={`homepage-interactive-wrapper exp-wrapper ${isLoaded ? 'appear' : ''}`}
+                onClick={() => console.log('Experience Clicked')}
+            >
+                <img
+                    src={expButton}
+                    className="homepage-overlay homepage-exp-btn"
+                    alt="Experience"
+                />
+                <div className="homepage-label homepage-label-exp">
+                    Experience
+                </div>
+            </div>
+
             <img
                 className={`homepage-background ${isLoaded ? 'appear' : ''}`}
                 src={aboutBg}
@@ -140,6 +154,7 @@ export default function Homepage() {
                         Skills
                     </div>
                 </div>
+
             </div>
 
             <audio ref={refs.dogBarkRef} preload="auto">
@@ -172,6 +187,23 @@ export default function Homepage() {
                     className="homepage-fireplace-canvas"
                     style={{ opacity: 0.8 }}
                 />
+            </div>
+
+            <div className={`mobile-nav ${isLoaded ? 'appear' : ''}`}>
+                <a
+                    href={resumePdf}
+                    download="Shaun_Resume.pdf"
+                    className="mobile-nav-item"
+                >
+                    RESUME
+                </a>
+                <div className="mobile-nav-separator">|</div>
+                <div
+                    className="mobile-nav-item"
+                    onClick={() => console.log('Experience Clicked')}
+                >
+                    EXPERIENCE
+                </div>
             </div>
 
             <AnimatePresence mode="wait">
