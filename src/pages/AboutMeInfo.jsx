@@ -148,7 +148,7 @@ export default function AboutMeInfo({ onClose }) {
                         >
                             Away from the keyboard, I’m usually&nbsp;
                             <RotatingText
-                                texts={['sketching', 'writing stories', 'playing Minecraft', 'listening to music', 'reading history', 'watching movies']}
+                                texts={['sketching', 'writing stories', 'playing Minecraft', 'listening to music', 'reading history', 'watching movies', 'enjoying some cricket']}
                                 mainClassName="rotating-text-gradient"
                                 staggerFrom={"last"}
                                 initial={{ y: "100%" }}

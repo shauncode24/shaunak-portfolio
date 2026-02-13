@@ -55,7 +55,7 @@ export default function LandingPage() {
     };
 
     return (
-        <div className="homepage-container" onClick={() => playAll()}>
+        <div className="landing-container" onClick={() => playAll()}>
             <audio ref={sfxRef} loop autoPlay preload="auto">
                 <source src={fireCrackling} type="audio/mpeg" />
             </audio>
@@ -67,7 +67,7 @@ export default function LandingPage() {
             </audio>
 
             {/* Top Status Bar */}
-            <div className={`homepage-top-status ${timeOfDay} ${isLoaded ? 'appear' : ''}`}>
+            <div className={`landing-top-status ${timeOfDay} ${isLoaded ? 'appear' : ''}`}>
                 <div className="status-container">
                     <div className="status-line primary">
                         <span className="status-time">
@@ -114,7 +114,7 @@ export default function LandingPage() {
             </div>
 
             {/* Desktop Atmosphere Controls */}
-            <div className={`homepage-controls scene-controls desktop-only ${isLoaded ? 'appear' : ''}`}>
+            <div className={`landing-controls scene-controls desktop-only ${isLoaded ? 'appear' : ''}`}>
                 <div className="control-group row">
                     <button
                         className={`pixel-button ${isAutoMode ? 'active' : ''}`}
@@ -130,7 +130,7 @@ export default function LandingPage() {
                 </div>
             </div>
 
-            <div className={`homepage-controls effects-controls desktop-only ${isLoaded ? 'appear' : ''}`}>
+            <div className={`landing-controls effects-controls desktop-only ${isLoaded ? 'appear' : ''}`}>
                 <div className="control-group row">
                     <button className={`pixel-button ${isMusicOn ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsMusicOn(!isMusicOn); }}>MUSIC: {isMusicOn ? 'ON' : 'OFF'}</button>
                     <button className={`pixel-button ${isRainOn ? 'active' : ''}`} onClick={(e) => { e.stopPropagation(); setIsRainOn(!isRainOn); setIsAutoMode(false); }}>RAIN: {isRainOn ? 'ON' : 'OFF'}</button>
@@ -156,7 +156,7 @@ export default function LandingPage() {
             </div>
 
             {/* Background Effects */}
-            <FireplaceEffects className={`homepage-smoke ${isLoaded && !isRainOn ? 'appear' : ''}`} />
+            <FireplaceEffects className={`landing-smoke ${isLoaded && !isRainOn ? 'appear' : ''}`} />
 
             <div className={`rain-container ${isLoaded ? 'appear' : ''}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 15 }}>
                 {isRainOn && <RainEffect />}
@@ -166,7 +166,7 @@ export default function LandingPage() {
             {Object.entries(backgrounds).map(([key, src]) => (
                 <img
                     key={key}
-                    className={`homepage-background ${timeOfDay === key ? 'active' : ''}`}
+                    className={`landing-background ${timeOfDay === key ? 'active' : ''}`}
                     src={src}
                     alt={key}
                     style={bgTransform}
@@ -174,24 +174,24 @@ export default function LandingPage() {
             ))}
 
             <img
-                className={`homepage-fireplace ${!isRainOn && isLoaded ? 'appear' : ''}`}
+                className={`landing-fireplace ${!isRainOn && isLoaded ? 'appear' : ''}`}
                 src={fireplace}
                 alt="Fireplace"
                 style={fireplaceTransform}
             />
             <img
-                className={`homepage-fireplace extinguished ${isRainOn && isLoaded ? 'appear' : ''}`}
+                className={`landing-fireplace extinguished ${isRainOn && isLoaded ? 'appear' : ''}`}
                 src={fireplaceExtinguish}
                 alt="Extinguished Fireplace"
                 style={fireplaceTransform}
             />
 
-            <div className={`homepage-content ${timeOfDay} ${isLoaded ? 'appear' : ''}`}>
+            <div className={`landing-content ${timeOfDay} ${isLoaded ? 'appear' : ''}`}>
                 SHAUNAK KARVE
-                <span className="homepage-subtitle">Inspire to Create</span>
+                <span className="landing-subtitle">Inspire to Create</span>
             </div>
 
-            <div className={`homepage-enter-container ${isLoaded ? 'appear' : ''}`}>
+            <div className={`landing-enter-container ${isLoaded ? 'appear' : ''}`}>
                 <button
                     className="default mc-button"
                     onClick={(e) => {
