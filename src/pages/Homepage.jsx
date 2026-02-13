@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import './Homepage.css';
 import Projects from './Projects';
 import aboutBg from '@/assets/about_me/about_me_bg_10.png';
-import AboutMeInfo from './AboutMeInfo';
+import AboutMe from './AboutMe';
 import Skills from './Skills';
 import chest from '@/assets/about_me/chest.png';
 import craftingTable from '@/assets/about_me/crafting_table.png';
@@ -184,7 +184,7 @@ export default function Homepage() {
                         transition={{ duration: 0.2 }}
                         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 50 }}
                     >
-                        <AboutMeInfo onClose={() => {
+                        <AboutMe onClose={() => {
                             actions.playChestClose();
                             setActiveComponent(null);
                         }} />

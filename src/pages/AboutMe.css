@@ -279,15 +279,16 @@
 /* Mobile Landscape (481px - 768px landscape) */
 @media (max-width: 768px) and (orientation: landscape) {
   .aboutme-content-wrapper {
-    width: 98%;
-    max-height: 94vh;
+    width: 96%;
+    max-height: 90vh;
     overflow-y: auto;
+    align-items: flex-start;
   }
 
   .aboutme-glass-panel {
     flex-direction: row;
-    padding: 24px 28px;
-    gap: 40px;
+    padding: 16px 24px;
+    gap: 30px;
   }
 
   .aboutme-left {
@@ -296,8 +297,8 @@
   }
 
   .aboutme-character {
-    height: 180px;
-    margin-bottom: 10px;
+    height: 150px;
+    margin-bottom: 8px;
   }
 
   .minecraft-nametag {
@@ -306,29 +307,33 @@
   }
 
   .aboutme-heading {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
     text-align: left;
   }
 
   .aboutme-body {
-    font-size: 0.82rem;
-    line-height: 1.6;
+    font-size: 0.8rem;
+    line-height: 1.5;
   }
 
   .aboutme-body p {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
 
   .about-content-body-rotating-text {
-    font-size: 0.82rem;
-    padding-top: 0.8rem;
+    font-size: 0.8rem;
+    padding-top: 0.6rem;
     justify-content: flex-start;
   }
 }
 
 /* Tablet Portrait & Mobile (max-width: 768px) */
 @media (max-width: 768px) {
+  /* .aboutmeinfo-container { 
+    align-items: flex-start;
+  } */
+
   .aboutme-content-wrapper {
     width: 95%;
     max-height: 90vh;

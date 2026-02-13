@@ -536,3 +536,19 @@
         padding: 6px 10px;
     }
 }
+
+@media (min-width: 1280px) and (max-width: 1368px) and (orientation: landscape) {
+    .homepage-fireplace {
+        display: none;
+    }
+    .homepage-fireplace-canvas {
+        right: 3% !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape) {
+    .homepage-fireplace {
+        display: none;
+    }
+}
+

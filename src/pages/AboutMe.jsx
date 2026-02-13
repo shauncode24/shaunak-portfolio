@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './AboutMeInfo.css';
+import './AboutMe.css';
 import aboutBg from '@/assets/about_me_bg_2.png';
 import characterGif from '@/assets/character_2.gif';
 import characterStill from '@/assets/character_2.png';
@@ -7,25 +7,23 @@ import RotatingText from '@/components/RotatingText';
 import ContactCard from '@/components/ContactCard';
 import { motion } from 'motion/react';
 
-export default function AboutMeInfo({ onClose }) {
+export default function AboutMe({ onClose }) {
     const [isGifPlaying, setIsGifPlaying] = useState(false);
     const [gifKey, setGifKey] = useState(0);
 
-    // Trigger GIF start after entrance delay
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsGifPlaying(true);
-        }, 800); // Sync with entrance animation delay
+        }, 800);
         return () => clearTimeout(timer);
     }, []);
 
-    // Handle GIF duration and cleanup
     useEffect(() => {
         let timer;
         if (isGifPlaying) {
             timer = setTimeout(() => {
                 setIsGifPlaying(false);
-            }, 1880); // Play for slightly longer than 2s to ensure loop completes if needed
+            }, 1880);
         }
         return () => clearTimeout(timer);
     }, [isGifPlaying, gifKey]);
@@ -66,7 +64,6 @@ export default function AboutMeInfo({ onClose }) {
                             onClick={handleCharacterClick}
                             style={{ position: 'relative', cursor: 'pointer', display: 'flex', justifyContent: 'center' }}
                         >
-                            {/* Static Image - Foundation (Always Visible) */}
                             <img
                                 className="aboutme-character"
                                 src={characterStill}
@@ -77,7 +74,6 @@ export default function AboutMeInfo({ onClose }) {
                                 }}
                             />
 
-                            {/* GIF Overlay - Plays on top */}
                             {isGifPlaying && (
                                 <img
                                     key={gifKey}
@@ -132,13 +128,13 @@ export default function AboutMeInfo({ onClose }) {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1.5, duration: 0.5 }}
                             >
-                                I like working on web apps where the details matter — from how smooth an interaction feels to how clean and readable the code is behind the scenes. I try to build things that feel natural, thoughtful, and just…right.                            </motion.p>
+                                For me, it's about the little things — animations that land just right, code that doesn't make future-me cry, and interfaces that just make sense. I'm all about making things that work well and feel even better.                          </motion.p>
                             <motion.p
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 2.0, duration: 0.5 }}
                             >
-                                I’m currently based in <span style={{ color: '#60A5FA', fontWeight: 'bold' }}>Mumbai</span> and comfortable working across the entire web stack. I usually pick whatever tools make the most sense for the problem, not just what’s trendy.                            </motion.p>
+                                <span style={{ color: '#60A5FA', fontWeight: 'bold' }}>Mumbai</span>-based, full-stack focused, perpetually experimenting. I jump between frontend polish and backend logic depending on what needs fixing. </motion.p>
                         </div>
                         <motion.div
                             className='about-content-body-rotating-text'
@@ -160,8 +156,6 @@ export default function AboutMeInfo({ onClose }) {
                                 rotationInterval={3000}
                             />
                         </motion.div>
-
-
                     </div>
                 </div>
             </motion.div>
