@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import './AboutMe.css';
-import aboutBg from '@/assets/about_me_bg_2.png';
-import characterGif from '@/assets/character_2.gif';
-import characterStill from '@/assets/character_2.png';
+import characterGif from '@/assets/about_me/character_2.gif';
+import characterStill from '@/assets/about_me/character_2.png';
 import RotatingText from '@/components/RotatingText';
 import ContactCard from '@/components/ContactCard';
 import { motion } from 'motion/react';
