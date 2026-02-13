@@ -14,6 +14,7 @@ import bgDay from '@/assets/landing_page/bg_day.png';
 import bgSunrise from '@/assets/landing_page/bg_sunrise.png';
 import bgSunset from '@/assets/landing_page/bg_sunset_3.png';
 import fireplace from '@/assets/landing_page/fireplace_2.gif';
+import fireplaceExtinguish from '@/assets/landing_page/fireplace_extinguish.gif';
 import FireplaceEffects from '@/components/SmokeEffect';
 import RainEffect from '@/components/RainEffect';
 
@@ -40,7 +41,7 @@ export default function Homepage() {
 
     const { mousePosition, bgTransform, fireplaceTransform } = useParallax();
 
-    const imageSources = useMemo(() => [bgDay, bgNight, bgSunrise, bgSunset, fireplace], []);
+    const imageSources = useMemo(() => [bgDay, bgNight, bgSunrise, bgSunset, fireplace, fireplaceExtinguish], []);
     const isLoaded = useAssetLoader(imageSources);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -155,7 +156,7 @@ export default function Homepage() {
             </div>
 
             {/* Background Effects */}
-            <FireplaceEffects className={`homepage-smoke ${isLoaded ? 'appear' : ''}`} />
+            <FireplaceEffects className={`homepage-smoke ${isLoaded && !isRainOn ? 'appear' : ''}`} />
 
             <div className={`rain-container ${isLoaded ? 'appear' : ''}`} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 15 }}>
                 {isRainOn && <RainEffect />}
@@ -173,9 +174,15 @@ export default function Homepage() {
             ))}
 
             <img
-                className={`homepage-fireplace ${isLoaded ? 'appear' : ''}`}
+                className={`homepage-fireplace ${!isRainOn && isLoaded ? 'appear' : ''}`}
                 src={fireplace}
                 alt="Fireplace"
+                style={fireplaceTransform}
+            />
+            <img
+                className={`homepage-fireplace extinguished ${isRainOn && isLoaded ? 'appear' : ''}`}
+                src={fireplaceExtinguish}
+                alt="Extinguished Fireplace"
                 style={fireplaceTransform}
             />
 
