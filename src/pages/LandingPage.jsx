@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Homepage.css';
+import './LandingPage.css';
 
 // Hooks
 import { useAtmosphere } from '@/hooks/useAtmosphere';
@@ -21,7 +21,7 @@ import RainEffect from '@/components/RainEffect';
 // Utils
 import { generateFireflies } from '@/utils/helpers';
 
-export default function Homepage() {
+export default function LandingPage() {
     const navigate = useNavigate();
 
     // Custom Hooks
