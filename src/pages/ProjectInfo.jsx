@@ -104,10 +104,17 @@ export default function ProjectInfo({ project, onClose }) {
                                     <FiGithub size={20} />
                                     GitHub
                                 </a>
-                                <a href={project.link || "#"} target="_blank" rel="noopener noreferrer" className="pi-action-btn pi-btn-live">
-                                    <FiExternalLink size={20} />
-                                    Live Demo
-                                </a>
+                                {project.link ? (
+                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="pi-action-btn pi-btn-live">
+                                        <FiExternalLink size={20} />
+                                        Live Demo
+                                    </a>
+                                ) : (
+                                    <span className="pi-action-btn pi-btn-live disabled" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+                                        <FiExternalLink size={20} />
+                                        Live Demo
+                                    </span>
+                                )}
                             </div>
                         </div>
                     </div>

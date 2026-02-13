@@ -45,10 +45,18 @@ export default function Projects({ project, onNextProject, onPrevProject, curren
                                     <FiGithub size={24} />
                                     <span className="link-arrow">↗</span>
                                 </a>
-                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
-                                    <FiExternalLink size={24} />
-                                    <span className="link-arrow">↗</span>
-                                </a>
+                                {/* <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link"> */}
+                                {project.link ? (
+                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                                        <FiExternalLink size={24} />
+                                        <span className="link-arrow">↗</span>
+                                    </a>
+                                ) : (
+                                    <span className="project-link disabled" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+                                        <FiExternalLink size={24} />
+                                        <span className="link-arrow">↗</span>
+                                    </span>
+                                )}
                             </div>
                         </div>
                         <div className="project-info">
