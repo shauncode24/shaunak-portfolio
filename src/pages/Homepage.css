@@ -33,27 +33,33 @@
 
 .status-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: center;
-    gap: 12px; /* Increased space */
+    gap: 6px;
+    white-space: nowrap; /* Ensure it tries to stay on one line */
+}
+
+@media (max-width: 768px) {
+    .status-container {
+        flex-direction: column;
+        gap: 5px;
+        white-space: normal; /* Allow wrapping on mobile if needed */
+    }
 }
 
 .status-line {
     font-family: "Minecraft-Regular", sans-serif;
     color: #ffffff;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-}
-
-.status-line.primary {
     font-size: 0.9rem;
     letter-spacing: 0.1em;
 }
 
+.status-line.primary {
+}
+
 .status-line.secondary {
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    opacity: 0.9;
     color: #eee;
 }
 
@@ -216,7 +222,7 @@
     gap: 8px;
 }
 
-/* Responsive & Mobile Logic */
+/* Responsive & Mobile Logic - Tablet Refinements */
 @media (max-width: 1024px) {
     /* Tablet & Mobile styles */
     
@@ -230,21 +236,36 @@
         display: flex;
     }
 
-    /* Adjust Status Text */
+    /* Adjust Status Text - Increased for visibility on tablets */
     .homepage-top-status {
-        top: 20px;
+        top: 25px; /* More breathing room */
+        width: 90%;
     }
     
+    /* Ensure status text is large enough on tablets */
     .status-line.primary {
-        font-size: 1rem;
+        font-size: 1.2rem; /* Was 1rem */
     }
     
     .status-line.secondary {
-        font-size: 0.8rem;
+        font-size: 1rem; /* Was 0.8rem */
     }
 
+    /* Allow stacking on portrait tablets if width gets tight */
+    .status-container {
+        flex-direction: column;
+        gap: 8px;
+        white-space: normal;
+    }
+
+    /* Position Enter button better for touch */
     .homepage-enter-container {
-        bottom: 60px; /* Give space for the toggle */
+        bottom: 80px; /* High enough to clear bottom gesture area / controls */
+        transform: translateX(-50%) scale(1.1); /* Slightly larger target */
+    }
+    
+    .homepage-enter-container.appear {
+        transform: translateX(-50%) scale(1.1);
     }
 }
 
@@ -299,7 +320,97 @@
         font-size: 0.7rem;
     }
     .status-container {
-        gap: 8px; /* Slightly less gap on very small screens to save vertical space if needed, but keeping consistent is good. Let's keep it tidy. */
+        gap: 8px; 
+    }
+}
+
+/* --- ZOOM / SHORT VIEWPORT FIXES --- */
+/* This targets screens that are 'short' regardless of width 
+   (e.g., Laptops Zoomed In, Landscape Mobile). 
+   Standard Mobile Portrait (usually > 600px height) will NOT be affected. */
+
+/* Intermediate Zoom / Short Screens */
+@media (max-height: 550px) {
+    .homepage-content {
+        padding-top: 10vh !important;
+        /* Clamp font size to be responsive to height too */
+        font-size: clamp(2.2rem, 12vh, 4rem) !important;
+    }
+
+    .homepage-subtitle {
+        font-size: 0.8rem !important;
+        margin-top: 5px;
+    }
+
+    .status-line.primary, .status-line.secondary {
+        font-size: 0.6rem !important;
+        line-height: 1.2; 
+    }
+
+    .homepage-enter-container {
+        bottom: 20px !important;
+    }
+
+    /* Force single line for status on zoomed screens */
+    .status-container {
+        flex-direction: row !important;
+        gap: 6px;
+        white-space: nowrap;
+    }
+    
+    .homepage-fireplace {
+        top: 55% !important;
+        max-height: 40vh;
+        width: auto;
+    }
+}
+
+/* Extreme Zoom (e.g., 500% on Laptop) / Very Short Screens */
+@media (max-height: 350px) {
+    .homepage-content {
+        /* Minimize top padding to pull title up */
+        padding-top: 8vh !important;
+        font-size: 1.5rem !important;
+    }
+
+    /* User requested "wayyyy smaller" for these specifically */
+    .status-line.primary, .status-line.secondary {
+        font-size: 0.4rem !important;
+        line-height: 1.1;
+    }
+    
+    .homepage-subtitle {
+        font-size: 0.4rem !important;
+        margin-top: 2px;
+        letter-spacing: 0.2em !important;
+    }
+
+    /* Force single line here too */
+    .status-container {
+        flex-direction: row !important;
+        gap: 4px;
+        white-space: nowrap;
+    }
+
+    .mobile-menu-toggle {
+        width: 30px;
+        height: 30px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .homepage-enter-container {
+        bottom: 15px !important;
+    }
+
+    .mc-button {
+        padding: 6px 16px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .homepage-fireplace {
+        max-height: 30vh; 
+        top: 65% !important;
     }
 }
 
