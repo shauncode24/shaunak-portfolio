@@ -7,7 +7,7 @@ import Skills from './pages/Skills';
 import LoadingScreen from './pages/LoadingScreen';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(window.location.pathname === '/');
 
   const handleLoadComplete = () => {
     setIsLoading(false);
@@ -15,18 +15,15 @@ function App() {
 
   return (
     <>
-      {isLoading ? (
-        <LoadingScreen onLoadComplete={handleLoadComplete} />
-      ) : (
-        <Router>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/about" element={<AboutMe />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/skills" element={<Skills />} />
-          </Routes>
-        </Router>
-      )}
+      {isLoading && <LoadingScreen onFinished={handleLoadComplete} />}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<AboutMe />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/skills" element={<Skills />} />
+        </Routes>
+      </Router>
     </>
   );
 }
