@@ -170,47 +170,55 @@ export default function Skills({ onClose }) {
 
                     {!(isPortrait && isMobile) && (
                         <div className="rb-sidebar rb-sidebar-right">
-                            {tabNames.slice(3, 6).map((tabName, i) => (
-                                <div
-                                    key={i + 3}
-                                    className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""}`}
-                                    onClick={() => setActiveTab(i + 3)}
-                                >
-                                    <img
-                                        src={tabIcons[tabName]}
-                                        alt={tabName}
-                                        className="tab-icon"
-                                    />
-                                    <span className="tab-label">
-                                        {tabName === "frontend" ? "Frontend" :
-                                            tabName === "aiml" ? "AI/ML" :
-                                                tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                                    </span>
-                                </div>
-                            ))}
+                            {tabNames.slice(3, 6).map((tabName, i) => {
+                                const isDisabled = tabName === 'aiml';
+                                return (
+                                    <div
+                                        key={i + 3}
+                                        className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""} ${isDisabled ? "disabled-tab" : ""}`}
+                                        onClick={() => !isDisabled && setActiveTab(i + 3)}
+                                        title={isDisabled ? "In progress, coming soon!" : ""}
+                                    >
+                                        <img
+                                            src={tabIcons[tabName]}
+                                            alt={tabName}
+                                            className="tab-icon"
+                                        />
+                                        <span className="tab-label">
+                                            {tabName === "frontend" ? "Frontend" :
+                                                tabName === "aiml" ? "AI/ML" :
+                                                    tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                                        </span>
+                                    </div>
+                                );
+                            })}
                         </div>
                     )}
 
                     {isPortrait && isMobile && (
                         <div className="rb-sidebar rb-sidebar-bottom">
-                            {tabNames.slice(3, 6).map((tabName, i) => (
-                                <div
-                                    key={i + 3}
-                                    className={`rb-side-slot rb-side-slot-horizontal ${activeTab === i + 3 ? "active" : ""}`}
-                                    onClick={() => setActiveTab(i + 3)}
-                                >
-                                    <img
-                                        src={tabIcons[tabName]}
-                                        alt={tabName}
-                                        className="tab-icon"
-                                    />
-                                    <span className="tab-label">
-                                        {tabName === "frontend" ? "Frontend" :
-                                            tabName === "aiml" ? "AI/ML" :
-                                                tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                                    </span>
-                                </div>
-                            ))}
+                            {tabNames.slice(3, 6).map((tabName, i) => {
+                                const isDisabled = tabName === 'aiml';
+                                return (
+                                    <div
+                                        key={i + 3}
+                                        className={`rb-side-slot rb-side-slot-horizontal ${activeTab === i + 3 ? "active" : ""} ${isDisabled ? "disabled-tab" : ""}`}
+                                        onClick={() => !isDisabled && setActiveTab(i + 3)}
+                                        title={isDisabled ? "In progress, coming soon!" : ""}
+                                    >
+                                        <img
+                                            src={tabIcons[tabName]}
+                                            alt={tabName}
+                                            className="tab-icon"
+                                        />
+                                        <span className="tab-label">
+                                            {tabName === "frontend" ? "Frontend" :
+                                                tabName === "aiml" ? "AI/ML" :
+                                                    tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                                        </span>
+                                    </div>
+                                );
+                            })}
                         </div>
                     )}
                 </div>

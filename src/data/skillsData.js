@@ -49,7 +49,7 @@ export const tabNames = ["languages", "frontend", "backend", "database", "aiml",
 
 export const tabIcons = {
     languages: "https://cdn-icons-png.flaticon.com/512/1336/1336494.png",
-    frontend: "https://camo.githubusercontent.com/1faefc2972014f0f6b3aed4cdb494ee8d7fba0799b2b95863f36c4aa616617a2/68747470733a2f2f63646e2e7261776769742e636f6d2f7368616e6e6f6e6d6f656c65722f66726f6e742d656e642d6c6f676f2f6d61737465722f6578706f7274732f66726f6e742d656e642d6c6f676f2d62772e706e67",
+    frontend: "https://camo.githubusercontent.com/1faefc2972014f0f6b3aed4cdb494ee8d7fba0799b2b95863f36c4aa616617a2/68747470733a2f2f63646e2e7261776769742e636f6d2f7368616e6e6f6e6d6f656c6c65722f66726f6e742d656e642d6c6f676f2f6d61737465722f6578706f7274732f66726f6e742d656e642d6c6f676f2d62772e706e67",
     backend: "https://cdn-icons-png.flaticon.com/512/3667/3667919.png",
     database: "https://cdn-icons-png.flaticon.com/512/1980/1980250.png",
     aiml: "https://cdn-icons-png.flaticon.com/512/4824/4824797.png",
@@ -57,7 +57,6 @@ export const tabIcons = {
 };
 
 export const recipes = [
-    // Classic Full-Stack Web Development Stacks
     {
         "ingredients": ["MongoDB", "Express.js", "React", "Node.js"],
         "result": "MERN Stack",
@@ -66,95 +65,80 @@ export const recipes = [
     {
         "ingredients": ["PostgreSQL", "Express.js", "React", "Node.js"],
         "result": "PERN Stack",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png"
+        "icon": "https://repository-images.githubusercontent.com/248812720/56902700-c5bd-11ea-813f-ed8631377258"
     },
     {
         "ingredients": ["MongoDB", "Express.js", "Angular", "Node.js"],
         "result": "MEAN Stack",
-        "icon": "https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-svg-download-png-1720094.png"
+        "icon": "https://www.imensosoftware.com/wp-content/uploads/2018/07/graphics_6.png"
     },
     {
         "ingredients": ["HTML 5", "CSS", "JavaScript"],
         "result": "Static Website",
-        "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968267.png"
+        "icon": "https://www.nicepng.com/png/full/18-187940_free-icons-png-small-website-icon.png"
     },
 
     // Modern Serverless Stacks
     {
-        "ingredients": ["React", "Firebase", "TypeScript"],
-        "result": "JAMstack",
-        "icon": "https://images.seeklogo.com/logo-png/61/2/firebase-icon-logo-png_seeklogo-615938.png"
-    },
-    {
         "ingredients": ["React", "Supabase", "TypeScript"],
         "result": "Modern Serverless",
-        "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/supabase.webp"
+        "icon": "https://www.svgrepo.com/show/374073/serverless.svg"
     },
 
     // Python Web Frameworks
     {
         "ingredients": ["Python", "Flask", "PostgreSQL", "React"],
         "result": "Flask Full-Stack",
-        "icon": "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/flask-logo-icon.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/6674/6674591.png"
     },
     {
         "ingredients": ["Python", "Flask", "MongoDB"],
         "result": "Python REST API",
-        "icon": "https://cdn-icons-png.flaticon.com/256/5968/5968350.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/103/103093.png"
     },
 
     // Enterprise & .NET Stacks
     {
         "ingredients": ["ASP.NET Core", "PostgreSQL", "Angular", "TypeScript"],
         "result": "Enterprise Stack",
-        "icon": "https://www.albiorixtech.com/wp-content/uploads/2022/03/net-core-company.png"
-    },
-    {
-        "ingredients": ["ASP.NET Core", "MySQL", "React"],
-        "result": ".NET Full-Stack",
-        "icon": "https://www.albiorixtech.com/wp-content/uploads/2022/03/net-core-company.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/18510/18510682.png"
     },
 
     // AI/ML Web Applications
     {
         "ingredients": ["Python", "TensorFlow", "Flask", "React"],
         "result": "ML Web App",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/7017/7017557.png"
     },
     {
         "ingredients": ["Python", "Hugging Face", "Flask", "React"],
         "result": "NLP Application",
-        "icon": "https://drmowinckels.io/blog/2024/ai-blog-summary/images/hf-logo.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/9831/9831371.png"
     },
     {
         "ingredients": ["Node.js", "TensorFlow", "Express.js", "React"],
         "result": "TensorFlow.js App",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png"
+        "icon": "https://codelabs.developers.google.com/static/tensorflowjs-transfer-learning-teachable-machine/img/54e81d02971f53e8.png"
     },
 
     // Data Science & Analytics
     {
         "ingredients": ["Python", "Pandas", "NumPy", "MatPlotLib", "Jupyter"],
         "result": "Data Science Pipeline",
-        "icon": "https://images.seeklogo.com/logo-png/48/2/pandas-icon-logo-png_seeklogo-483545.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/16990/16990376.png"
     },
     {
         "ingredients": ["Python", "Scikit-learn", "Pandas", "NumPy"],
         "result": "ML Pipeline",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1280px-Scikit_learn_logo_small.svg.png"
+        "icon": "https://static.thenounproject.com/png/2300265-200.png"
     },
     {
         "ingredients": ["Python", "TensorFlow", "Pandas", "NumPy", "Jupyter"],
         "result": "Deep Learning Pipeline",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png"
+        "icon": "https://cdn-icons-png.flaticon.com/256/2103/2103718.png"
     },
 
     // Modern TypeScript Stacks
-    {
-        "ingredients": ["TypeScript", "React", "Node.js", "PostgreSQL"],
-        "result": "TypeScript Full-Stack",
-        "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968381.png"
-    },
     {
         "ingredients": ["TypeScript", "Angular", "Node.js", "MongoDB"],
         "result": "TypeScript MEAN",
@@ -165,23 +149,6 @@ export const recipes = [
     {
         "ingredients": ["Node.js", "Express.js", "MongoDB", "Docker"],
         "result": "Microservices Stack",
-        "icon": "https://images.seeklogo.com/logo-png/64/2/docker-icon-logo-png_seeklogo-643955.png"
-    },
-    {
-        "ingredients": ["React", "Node.js", "PostgreSQL", "Docker"],
-        "result": "Containerized Full-Stack",
-        "icon": "https://images.seeklogo.com/logo-png/64/2/docker-icon-logo-png_seeklogo-643955.png"
-    },
-
-    // Mobile-First & Progressive
-    {
-        "ingredients": ["React", "Firebase", "TypeScript", "Bootstrap"],
-        "result": "Progressive Web App",
-        "icon": "https://i.sstatic.net/0hlcD.png"
-    },
-    {
-        "ingredients": ["React", "Node.js", "MongoDB", "Bootstrap"],
-        "result": "Responsive Web App",
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png"
+        "icon": "https://cdn-icons-png.flaticon.com/512/6357/6357632.png"
     }
 ]
