@@ -1,0 +1,396 @@
+/* Experience Detail Container */
+.experience-detail-overlay {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 90%;
+    max-height: 90%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95));
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    z-index: 101;
+    color: #e2e8f0;
+    overflow: hidden;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(148, 163, 184, 0.1) inset,
+        0 2px 4px rgba(96, 165, 250, 0.1);
+}
+
+/* Header Section */
+.experience-detail-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 32px 36px 28px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.03), transparent);
+    position: relative;
+}
+
+.exp-logo-container {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.exp-logo-container:hover {
+    transform: scale(1.05);
+}
+
+.exp-detail-logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: contain;
+}
+
+.exp-placeholder-logo {
+    font-family: 'Minecraft-Regular', monospace;
+    font-size: 2rem;
+    color: #60A5FA;
+    font-weight: bold;
+}
+
+.exp-header-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.exp-company-name {
+    font-family: 'Minecraft-Regular', monospace;
+    font-size: 1.75rem;
+    color: #f8fafc;
+    margin-bottom: 6px;
+    line-height: 1.2;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.exp-role-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.125rem;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    margin-top: 5px;
+}
+
+.exp-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.875rem;
+
+    color: #64748b;
+}
+
+.exp-meta-item {
+    display: flex;
+    align-items: center;
+    background: rgba(148, 163, 184, 0.08);
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.exp-meta-item:hover {
+    background: rgba(148, 163, 184, 0.12);
+    border-color: rgba(148, 163, 184, 0.2);
+}
+
+.exp-close-btn {
+    background: rgba(148, 163, 184, 0.1);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    color: #cbd5e0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 16px;
+}
+
+.exp-close-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+    transform: scale(1.05);
+}
+
+.exp-close-btn:active {
+    transform: scale(0.95);
+}
+
+/* Body Section */
+.experience-detail-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 36px;
+}
+
+.experience-detail-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.experience-detail-body::-webkit-scrollbar-track {
+    background: rgba(148, 163, 184, 0.05);
+    border-radius: 4px;
+}
+
+.experience-detail-body::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.2);
+    border-radius: 4px;
+}
+
+.experience-detail-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.3);
+}
+
+.exp-section {
+    margin-bottom: 32px;
+}
+
+.exp-section:last-child {
+    margin-bottom: 0;
+}
+
+.exp-section-title {
+    font-family: 'Minecraft-Regular', monospace;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #f1f5f9;
+    margin-bottom: 16px;
+    border-left: 4px solid #60A5FA;
+    padding-left: 12px;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.exp-section-title::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #60A5FA, #3b82f6);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+}
+
+.exp-description-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exp-description-item {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 14px;
+    line-height: 1.7;
+    color: #cbd5e0;
+    font-size: 0.95rem;
+}
+
+.exp-description-item:last-child {
+    margin-bottom: 0;
+}
+
+.exp-description-item::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: #60A5FA;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(96, 165, 250, 0.6);
+}
+
+.exp-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.exp-tech-chip {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.12), rgba(59, 130, 246, 0.08));
+    color: #93C5FD;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exp-tech-chip:hover {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.15));
+    border-color: rgba(96, 165, 250, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer Section */
+.experience-detail-footer {
+    padding: 24px 36px;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.5), transparent);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.exp-footer-links, .exp-footer-downloads {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.exp-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+}
+
+.exp-btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+.exp-btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px);
+}
+
+.exp-btn-primary:active {
+    transform: translateY(0);
+}
+
+.exp-btn-secondary {
+    background: rgba(148, 163, 184, 0.1);
+    color: #e2e8f0;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exp-btn-secondary:hover {
+    background: rgba(148, 163, 184, 0.15);
+    border-color: rgba(148, 163, 184, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.exp-btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .experience-detail-overlay {
+        width: 95%;
+        height: 92%;
+        border-radius: 16px;
+    }
+    
+    .experience-detail-header {
+        padding: 24px 20px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .exp-logo-container {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 16px;
+        margin-right: 0;
+    }
+    
+    .exp-detail-logo {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .exp-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        margin-left: 0;
+    }
+    
+    .exp-company-name {
+        font-size: 1.5rem;
+    }
+    
+    .exp-role-title {
+        font-size: 1rem;
+    }
+
+    .experience-detail-body {
+        padding: 24px 20px;
+    }
+
+    .experience-detail-footer {
+        padding: 20px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .exp-footer-links, .exp-footer-downloads {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .exp-action-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .exp-meta-row {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .exp-meta-item {
+        width: fit-content;
+    }
+}
