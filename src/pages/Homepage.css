@@ -81,8 +81,12 @@
 }
 
 .homepage-overlay:hover {
-  transform: scale(1.1) translateY(-5px);
+  transform: scale(1.1) translateY(-2px);
   filter: brightness(1.2) drop-shadow(0 15px 15px rgba(0,0,0,0.4));
+}
+
+.homepage-exp-btn:hover {
+    transform: scale(1.03) translateY(-2px);
 }
 
 /* Glassmorphism Labels */
@@ -136,13 +140,7 @@
   max-width: 168px !important;
 }
 
-.exp-wrapper {
-  /* Positioning relative to the homepage-items-container which is already centered */
-  width: 20vw !important;
-  max-width: 500px !important;
-  /* Since it's in the flex container, order might matter. */
-  /* If we want it dead center, and there are 4 items now, flex will space them. */
-}
+/* .exp-wrapper was previously here but moved to absolute positioning below */
 
 .lecturn-wrapper {
   width: 10vw !important;
@@ -159,6 +157,13 @@
   transform: translateX(-50%);
   margin-bottom: 15px;
   white-space: nowrap;
+}
+
+.homepage-label-exp {
+  left: 50%;  
+  bottom: 100%;
+  margin-bottom: 5px;
+  bottom: 100%;
 }
 
 /* Dog - Updated for better visibility v2 */
@@ -210,28 +215,27 @@
 
 .homepage-resume-wrapper {
   position: absolute;
-  top: 5%;
-  left: 50%;
+  top: 27%;
+  right: 5.8%;
   transform: translateX(-50%);
-  right: auto;
   z-index: 20;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 1.5s ease-out 3.2s;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 80px;
   height: auto;
   opacity: 0;
 }
 
 .exp-wrapper {
   position: absolute;
-  top: 8%;
-  right: 13%;
+  top: 11%;
+  right: 13.3%;
   z-index: 15;
   cursor: pointer;
-  width: 100px;
+  width: 300px;
   height: auto;
   opacity: 0;
   transition: transform 0.3s ease, opacity 1s ease-out 1.5s;
@@ -239,10 +243,6 @@
 
 .exp-wrapper.appear {
     opacity: 1;
-}
-
-.exp-wrapper:hover {
-    transform: scale(1.05);
 }
 
 .homepage-exp-btn {
@@ -268,21 +268,21 @@
 
 .homepage-resume-text {
   position: absolute;
-  top: -40px; /* Moved higher to clear the image with padding */
+  top: -30px; /* Moved higher to clear the image with padding */
   left: 50%;
   transform: translateX(-50%);
   
   /* Glassmorphism Style Matching .homepage-label */
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 6px 13px;
   
   font-family: 'Minecraft-Regular', monospace;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   pointer-events: none;
   white-space: nowrap;
@@ -309,10 +309,11 @@
     left: 0;
     width: 100%;
     height: 60px;
-    background: rgba(0, 0, 0, 0.85); /* Dark background */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(15, 23, 42, 0.65); /* Softer, theme-aligned dark background */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Thinner, subtler border */
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25); /* Gradient-like fade at top */
     z-index: 100;
     justify-content: space-around;
     align-items: center;
@@ -396,7 +397,7 @@
     pointer-events: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .homepage-items-container {
       gap: 3vw;
       top: 50% !important; /* Move blocks up */
@@ -575,7 +576,7 @@
 }
 
 /* Mobile Landscape Support */
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (max-width: 1200px) and (orientation: landscape) {
     .homepage-items-container {
         top: 60%;
         gap: 2vw;
