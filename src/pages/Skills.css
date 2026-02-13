@@ -700,7 +700,7 @@
 
   .ci-frame {
     padding: 6px;
-    width: 90vw;
+    width: 75vw;
   }
 
   .ci-slot,
@@ -919,6 +919,7 @@
     justify-content: center;
     gap: 5px;
     margin-bottom: 10px;
+    justify-content: flex-start;
   }
   
   .ci-arrow-space {

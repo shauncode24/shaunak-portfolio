@@ -312,17 +312,6 @@ export const projectsData = [
     "link": "https://www.shreyanstatiya.tech/projects/zencare",
     "github": "https://github.com/Percobain/ZenCare"
 },
-    // {
-    //     title: "Portfolio Website",
-    //     technologies: ["React", "CSS", "Vite", "JavaScript"],
-    //     description: "A Minecraft-themed portfolio website showcasing projects with interactive elements, smooth animations, and a unique gaming aesthetic. Built with modern web technologies for optimal performance and user experience.",
-    //     longDescription: "This unique portfolio uses a voxel-inspired design to create an immersive experience. Users explore a virtual room with interactive elements like a fireplace, a pet dog, and furniture that trigger different sections. The technical implementation leverages React and Framer Motion for complex state management and seamless animations, while maintaining high performance. The design system is custom-built with CSS, featuring pixel-art aesthetics and dynamic lighting effects.",
-    //     preview: "Project Preview",
-    //     date: "2024",
-    //     role: "Frontend Developer",
-    //     link: "https://example.com/portfolio",
-    //     github: "https://github.com/example/portfolio"
-    // },
     {
     "title": "Portfolio",
     "technologies": [
