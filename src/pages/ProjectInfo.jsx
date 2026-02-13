@@ -41,6 +41,48 @@ export default function ProjectInfo({ project, onClose }) {
                                 </p>
                             </div>
 
+                            {project.features && (
+                                <div className="pi-section">
+                                    <h3 className="pi-section-title">Key Features</h3>
+                                    <ul className="pi-feature-list">
+                                        {project.features.map((feature, i) => (
+                                            <li key={i}>{feature}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {project.motivation && (
+                                <div className="pi-section">
+                                    <h3 className="pi-section-title">Motivation</h3>
+                                    <p className="pi-description">
+                                        {project.motivation}
+                                    </p>
+                                </div>
+                            )}
+
+                            {project.learnings && (
+                                <div className="pi-section">
+                                    <h3 className="pi-section-title">What I Learned</h3>
+                                    <div className="pi-learnings-container">
+                                        {project.learnings.map((learning, i) => (
+                                            <div key={i} className="pi-learning-item">
+                                                <h4 className="pi-learning-title">{learning.title}</h4>
+                                                {learning.description && <p className="pi-learning-desc">{learning.description}</p>}
+                                                {learning.points && (
+                                                    <ul className="pi-learning-points">
+                                                        {learning.points.map((pt, j) => (
+                                                            <li key={j}>{pt}</li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                                {learning.footer && <p className="pi-learning-footer">{learning.footer}</p>}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
                             <div className="pi-section">
                                 <h3 className="pi-section-title">Technologies</h3>
                                 <div className="pi-tech-grid">

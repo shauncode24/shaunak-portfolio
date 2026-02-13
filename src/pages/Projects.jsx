@@ -39,6 +39,7 @@ export default function Projects({ project, onNextProject, onPrevProject, curren
                         </h2>
                         <div className="project-preview">
                             <img src={project.preview} alt="Project Preview" className="project-image" width="100%" height="100%" />
+
                             <div className="project-overlay">
                                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link">
                                     <FiGithub size={24} />
@@ -55,7 +56,7 @@ export default function Projects({ project, onNextProject, onPrevProject, curren
                                 {project.description}
                             </p>
                             <div className="project-technologies">
-                                {project.technologies.map((tech, index) => (
+                                {project.technologies.slice(0, 3).map((tech, index) => (
                                     <span key={index} className="tech-badge">{tech}</span>
                                 ))}
                             </div>

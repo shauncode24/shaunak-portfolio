@@ -21,8 +21,8 @@
 .project-info-content {
     background: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
     width: 90%;
-    max-width: 1000px;
-    height: 85vh;
+    max-width: 1200px;
+    height: 90vh;
     border-radius: 12px;
     border: 1px solid #333;
     display: flex;
@@ -149,6 +149,96 @@
     border-bottom: 2px solid #333;
     padding-bottom: 0.5rem;
     display: inline-block;
+}
+
+/* Feature List Styles */
+.pi-feature-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pi-feature-list li {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.pi-feature-list li::before {
+    content: "•";
+    color: #218756;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* Learning Section Styles */
+.pi-learnings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pi-learning-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pi-learning-title {
+    font-family: 'Nunito Sans', sans-serif;
+    /* font-family: 'Minecraft-Regular', monospace; */
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.pi-learning-desc {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #bbb;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.pi-learning-points {
+    list-style-type: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.pi-learning-points li {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.pi-learning-points li::before {
+    content: "-";
+    color: #888;
+    position: absolute;
+    left: 0;
+}
+
+.pi-learning-footer {
+    font-family: 'Nunito Sans', sans-serif;
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .pi-tech-grid {

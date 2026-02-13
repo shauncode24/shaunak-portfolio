@@ -55,7 +55,7 @@
     background: linear-gradient(135deg, #2C1810 0%, #1a1a2e 100%);
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid rgba(139, 115, 85, 0.4);
+    border: 1px solid rgba(139, 115, 85, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -472,18 +472,11 @@
 /* Medium Landscape (927px - 1024px) - Includes 932px, text too small fix */
 @media screen and (max-width: 1024px) and (min-width: 927px) and (orientation: landscape) {
     .projects-content {
-        padding: 1.3rem 2.2rem;
+        padding: 3.5rem 4.5rem;
     }
 
     .project-display-div {
         gap: 0.5rem;
-    }
-
-    .project-title {
-        font-size: clamp(1.05rem, 1.85vw, 1.25rem);
-        padding-bottom: 0.45rem;
-        margin-bottom: 0.25rem;
-        margin-top: 0.2rem;
     }
 
     .project-info-icon {
@@ -499,33 +492,13 @@
     }
 
     .project-description {
-        font-size: clamp(0.58rem, 1.25vw, 0.72rem);
+        font-size: clamp(1rem, 1.6vw, 1.1rem);
         line-height: 1.6;
         width: 97%;
     }
 
     .project-technologies {
         gap: 0.28rem;
-    }
-
-    .tech-badge {
-        font-size: 0.52rem;
-        padding: 0.2rem 0.42rem;
-    }
-
-    .page-button {
-        height: 24px;
-        bottom: 1.75rem;
-        right: 3.9rem;
-    }
-
-    .page-button-prev {
-        left: 3.9rem;
-    }
-
-    .page-counter {
-        bottom: 1.75rem;
-        font-size: 0.62rem;
     }
 }
 
