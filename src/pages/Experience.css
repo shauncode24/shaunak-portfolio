@@ -1,0 +1,163 @@
+/* Experience Container (Backdrop) */
+.experience-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.experience-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%; /* Increased width */
+    max-width: 1000px; /* Increased max-width */
+    height: auto;
+}
+
+/* Main Panel with Background */
+.experience-panel {
+    width: 100%;
+    /* Keep aspect ratio of the image or standard 16:9 like a screen */
+    aspect-ratio: 16 / 9; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 4px; /* Slight rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    image-rendering: auto; /* Smoother for bg */
+}
+
+/* Inner Content Container */
+.experience-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0; /* Gap handled by line width/margin */
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+}
+
+/* Nodes */
+.experience-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 2;
+}
+
+.experience-node:hover {
+    transform: scale(1.1);
+}
+
+.exp-icon {
+    width: 80px; /* Increased icon size */
+    height: auto;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.5));
+}
+
+.exp-label {
+    margin-top: 10px;
+    font-family: 'Minecraft-Regular', monospace;
+    font-size: 16px;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000000;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* White Connector Line */
+.experience-connector-line {
+    width: 150px; /* Increased length */
+    height: 6px; /* Slightly thicker */
+    background-color: #ffffff;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5); /* Drop shadow for depth */
+    margin: 0 -5px; /* Negative margin to ensure overlap/connection */
+    margin-bottom: 26px; /* Align visually with icons center (icons have label underneath) */
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .experience-content-wrapper {
+        width: 95%;
+    }
+    
+    .experience-node:hover {
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 480px) {
+    .experience-panel {
+        /* Keep closer to 16:9 on mobile to avoid squishing if possible, or adapt slightly */
+        aspect-ratio: 16 / 9;
+        background-size: 100% 100%;
+    }
+
+    .experience-content-container {
+        flex-direction: row; /* FORCE ROW */
+    }
+    
+    .experience-connector-line {
+        width: 80px; /* Shorter line but horizontal */
+        margin: 0 -5px;
+        margin-bottom: 24px;
+        height: 4px;
+    }
+    
+    .exp-icon {
+        width: 50px;
+    }
+    
+    .exp-label {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+/* Fallback for ultra small screens or portrait if desired */
+/* Slightly tighter on portrait but still ROW */
+@media (max-width: 480px) and (orientation: portrait) {
+    .experience-content-container {
+        flex-direction: row; /* FORCE ROW */
+        gap: 0;
+    }
+    
+    .experience-connector-line {
+        width: 60px; /* Even shorter line for portrait narrow width */
+        height: 4px;
+        margin: 0 -4px;
+        margin-bottom: 20px;
+    }
+    
+    .exp-label {
+        margin-top: 4px;
+        margin-bottom: 0;
+        font-size: 9px;
+    }
+}

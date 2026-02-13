@@ -317,12 +317,14 @@
     justify-content: space-around;
     align-items: center;
     opacity: 0;
-    transition: opacity 1s ease-out 3.5s;
+    pointer-events: none; /* Prevent clicks when hidden */
+    transition: opacity 0.5s ease-out; /* Faster transition for UI feel */
     padding-bottom: env(safe-area-inset-bottom); /* Handle iPhone notches */
 }
 
 .mobile-nav.appear {
     opacity: 1;
+    pointer-events: auto; /* Enable clicks when visible */
 }
 
 .mobile-nav-item {

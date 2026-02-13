@@ -5,6 +5,7 @@ import Projects from './Projects';
 import aboutBg from '@/assets/about_me/about_me_bg_10.png';
 import AboutMe from './AboutMe';
 import Skills from './Skills';
+import Experience from './Experience';
 import chest from '@/assets/about_me/chest.png';
 import craftingTable from '@/assets/about_me/crafting_table.png';
 import lecturn from '@/assets/about_me/lecturn_1.png';
@@ -89,7 +90,7 @@ export default function Homepage() {
 
             <div
                 className={`homepage-interactive-wrapper exp-wrapper ${isLoaded ? 'appear' : ''}`}
-                onClick={() => console.log('Experience Clicked')}
+                onClick={() => setActiveComponent('experience')}
             >
                 <img
                     src={expButton}
@@ -189,7 +190,7 @@ export default function Homepage() {
                 />
             </div>
 
-            <div className={`mobile-nav ${isLoaded ? 'appear' : ''}`}>
+            <div className={`mobile-nav ${isLoaded && !activeComponent ? 'appear' : ''}`}>
                 <a
                     href={resumePdf}
                     download="Shaun_Resume.pdf"
@@ -200,7 +201,7 @@ export default function Homepage() {
                 <div className="mobile-nav-separator">|</div>
                 <div
                     className="mobile-nav-item"
-                    onClick={() => console.log('Experience Clicked')}
+                    onClick={() => setActiveComponent('experience')}
                 >
                     EXPERIENCE
                 </div>
@@ -251,6 +252,18 @@ export default function Homepage() {
                             totalPages={projectsData.length}
                             onClose={() => setActiveComponent(null)}
                         />
+                    </motion.div>
+                )}
+                {activeComponent === 'experience' && (
+                    <motion.div
+                        key="experience"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 50 }}
+                    >
+                        <Experience onClose={() => setActiveComponent(null)} />
                     </motion.div>
                 )}
             </AnimatePresence>
