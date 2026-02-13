@@ -74,7 +74,7 @@
     bottom: 40px; 
     left: 50%;
     transform: translateX(-50%) translateY(30px);
-    z-index: 100;
+    z-index: 20;
     width: 100%; /* Ensure container allows centering */
     display: flex;
     justify-content: center;
@@ -244,7 +244,7 @@
     
     /* Ensure status text is large enough on tablets */
     .status-line.primary {
-        font-size: 1.2rem; /* Was 1rem */
+        font-size: 1rem; /* Was 1rem */
     }
     
     .status-line.secondary {
@@ -314,7 +314,7 @@
     }
     
     .status-line.primary {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
     .status-line.secondary {
         font-size: 0.7rem;
@@ -751,7 +751,7 @@
     bottom: 50px; /* Positioned above the hotbar */
     left: 50%;
     transform: translateX(-50%) translateY(30px);
-    z-index: 100;
+    z-index: 20;
 
     /* ENTRY */
     opacity: 0;
