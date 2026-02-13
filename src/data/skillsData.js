@@ -57,16 +57,131 @@ export const tabIcons = {
 };
 
 export const recipes = [
-    { ingredients: ["HTML 5", "CSS", "JavaScript"], result: "Static Website", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968267.png" },
-    { ingredients: ["HTML 5", "CSS", "JavaScript", "Bootstrap"], result: "Responsive Website", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png" },
-    { ingredients: ["HTML 5", "CSS", "JavaScript", "TypeScript"], result: "Large Frontend Project", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968381.png" },
-    { ingredients: ["JavaScript", "React", "HTML 5", "CSS"], result: "React Web App", icon: "https://i.sstatic.net/0hlcD.png" },
-    { ingredients: ["TypeScript", "React", "HTML 5", "CSS"], result: "Production Frontend App", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968381.png" },
-    { ingredients: ["JavaScript", "Angular", "HTML 5", "CSS"], result: "Angular Web App", icon: "https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-svg-download-png-1720094.png" },
-    { ingredients: ["Node.js", "Express.js"], result: "Backend API", icon: "https://cdn.iconscout.com/icon/free/png-256/free-node-js-logo-icon-svg-download-png-3030179.png" },
-    { ingredients: ["Node.js", "Express.js", "MongoDB"], result: "Backend with Database", icon: "https://icon-icons.com/download-file?file=https%3A%2F%2Fimages.icon-icons.com%2F2415%2FPNG%2F512%2Fmongodb_original_wordmark_logo_icon_146425.png&id=146425&pack_or_individual=pack" },
-    { ingredients: ["Node.js", "Express.js", "PostgreSQL"], result: "SQL Backend API", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png" },
-    { ingredients: ["React", "Node.js", "Express.js", "MongoDB"], result: "MERN Stack App", icon: "https://i.sstatic.net/0hlcD.png" },
-    { ingredients: ["PostgreSQL", "Express.js", "React", "Node.js"], result: "PERN Stack App", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png" },
-    { ingredients: ["Angular", "Node.js", "Express.js", "PostgreSQL"], result: "Enterprise Web App", icon: "https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-svg-download-png-1720094.png" },
-];
+    // Classic Full-Stack Web Development Stacks
+    {
+        "ingredients": ["MongoDB", "Express.js", "React", "Node.js"],
+        "result": "MERN Stack",
+        "icon": "https://s3-alpha.figma.com/hub/file/2947064942/e1d5fb23-f436-4a8c-9b8e-af757cdc6dae-cover.png"
+    },
+    {
+        "ingredients": ["PostgreSQL", "Express.js", "React", "Node.js"],
+        "result": "PERN Stack",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/960px-Postgresql_elephant.svg.png"
+    },
+    {
+        "ingredients": ["MongoDB", "Express.js", "Angular", "Node.js"],
+        "result": "MEAN Stack",
+        "icon": "https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-svg-download-png-1720094.png"
+    },
+    {
+        "ingredients": ["HTML 5", "CSS", "JavaScript"],
+        "result": "Static Website",
+        "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968267.png"
+    },
+
+    // Modern Serverless Stacks
+    {
+        "ingredients": ["React", "Firebase", "TypeScript"],
+        "result": "JAMstack",
+        "icon": "https://images.seeklogo.com/logo-png/61/2/firebase-icon-logo-png_seeklogo-615938.png"
+    },
+    {
+        "ingredients": ["React", "Supabase", "TypeScript"],
+        "result": "Modern Serverless",
+        "icon": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/supabase.webp"
+    },
+
+    // Python Web Frameworks
+    {
+        "ingredients": ["Python", "Flask", "PostgreSQL", "React"],
+        "result": "Flask Full-Stack",
+        "icon": "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/flask-logo-icon.png"
+    },
+    {
+        "ingredients": ["Python", "Flask", "MongoDB"],
+        "result": "Python REST API",
+        "icon": "https://cdn-icons-png.flaticon.com/256/5968/5968350.png"
+    },
+
+    // Enterprise & .NET Stacks
+    {
+        "ingredients": ["ASP.NET Core", "PostgreSQL", "Angular", "TypeScript"],
+        "result": "Enterprise Stack",
+        "icon": "https://www.albiorixtech.com/wp-content/uploads/2022/03/net-core-company.png"
+    },
+    {
+        "ingredients": ["ASP.NET Core", "MySQL", "React"],
+        "result": ".NET Full-Stack",
+        "icon": "https://www.albiorixtech.com/wp-content/uploads/2022/03/net-core-company.png"
+    },
+
+    // AI/ML Web Applications
+    {
+        "ingredients": ["Python", "TensorFlow", "Flask", "React"],
+        "result": "ML Web App",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png"
+    },
+    {
+        "ingredients": ["Python", "Hugging Face", "Flask", "React"],
+        "result": "NLP Application",
+        "icon": "https://drmowinckels.io/blog/2024/ai-blog-summary/images/hf-logo.png"
+    },
+    {
+        "ingredients": ["Node.js", "TensorFlow", "Express.js", "React"],
+        "result": "TensorFlow.js App",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png"
+    },
+
+    // Data Science & Analytics
+    {
+        "ingredients": ["Python", "Pandas", "NumPy", "MatPlotLib", "Jupyter"],
+        "result": "Data Science Pipeline",
+        "icon": "https://images.seeklogo.com/logo-png/48/2/pandas-icon-logo-png_seeklogo-483545.png"
+    },
+    {
+        "ingredients": ["Python", "Scikit-learn", "Pandas", "NumPy"],
+        "result": "ML Pipeline",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1280px-Scikit_learn_logo_small.svg.png"
+    },
+    {
+        "ingredients": ["Python", "TensorFlow", "Pandas", "NumPy", "Jupyter"],
+        "result": "Deep Learning Pipeline",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png"
+    },
+
+    // Modern TypeScript Stacks
+    {
+        "ingredients": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+        "result": "TypeScript Full-Stack",
+        "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968381.png"
+    },
+    {
+        "ingredients": ["TypeScript", "Angular", "Node.js", "MongoDB"],
+        "result": "TypeScript MEAN",
+        "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968381.png"
+    },
+
+    // Microservices & Containerized
+    {
+        "ingredients": ["Node.js", "Express.js", "MongoDB", "Docker"],
+        "result": "Microservices Stack",
+        "icon": "https://images.seeklogo.com/logo-png/64/2/docker-icon-logo-png_seeklogo-643955.png"
+    },
+    {
+        "ingredients": ["React", "Node.js", "PostgreSQL", "Docker"],
+        "result": "Containerized Full-Stack",
+        "icon": "https://images.seeklogo.com/logo-png/64/2/docker-icon-logo-png_seeklogo-643955.png"
+    },
+
+    // Mobile-First & Progressive
+    {
+        "ingredients": ["React", "Firebase", "TypeScript", "Bootstrap"],
+        "result": "Progressive Web App",
+        "icon": "https://i.sstatic.net/0hlcD.png"
+    },
+    {
+        "ingredients": ["React", "Node.js", "MongoDB", "Bootstrap"],
+        "result": "Responsive Web App",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1280px-Bootstrap_logo.svg.png"
+    }
+]

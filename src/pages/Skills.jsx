@@ -2,10 +2,10 @@ import "./Skills.css";
 import arrow from "@/assets/about_me/crafting_arrow.png";
 import craftingBook from "@/assets/skills/crafting_book.png";
 import craftingBookSelected from "@/assets/skills/crafting_book_selected.png";
-import craftingBookCheck from "@/assets/skills/crafting_book_check.png";
-import { motion, AnimatePresence } from 'motion/react';
-import { skillsData, tabNames, tabIcons, recipes } from "@/data/skillsData";
+import { motion } from 'motion/react';
+import { skillsData, tabNames, tabIcons } from "@/data/skillsData";
 import { useSkillsLogic } from "@/hooks/useSkillsLogic";
+import RecipeBook from "@/components/RecipeBook";
 
 export default function Skills({ onClose }) {
     const {
@@ -39,68 +39,12 @@ export default function Skills({ onClose }) {
                 exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-                <AnimatePresence>
-                    {isRecipeBookOpen && (
-                        <>
-                            {isOverlay && (
-                                <motion.div
-                                    key="backdrop"
-                                    className="rb-mobile-backdrop"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setIsRecipeBookOpen(false);
-                                    }}
-                                />
-                            )}
-                            <motion.div
-                                key="recipe-book"
-                                initial={{ width: 0, opacity: 0, marginRight: 0 }}
-                                animate={{ width: "auto", opacity: 1, marginRight: isOverlay ? 0 : 20 }}
-                                exit={{ width: 0, opacity: 0, marginRight: 0 }}
-                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                style={{ overflow: 'hidden' }}
-                                className={isOverlay ? 'recipe-book-mobile' : ''}
-                            >
-                                <div className="default recipe-container" style={{ margin: 0 }}>
-                                    <div className="recipe-book-panel">
-                                        <div className="rb-search-row">
-                                            <div className="rb-search-input-wrapper">
-                                                <input
-                                                    type="text"
-                                                    className="rb-search-input"
-                                                    placeholder="Search..."
-                                                />
-                                            </div>
-                                            <div className="rb-toggle-btn">
-                                                <img src={craftingBookCheck} alt="Toggle" style={{ height: '100%', objectFit: 'contain' }} />
-                                            </div>
-                                        </div>
-
-                                        <div className="rb-grid">
-                                            {recipes.map((recipe, i) => (
-                                                <div
-                                                    key={i}
-                                                    className="rb-grid-slot"
-                                                    onClick={() => handleRecipeClick(recipe)}
-                                                    title={recipe.result}
-                                                    style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                                                >
-                                                    <img src={recipe.icon} alt={recipe.result} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
-                                                </div>
-                                            ))}
-                                            {Array.from({ length: Math.max(0, 15 - recipes.length) }).map((_, i) => (
-                                                <div key={`empty-${i}`} className="rb-grid-slot" />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </>
-                    )}
-                </AnimatePresence>
+                <RecipeBook
+                    isOpen={isRecipeBookOpen}
+                    onClose={() => setIsRecipeBookOpen(false)}
+                    isOverlay={isOverlay}
+                    onRecipeClick={handleRecipeClick}
+                />
 
                 <div className={`skills-main-container ${isPortrait && isMobile ? 'mobile-portrait' : ''}`}>
                     {isPortrait && isMobile && (
@@ -189,15 +133,15 @@ export default function Skills({ onClose }) {
                                 <img src={arrow} alt="arrow" />
                             </div>
 
-                            <div className="ci-slot-2 ci-result-slot" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '5px' }}>
+                            <div className="ci-slot-2 ci-result-slot">
                                 {craftedItem && (
                                     <motion.div
+                                        className="crafted-item-content"
                                         initial={{ scale: 0.5, opacity: 0 }}
                                         animate={{ scale: 1, opacity: 1 }}
-                                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}
                                     >
-                                        <img src={craftedItem.icon} alt={craftedItem.name} style={{ width: '60%', height: 'auto' }} />
-                                        <span style={{ fontSize: '10px', color: '#333', fontFamily: 'Minecraft-Regular' }}>{craftedItem.name}</span>
+                                        <img src={craftedItem.icon} alt={craftedItem.name} className="crafted-item-icon" />
+                                        <span className="crafted-item-name">{craftedItem.name}</span>
                                     </motion.div>
                                 )}
                             </div>

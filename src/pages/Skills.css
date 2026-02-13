@@ -398,6 +398,81 @@
   margin-right: 18px;
 }
 
+/* CRAFTING RESULT SLOT */
+.ci-result-slot {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.crafted-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 5px; /* Adjust gap as needed */
+}
+
+.crafted-item-icon {
+  width: 60%; /* Or pixel value based on slot */
+  max-width: 65px;
+  height: auto;
+  object-fit: contain;
+}
+
+.crafted-item-name {
+  font-size: 13px;
+  color: #333;
+  font-family: 'Minecraft-Regular', monospace;
+  line-height: 1.1;
+  word-wrap: break-word;
+}
+
+
+/* CRAFTING RESULT SLOT */
+.ci-result-slot {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 8px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.crafted-item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 5px; /* Adjust gap as needed */
+}
+
+.crafted-item-icon {
+  width: 60%; /* Or pixel value based on slot */
+  max-width: 65px;
+  height: auto;
+  object-fit: contain;
+}
+
+.crafted-item-name {
+  font-size: 13px;
+  color: #333;
+  font-family: 'Minecraft-Regular', monospace;
+  line-height: 1.1;
+  word-wrap: break-word;
+}
+
 /* SKILL SLOTS */
 .skill-slot {
   display: flex;
@@ -426,168 +501,7 @@
   pointer-events: none;
 }
 
-/* RECIPE BOOK CONTAINER (Outer Light Bevel) */
-.recipe-container {
-  width: fit-content;
-  height: fit-content;
-  padding: 10px;
-  background-color: #C6C6C6;
-  border: 6px solid #C6C6C6;
-  border-color: #FFFFFF #555555 #555555 #FFFFFF;
-  align-self: center;
-  margin-right: 20px;
-  border-radius: 5px;
-}
 
-.recipe-book-mobile {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 100 !important;
-  margin-bottom: 0;
-  margin-right: 0 !important;
-  width: auto !important;
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.rb-mobile-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 99 !important;
-}
-
-/* RECIPE BOOK PANEL (Inner Dark Box) */
-.recipe-book-panel {
-  background-color: #373737;
-  width: 320px;
-  min-height: 430px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-}
-
-/* WRAPPER */
-.recipe-book-wrapper {
-  width: 100%;
-  height: 100%;
-  padding: 16px;
-  background-color: #C6C6C6;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Search Row */
-.rb-search-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 48px;
-}
-
-.rb-search-input-wrapper {
-  flex: 1;
-  background-color: #000000;
-  border: 3px solid #A5A5A5;
-  height: 80%;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-}
-
-.rb-search-icon {
-    width: 20px;
-    height: 20px;
-    border: 3px solid #55FFFF;
-    border-radius: 50%;
-    position: relative;
-    margin-right: 10px;
-}
-.rb-search-icon::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 3px;
-    background: #8B4513; 
-    bottom: -4px;
-    right: -5px;
-    transform: rotate(45deg);
-}
-
-.rb-search-input {
-  background: transparent;
-  border: none;
-  color: #FFFFFF;
-  font-family: 'Minecraft-Regular', monospace;
-  font-size: 18px;
-  width: 100%;
-  outline: none;
-}
-
-.rb-search-input::placeholder {
-  color: #AAAAAA;
-  font-style: italic;
-}
-
-/* Green Toggle Button */
-.rb-toggle-btn {
-  height: 100%;
-}
-
-.rb-toggle-icon {
-    width: 24px;
-    height: 24px;
-    background: #C69C6D; 
-    border: 2px solid #000;
-}
-
-/* Item Grid */
-.rb-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: max-content;
-  overflow-y: auto;
-  flex: 1;
-  gap: 3px
-}
-
-/* Scrollbar for grid */
-.rb-grid::-webkit-scrollbar {
-  width: 10px;
-}
-.rb-grid::-webkit-scrollbar-track {
-  background: #000;
-}
-.rb-grid::-webkit-scrollbar-thumb {
-  background: #808080;
-  border: 2px solid #fff;
-}
-
-/* Grid Slot Styling */
-.rb-grid-slot {
-  aspect-ratio: 1;
-  background-color: #8B8B8B;
-  border: 3px solid #373737;
-  border-color: #CCCCCC #D6D6D6 #D6D6D6 #CCCCCC;
-  box-shadow: inset 3px 3px 0px #4A4A4A, inset -3px -3px 0px #FFFFFF;
-  position: relative;
-}
-
-.rb-grid-slot:hover {
-    background-color: #A0A0A0;
-}
-
-/* ========================= */
 /* RESPONSIVE BREAKPOINTS   */
 /* ========================= */
 
@@ -635,10 +549,16 @@
     margin-left: 80px;
   }
 
-  .recipe-book-panel {
-    width: 280px;
-    min-height: 380px;
+  .crafted-item-icon {
+    width: 60%;
+    max-width: 55px;
   }
+  .crafted-item-name {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+
 }
 
 /* Mobile devices (portrait and landscape) */
@@ -741,15 +661,16 @@
     margin-right: 10px;
   }
 
-  .recipe-book-panel {
-    width: 240px;
-    min-height: 320px;
-    padding: 12px;
+  .crafted-item-icon {
+    width: 55%;
+    max-width: 45px;
+  }
+  .crafted-item-name {
+    font-size: 10px;
+    margin-top: 2px;
   }
 
-  .rb-search-input {
-    font-size: 14px;
-  }
+
 }
 
 /* Small mobile (very small screens) */
@@ -776,10 +697,7 @@
     margin-left: 50px;
   }
 
-  .recipe-book-panel {
-    width: 200px;
-    min-height: 280px;
-  }
+
 
   .rb-sidebar-top .rb-side-slot,
   .rb-sidebar-bottom .rb-side-slot {
@@ -796,6 +714,16 @@
   .rb-sidebar-top .tab-label,
   .rb-sidebar-bottom .tab-label {
     font-size: 8px;
+  }
+
+/* Small Mobile (max-width: 480px) */
+    .crafted-item-icon {
+    width: 50%;
+    max-width: 40px;
+  }
+  .crafted-item-name {
+    font-size: 9px;
+    margin-top: 0px;
   }
 }
 
@@ -935,21 +863,16 @@
     margin-top: 0px;
   }
 
-  /* Recipe Book - Wider layout for landscape to prevent vertical cutoff */
-  .recipe-book-panel {
-    width: 650px;
-    height: auto;
-    min-height: auto;
-    max-height: 90vh;
+  .crafted-item-icon {
+    width: 50%;
+    max-width: 40px;
+  }
+  .crafted-item-name {
+    font-size: 9px;
+    margin-top: 0px;
   }
 
-  .rb-grid {
-    grid-template-columns: repeat(8, 1fr);
-  }
 
-  .rb-search-box {
-    width: 100%;
-  }
 }
 
 /* Landscape orientation - keep horizontal layout */

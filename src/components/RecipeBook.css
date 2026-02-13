@@ -1,0 +1,195 @@
+.recipe-container {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  background-color: #C6C6C6;
+  border: 6px solid #C6C6C6;
+  border-color: #FFFFFF #555555 #555555 #FFFFFF;
+  align-self: center;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.recipe-book-mobile {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 100 !important;
+  margin-bottom: 0;
+  margin-right: 0 !important;
+  width: auto !important;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.rb-mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 99 !important;
+}
+
+.recipe-book-panel {
+  background-color: #373737;
+  width: 320px;
+  min-height: 430px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.recipe-book-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background-color: #C6C6C6;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rb-search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+}
+
+.rb-search-input-wrapper {
+  flex: 1;
+  background-color: #000000;
+  border: 3px solid #A5A5A5;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.rb-search-icon {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #55FFFF;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 10px;
+}
+.rb-search-icon::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 3px;
+    background: #8B4513; 
+    bottom: -4px;
+    right: -5px;
+    transform: rotate(45deg);
+}
+
+.rb-search-input {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: 'Minecraft-Regular', monospace;
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+}
+
+.rb-search-input::placeholder {
+  color: #AAAAAA;
+  font-style: italic;
+}
+
+.rb-toggle-btn {
+  height: 100%;
+}
+
+.rb-toggle-icon {
+    width: 24px;
+    height: 24px;
+    background: #C69C6D; 
+    border: 2px solid #000;
+}
+
+.rb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: max-content;
+  overflow-y: auto;
+  flex: 1;
+  gap: 3px
+}
+
+.rb-grid::-webkit-scrollbar {
+  width: 10px;
+}
+.rb-grid::-webkit-scrollbar-track {
+  background: #000;
+}
+.rb-grid::-webkit-scrollbar-thumb {
+  background: #808080;
+  border: 2px solid #fff;
+}
+
+.rb-grid-slot {
+  aspect-ratio: 1;
+  background-color: #8B8B8B;
+  border: 3px solid #373737;
+  border-color: #CCCCCC #D6D6D6 #D6D6D6 #CCCCCC;
+  box-shadow: inset 3px 3px 0px #4A4A4A, inset -3px -3px 0px #FFFFFF;
+  position: relative;
+}
+
+.rb-grid-slot:hover {
+    background-color: #A0A0A0;
+}
+
+@media (max-width: 1024px) {
+  .recipe-book-panel {
+    width: 280px;
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-book-panel {
+    width: 240px;
+    min-height: 320px;
+    padding: 12px;
+  }
+
+  .rb-search-input {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-book-panel {
+    width: 200px;
+    min-height: 280px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 1024px) {
+  .recipe-book-panel {
+    width: 650px;
+    height: auto;
+    min-height: auto;
+    max-height: 90vh;
+  }
+
+  .rb-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .rb-search-input-wrapper {
+    width: 100%;
+  }
+}
