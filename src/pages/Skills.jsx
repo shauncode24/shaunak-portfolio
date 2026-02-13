@@ -7,13 +7,6 @@ import craftingBookSelected from "@/assets/skills/crafting_book_selected.png";
 import craftingBookCheck from "@/assets/skills/crafting_book_check.png";
 import { motion, AnimatePresence } from 'motion/react';
 
-// ... (existing skillsData and helper objects remain unchanged, I will skip them in replacement if possible, but replace_file_content replaces a block)
-// I will target the imports area first, then function body.
-
-// Wait, I can't do multiple disparate blocks with one replace_file_content unless I use multi_replace.
-// I will use multi_replace_file_content.
-
-
 // Tech stack icons - using emoji for now, replace with actual icon URLs
 const skillsData = {
     languages: [
@@ -65,12 +58,12 @@ const skillsData = {
 const tabNames = ["languages", "frontend", "backend", "database", "aiml", "tools"];
 
 const tabIcons = {
-    languages: "https://cdn-icons-png.flaticon.com/512/1336/1336494.png", // Code icon
-    frontend: "https://camo.githubusercontent.com/1faefc2972014f0f6b3aed4cdb494ee8d7fba0799b2b95863f36c4aa616617a2/68747470733a2f2f63646e2e7261776769742e636f6d2f7368616e6e6f6e6d6f656c6c65722f66726f6e742d656e642d6c6f676f2f6d61737465722f6578706f7274732f66726f6e742d656e642d6c6f676f2d62772e706e67", // Web/Globe icon
-    backend: "https://cdn-icons-png.flaticon.com/512/3667/3667919.png", // Server icon
-    database: "https://cdn-icons-png.flaticon.com/512/1980/1980250.png", // Database icon
-    aiml: "https://cdn-icons-png.flaticon.com/512/4824/4824797.png", // AI/Brain icon
-    tools: "https://cdn-icons-png.flaticon.com/512/2620/2620885.png", // Tools icon
+    languages: "https://cdn-icons-png.flaticon.com/512/1336/1336494.png",
+    frontend: "https://camo.githubusercontent.com/1faefc2972014f0f6b3aed4cdb494ee8d7fba0799b2b95863f36c4aa616617a2/68747470733a2f2f63646e2e7261776769742e636f6d2f7368616e6e6f6e6d6f656c6c65722f66726f6e742d656e642d6c6f676f2f6d61737465722f6578706f7274732f66726f6e742d656e642d6c6f676f2d62772e706e67",
+    backend: "https://cdn-icons-png.flaticon.com/512/3667/3667919.png",
+    database: "https://cdn-icons-png.flaticon.com/512/1980/1980250.png",
+    aiml: "https://cdn-icons-png.flaticon.com/512/4824/4824797.png",
+    tools: "https://cdn-icons-png.flaticon.com/512/2620/2620885.png",
 };
 
 export default function Skills({ onClose }) {
@@ -79,8 +72,22 @@ export default function Skills({ onClose }) {
     const [craftedItem, setCraftedItem] = useState(null);
     const [isRecipeBookOpen, setIsRecipeBookOpen] = useState(false);
     const [isBookHovered, setIsBookHovered] = useState(false);
+    const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 820);
+    const [isOverlay, setIsOverlay] = useState(window.innerWidth < 1024);
 
     const currentSkills = skillsData[tabNames[activeTab]];
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsPortrait(window.innerHeight > window.innerWidth);
+            setIsMobile(window.innerWidth <= 820);
+            setIsOverlay(window.innerWidth < 1024);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const recipes = [
         { ingredients: ["HTML 5", "CSS", "JavaScript"], result: "Static Website", icon: "https://cdn-icons-png.flaticon.com/512/5968/5968267.png" },
@@ -130,17 +137,6 @@ export default function Skills({ onClose }) {
             if (skillData) {
                 const skill = JSON.parse(skillData);
                 const newGrid = [...craftingGrid];
-
-                // Check if skill is already in grid, if so, remove it from old position? 
-                // Alternatively, allow duplicates (user didn't specify). 
-                // Assuming unique ingredients for recipes, but duplicate icons in grid might handle differently.
-                // Let's iterate grid to remove duplicates if we want unique slots logic, 
-                // OR just place it. Minecraft allows splitting, so duplicates are fine, 
-                // but for this logic, only presence matters. I'll allow "duplicates" visual 
-                // but the recipe checker handles names.
-                // Actually to keep it clean, let's remove existing instance if present?
-                // Nah, simpler is just overwrite slot.
-
                 newGrid[index] = skill;
                 setCraftingGrid(newGrid);
             }
@@ -170,179 +166,252 @@ export default function Skills({ onClose }) {
     return (
         <div className="skills-overlay" onClick={onClose}>
             <motion.div
-                className="mc-root"
+                className={`mc-root ${isPortrait && isMobile ? 'mc-root-mobile-portrait' : ''}`}
                 onClick={(e) => e.stopPropagation()}
                 initial={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
                 animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
                 exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-                {/* NEW RECIPE BOOK - LEFTMOST PANEL */}
+                {/* Recipe Book - Conditional positioning */}
                 <AnimatePresence>
                     {isRecipeBookOpen && (
-                        <motion.div
-                            initial={{ width: 0, opacity: 0, marginRight: 0 }}
-                            animate={{ width: "auto", opacity: 1, marginRight: 20 }}
-                            exit={{ width: 0, opacity: 0, marginRight: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            style={{ overflow: 'hidden' }}
-                        >
-                            <div className="default recipe-container" style={{ margin: 0 }}>
-                                <div className="recipe-book-panel">
-                                    <div className="rb-search-row">
-                                        <div className="rb-search-input-wrapper">
-                                            <input
-                                                type="text"
-                                                className="rb-search-input"
-                                                placeholder="Search..."
-                                            />
-                                        </div>
-                                        <div className="rb-toggle-btn">
-                                            <img src={craftingBookCheck} alt="Toggle" style={{ height: '100%', objectFit: 'contain' }} />
-                                        </div>
-                                    </div>
-
-                                    <div className="rb-grid">
-                                        {recipes.map((recipe, i) => (
-                                            <div
-                                                key={i}
-                                                className="rb-grid-slot"
-                                                onClick={() => handleRecipeClick(recipe)}
-                                                title={recipe.result}
-                                                style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                                            >
-                                                <img src={recipe.icon} alt={recipe.result} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
+                        <>
+                            {isOverlay && (
+                                <motion.div
+                                    key="backdrop"
+                                    className="rb-mobile-backdrop"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsRecipeBookOpen(false);
+                                    }}
+                                />
+                            )}
+                            <motion.div
+                                key="recipe-book"
+                                initial={{ width: 0, opacity: 0, marginRight: 0 }}
+                                animate={{ width: "auto", opacity: 1, marginRight: isOverlay ? 0 : 20 }}
+                                exit={{ width: 0, opacity: 0, marginRight: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                style={{ overflow: 'hidden' }}
+                                className={isOverlay ? 'recipe-book-mobile' : ''}
+                            >
+                                <div className="default recipe-container" style={{ margin: 0 }}>
+                                    <div className="recipe-book-panel">
+                                        <div className="rb-search-row">
+                                            <div className="rb-search-input-wrapper">
+                                                <input
+                                                    type="text"
+                                                    className="rb-search-input"
+                                                    placeholder="Search..."
+                                                />
                                             </div>
-                                        ))}
-                                        {/* Fill remaining slots up to 15 */}
-                                        {Array.from({ length: Math.max(0, 15 - recipes.length) }).map((_, i) => (
-                                            <div key={`empty-${i}`} className="rb-grid-slot" />
-                                        ))}
+                                            <div className="rb-toggle-btn">
+                                                <img src={craftingBookCheck} alt="Toggle" style={{ height: '100%', objectFit: 'contain' }} />
+                                            </div>
+                                        </div>
+
+                                        <div className="rb-grid">
+                                            {recipes.map((recipe, i) => (
+                                                <div
+                                                    key={i}
+                                                    className="rb-grid-slot"
+                                                    onClick={() => handleRecipeClick(recipe)}
+                                                    title={recipe.result}
+                                                    style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                                >
+                                                    <img src={recipe.icon} alt={recipe.result} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
+                                                </div>
+                                            ))}
+                                            {Array.from({ length: Math.max(0, 15 - recipes.length) }).map((_, i) => (
+                                                <div key={`empty-${i}`} className="rb-grid-slot" />
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </>
                     )}
                 </AnimatePresence>
 
-                {/* LEFT SIDEBAR TABS - First 3 categories */}
-                <div className="rb-sidebar">
-                    {tabNames.slice(0, 3).map((tabName, i) => (
-                        <div
-                            key={i}
-                            className={`rb-side-slot ${activeTab === i ? "active" : ""}`}
-                            onClick={() => setActiveTab(i)}
-                        >
-                            <img
-                                src={tabIcons[tabName]}
-                                alt={tabName}
-                                className="tab-icon"
-                            />
-                            <span className="tab-label">
-                                {tabName === "frontend" ? "Frontend" :
-                                    tabName === "aiml" ? "AI/ML" :
-                                        tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-
-                {/* CRAFTING + INVENTORY */}
-                <div className="ci-frame">
-                    <div className="ci-title">Skills</div>
-
-                    <div className="ci-crafting-row">
-                        <div
-                            className="ci-slot-1 ci-result-slot-1"
-                            onClick={() => setIsRecipeBookOpen(!isRecipeBookOpen)}
-                            onMouseEnter={() => setIsBookHovered(true)}
-                            onMouseLeave={() => setIsBookHovered(false)}
-                            style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 0 }}
-                        >
-                            <img
-                                src={isBookHovered || isRecipeBookOpen ? craftingBookSelected : craftingBook}
-                                alt="Recipe Book"
-                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                            />
-                        </div>
-
-                        <div className="ci-crafting-grid">
-                            {craftingGrid.map((slot, i) => (
+                {/* Main Content Container */}
+                <div className={`skills-main-container ${isPortrait && isMobile ? 'mobile-portrait' : ''}`}>
+                    {/* Top Tabs (Mobile Portrait) - First 3 */}
+                    {isPortrait && isMobile && (
+                        <div className="rb-sidebar rb-sidebar-top">
+                            {tabNames.slice(0, 3).map((tabName, i) => (
                                 <div
                                     key={i}
-                                    className="ci-slot"
-                                    onDragOver={handleDragOver}
-                                    onDrop={(e) => handleDrop(e, i)}
-                                    onClick={() => handleSlotClick(i)}
-                                    title={slot ? slot.name : "Empty Slot"}
-                                    style={{ cursor: slot ? 'pointer' : 'default', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                    className={`rb-side-slot rb-side-slot-horizontal ${activeTab === i ? "active" : ""}`}
+                                    onClick={() => setActiveTab(i)}
                                 >
-                                    {slot && <img src={slot.icon} alt={slot.name} width="80%" />}
+                                    <img
+                                        src={tabIcons[tabName]}
+                                        alt={tabName}
+                                        className="tab-icon"
+                                    />
+                                    <span className="tab-label">
+                                        {tabName === "frontend" ? "Frontend" :
+                                            tabName === "aiml" ? "AI/ML" :
+                                                tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                                    </span>
                                 </div>
                             ))}
                         </div>
+                    )}
 
-                        <div className="ci-arrow-space">
-                            <img src={arrow} alt="arrow" />
-                        </div>
-
-                        <div className="ci-slot-2 ci-result-slot" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '5px' }}>
-                            {craftedItem && (
-                                <motion.div
-                                    initial={{ scale: 0.5, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}
-                                >
-                                    <img src={craftedItem.icon} alt={craftedItem.name} style={{ width: '60%', height: 'auto' }} />
-                                    <span style={{ fontSize: '10px', color: '#333', fontFamily: 'Minecraft-Regular' }}>{craftedItem.name}</span>
-                                </motion.div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="ci-title ci-inv-title">Inventory</div>
-
-                    {/* SINGLE ROW INVENTORY - 9 slots */}
-                    <div className="ci-inventory-grid">
-                        {currentSkills.slice(0, 9).map((skill, i) => (
-                            <div
-                                key={i}
-                                className="ci-slot skill-slot"
-                                title={skill.name}
-                                draggable
-                                onDragStart={(e) => handleDragStart(e, skill)}
-                                style={{ cursor: 'grab' }}
-                            >
-                                <img src={skill.icon} alt={skill.name} width="80%" />
+                    {/* Desktop/Landscape Layout */}
+                    {!(isPortrait && isMobile) && (
+                        <>
+                            {/* LEFT SIDEBAR TABS - First 3 categories */}
+                            <div className="rb-sidebar">
+                                {tabNames.slice(0, 3).map((tabName, i) => (
+                                    <div
+                                        key={i}
+                                        className={`rb-side-slot ${activeTab === i ? "active" : ""}`}
+                                        onClick={() => setActiveTab(i)}
+                                    >
+                                        <img
+                                            src={tabIcons[tabName]}
+                                            alt={tabName}
+                                            className="tab-icon"
+                                        />
+                                        <span className="tab-label">
+                                            {tabName === "frontend" ? "Frontend" :
+                                                tabName === "aiml" ? "AI/ML" :
+                                                    tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                        {/* Fill remaining slots if less than 9 */}
-                        {Array.from({ length: Math.max(0, 9 - currentSkills.length) }).map((_, i) => (
-                            <div key={`empty-${i}`} className="ci-slot" />
-                        ))}
-                    </div>
-                </div>
+                        </>
+                    )}
 
-                {/* RIGHT SIDEBAR TABS - Last 3 categories */}
-                <div className="rb-sidebar rb-sidebar-right">
-                    {tabNames.slice(3, 6).map((tabName, i) => (
-                        <div
-                            key={i + 3}
-                            className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""}`}
-                            onClick={() => setActiveTab(i + 3)}
-                        >
-                            <img
-                                src={tabIcons[tabName]}
-                                alt={tabName}
-                                className="tab-icon"
-                            />
-                            <span className="tab-label">
-                                {tabName === "frontend" ? "Frontend" :
-                                    tabName === "aiml" ? "AI/ML" :
-                                        tabName.charAt(0).toUpperCase() + tabName.slice(1)}
-                            </span>
+                    {/* CRAFTING + INVENTORY */}
+                    <div className="ci-frame">
+                        <div className="ci-title">Skills</div>
+
+                        <div className={`ci-crafting-row ${isPortrait && isMobile ? 'mobile-portrait-crafting' : ''}`}>
+                            <div
+                                className="ci-slot-1 ci-result-slot-1"
+                                onClick={() => setIsRecipeBookOpen(!isRecipeBookOpen)}
+                                onMouseEnter={() => setIsBookHovered(true)}
+                                onMouseLeave={() => setIsBookHovered(false)}
+                                style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: 0 }}
+                            >
+                                <img
+                                    src={isBookHovered || isRecipeBookOpen ? craftingBookSelected : craftingBook}
+                                    alt="Recipe Book"
+                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                />
+                            </div>
+
+                            <div className="ci-crafting-grid">
+                                {craftingGrid.map((slot, i) => (
+                                    <div
+                                        key={i}
+                                        className="ci-slot"
+                                        onDragOver={handleDragOver}
+                                        onDrop={(e) => handleDrop(e, i)}
+                                        onClick={() => handleSlotClick(i)}
+                                        title={slot ? slot.name : "Empty Slot"}
+                                        style={{ cursor: slot ? 'pointer' : 'default', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                                    >
+                                        {slot && <img src={slot.icon} alt={slot.name} width="80%" />}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="ci-arrow-space">
+                                <img src={arrow} alt="arrow" />
+                            </div>
+
+                            <div className="ci-slot-2 ci-result-slot" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '5px' }}>
+                                {craftedItem && (
+                                    <motion.div
+                                        initial={{ scale: 0.5, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}
+                                    >
+                                        <img src={craftedItem.icon} alt={craftedItem.name} style={{ width: '60%', height: 'auto' }} />
+                                        <span style={{ fontSize: '10px', color: '#333', fontFamily: 'Minecraft-Regular' }}>{craftedItem.name}</span>
+                                    </motion.div>
+                                )}
+                            </div>
                         </div>
-                    ))}
+
+                        <div className="ci-title ci-inv-title">Inventory</div>
+
+                        {/* SINGLE ROW INVENTORY - 9 slots */}
+                        <div className="ci-inventory-grid">
+                            {currentSkills.slice(0, 9).map((skill, i) => (
+                                <div
+                                    key={i}
+                                    className="ci-slot skill-slot"
+                                    title={skill.name}
+                                    draggable
+                                    onDragStart={(e) => handleDragStart(e, skill)}
+                                    style={{ cursor: 'grab' }}
+                                >
+                                    <img src={skill.icon} alt={skill.name} width="80%" />
+                                </div>
+                            ))}
+                            {Array.from({ length: Math.max(0, 9 - currentSkills.length) }).map((_, i) => (
+                                <div key={`empty-${i}`} className="ci-slot" />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Desktop/Landscape Right Sidebar */}
+                    {!(isPortrait && isMobile) && (
+                        <div className="rb-sidebar rb-sidebar-right">
+                            {tabNames.slice(3, 6).map((tabName, i) => (
+                                <div
+                                    key={i + 3}
+                                    className={`rb-side-slot ${activeTab === i + 3 ? "active" : ""}`}
+                                    onClick={() => setActiveTab(i + 3)}
+                                >
+                                    <img
+                                        src={tabIcons[tabName]}
+                                        alt={tabName}
+                                        className="tab-icon"
+                                    />
+                                    <span className="tab-label">
+                                        {tabName === "frontend" ? "Frontend" :
+                                            tabName === "aiml" ? "AI/ML" :
+                                                tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Bottom Tabs (Mobile Portrait) - Last 3 */}
+                    {isPortrait && isMobile && (
+                        <div className="rb-sidebar rb-sidebar-bottom">
+                            {tabNames.slice(3, 6).map((tabName, i) => (
+                                <div
+                                    key={i + 3}
+                                    className={`rb-side-slot rb-side-slot-horizontal ${activeTab === i + 3 ? "active" : ""}`}
+                                    onClick={() => setActiveTab(i + 3)}
+                                >
+                                    <img
+                                        src={tabIcons[tabName]}
+                                        alt={tabName}
+                                        className="tab-icon"
+                                    />
+                                    <span className="tab-label">
+                                        {tabName === "frontend" ? "Frontend" :
+                                            tabName === "aiml" ? "AI/ML" :
+                                                tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </motion.div>
         </div>
