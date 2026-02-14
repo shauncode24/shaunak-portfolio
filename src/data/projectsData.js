@@ -387,7 +387,7 @@ export const projectsData = [
         "preview": portfolio,
         "date": "Feb 2026",
         "role": "Frontend Developer & Creative Designer",
-        "link": "",
+        "link": "https://shaunak-portfolio-seven.vercel.app/",
         "github": "https://github.com/shauncode24/portfolio-v4"
     }
 ];
