@@ -25,6 +25,8 @@ export const useAboutMeAudio = () => {
             sfxRef.current.volume = isMusicOn ? 0.6 : 0;
             if (isMusicOn) {
                 sfxRef.current.play().catch(() => {});
+            } else {
+                sfxRef.current.pause();
             }
         }
         if (musicRef.current) {
@@ -33,6 +35,8 @@ export const useAboutMeAudio = () => {
                 musicRef.current.play().catch(() => {
                     console.log('Music play deferred until interaction');
                 });
+            } else {
+                musicRef.current.pause();
             }
         }
     }, [isMusicOn]);

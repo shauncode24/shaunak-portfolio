@@ -21,6 +21,8 @@ export const useAudioController = (isRainOn) => {
             sfxRef.current.volume = isMusicOn ? 0.6 : 0;
             if (isMusicOn) {
                 sfxRef.current.play().catch(() => { });
+            } else {
+                sfxRef.current.pause();
             }
         }
         if (musicRef.current) {
@@ -29,6 +31,8 @@ export const useAudioController = (isRainOn) => {
                 musicRef.current.play().catch(() => {
                     console.log('Music play deferred until interaction');
                 });
+            } else {
+                musicRef.current.pause();
             }
         }
         if (rainRef.current) {
@@ -38,6 +42,8 @@ export const useAudioController = (isRainOn) => {
                 rainRef.current.play().catch(() => {
                     console.log('Rain play deferred until interaction');
                 });
+            } else {
+                rainRef.current.pause();
             }
         }
     }, [isMusicOn, isRainOn]);
