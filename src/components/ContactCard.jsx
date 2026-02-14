@@ -8,7 +8,7 @@ const contactLinks = [
     { icon: <FaGithub size={28} />, label: "GitHub", href: "https://github.com/shauncode24", color: "#8a4baf" },
     { icon: <FaInstagram size={28} />, label: "Instagram", href: "https://www.instagram.com/shaunak_2005/", color: "#00d9ff" },
     { icon: <FaEnvelope size={28} />, label: "Email", href: "mailto:shaunakk05@gmail.com", color: "#ec4899" },
-    { icon: <FaPhone size={28} />, label: "Phone", href: "tel:+919819880224", color: "#22c55e" },
+    { icon: <FaPhone size={28} />, label: "Phone", href: "tel:+919152080687", color: "#22c55e" },
 ];
 
 const ContactCard = () => {
