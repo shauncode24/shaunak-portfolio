@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiGithub, FiExternalLink, FiInfo } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiInfo, FiX } from 'react-icons/fi';
 import './Projects.css';
 import projectsBg from '@/assets/about_me/lecturn_page.png';
 import pageButton from '@/assets/about_me/page_button.png';
@@ -20,6 +20,9 @@ export default function Projects({ project, onNextProject, onPrevProject, curren
                 exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
+                <button className="projects-mobile-close" onClick={onClose} aria-label="Close">
+                    <FiX size={20} />
+                </button>
                 <img
                     className="projects-background"
                     src={projectsBg}

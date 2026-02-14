@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { FiX } from 'react-icons/fi';
 import './Experience.css';
 import expBg from '@/assets/experience/exp_bg.png';
 import iconNew from '@/assets/experience/icon_new_exp.png';
@@ -45,6 +46,9 @@ export default function Experience({ onClose }) {
                         exit={{ scale: 0.8, opacity: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
+                        <button className="experience-mobile-close" onClick={onClose} aria-label="Close">
+                            <FiX size={18} />
+                        </button>
                         <div
                             className="experience-panel"
                             style={{ backgroundImage: `url(${expBg})` }}

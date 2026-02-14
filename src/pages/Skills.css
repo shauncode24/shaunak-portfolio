@@ -25,6 +25,35 @@
   max-height: 100%;
 }
 
+/* Mobile Close Button */
+.skills-mobile-close {
+  display: none;
+  position: absolute;
+  top: -15px; /* Adjust based on where it looks best relative to the frame */
+  right: -5px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px; /* Pixel-ish look */
+  color: white;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .skills-mobile-close {
+    display: flex;
+    top: 5px;
+    right: 5px;
+  }
+}
+
+
 /* Mobile Portrait Layout */
 .mc-root.mc-root-mobile-portrait {
   flex-direction: column;

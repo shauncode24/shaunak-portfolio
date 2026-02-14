@@ -3,6 +3,7 @@ import arrow from "@/assets/about_me/crafting_arrow.png";
 import craftingBook from "@/assets/skills/crafting_book.png";
 import craftingBookSelected from "@/assets/skills/crafting_book_selected.png";
 import { motion } from 'motion/react';
+import { FiX } from 'react-icons/fi';
 import { skillsData, tabNames, tabIcons } from "@/data/skillsData";
 import { useSkillsLogic } from "@/hooks/useSkillsLogic";
 import RecipeBook from "@/components/RecipeBook";
@@ -39,6 +40,9 @@ export default function Skills({ onClose }) {
                 exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
+                <button className="skills-mobile-close" onClick={onClose} aria-label="Close">
+                    <FiX size={18} />
+                </button>
                 <RecipeBook
                     isOpen={isRecipeBookOpen}
                     onClose={() => setIsRecipeBookOpen(false)}

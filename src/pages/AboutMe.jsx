@@ -4,6 +4,7 @@ import characterGif from '@/assets/about_me/character_2.gif';
 import characterStill from '@/assets/about_me/character_2.png';
 import RotatingText from '@/components/RotatingText';
 import ContactCard from '@/components/ContactCard';
+import { FiX } from 'react-icons/fi';
 import { motion } from 'motion/react';
 
 export default function AboutMe({ onClose }) {
@@ -45,6 +46,9 @@ export default function AboutMe({ onClose }) {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
             >
                 <div className="aboutme-glass-panel">
+                    <button className="aboutme-mobile-close" onClick={onClose} aria-label="Close">
+                        <FiX size={18} />
+                    </button>
                     <div className="aboutme-left">
                         <motion.div
                             className="minecraft-nametag"
