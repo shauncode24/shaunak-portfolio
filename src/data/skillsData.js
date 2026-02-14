@@ -1,30 +1,83 @@
+// Skills Icons
+import cIcon from '@/assets/skills/skills_section/c.png';
+import javaIcon from '@/assets/skills/skills_section/java.png';
+import pythonIcon from '@/assets/skills/skills_section/python.png';
+import jsIcon from '@/assets/skills/skills_section/js.png';
+import tsIcon from '@/assets/skills/skills_section/ts.png';
+import htmlIcon from '@/assets/skills/skills_section/html.png';
+import cssIcon from '@/assets/skills/skills_section/css.png';
+import reactIcon from '@/assets/skills/skills_section/react.png';
+import angularIcon from '@/assets/skills/skills_section/angular.webp';
+import bootstrapIcon from '@/assets/skills/skills_section/bootstrap.png';
+import nodeIcon from '@/assets/skills/skills_section/node.webp';
+import expressIcon from '@/assets/skills/skills_section/express.webp';
+import aspIcon from '@/assets/skills/skills_section/asp.png';
+import flaskIcon from '@/assets/skills/skills_section/flask.webp';
+import mongoIcon from '@/assets/skills/skills_section/mongodb.png';
+import postgresIcon from '@/assets/skills/skills_section/postgresql.webp';
+import mysqlIcon from '@/assets/skills/skills_section/mysql.png';
+import firebaseIcon from '@/assets/skills/skills_section/firebase.png';
+import supabaseIcon from '@/assets/skills/skills_section/supabase.webp';
+import githubIcon from '@/assets/skills/skills_section/github.png';
+import dockerIcon from '@/assets/skills/skills_section/docker.png';
+import viteIcon from '@/assets/skills/skills_section/vite.png';
+import vscodeIcon from '@/assets/skills/skills_section/vscode.png';
+import figmaIcon from '@/assets/skills/skills_section/figma.png';
+import postmanIcon from '@/assets/skills/skills_section/postman.svg';
+
+// Tab Icons
+import langTabIcon from '@/assets/skills/tab_icons/languages.png';
+import frontendTabIcon from '@/assets/skills/tab_icons/frontend.png';
+import backendTabIcon from '@/assets/skills/tab_icons/backend.png';
+import databaseTabIcon from '@/assets/skills/tab_icons/database.png';
+import aimlTabIcon from '@/assets/skills/tab_icons/aiml.png';
+import toolsTabIcon from '@/assets/skills/tab_icons/tools.png';
+
+// Recipe Icons
+import mernStackIcon from '@/assets/skills/recipes/mernstack.png';
+import pernStackIcon from '@/assets/skills/recipes/pernstack.jpeg';
+import meanStackIcon from '@/assets/skills/recipes/meanstack.png';
+import staticWebIcon from '@/assets/skills/recipes/staticwebsite.png';
+import serverlessIcon from '@/assets/skills/recipes/modernserverless.png';
+import flaskStackIcon from '@/assets/skills/recipes/flaskfullstack.png';
+import pythonApiIcon from '@/assets/skills/recipes/pythonrestapi.png';
+import enterpriseStackIcon from '@/assets/skills/recipes/enterprisestack.png';
+import mlWebAppIcon from '@/assets/skills/recipes/mlwebapp.png';
+import nlpAppIcon from '@/assets/skills/recipes/nlpapplication.png';
+import tfJsAppIcon from '@/assets/skills/recipes/tensorflowjsapp.png';
+import dsPipelineIcon from '@/assets/skills/recipes/datasciencepipeline.png';
+import mlPipelineIcon from '@/assets/skills/recipes/mlpipeline.png';
+import dlPipelineIcon from '@/assets/skills/recipes/deeplearningpipeline.png';
+import tsMeanIcon from '@/assets/skills/recipes/typescriptmean.png';
+import microservicesIcon from '@/assets/skills/recipes/microservicesstack.png';
+
 export const skillsData = {
     languages: [
-        { name: "C", icon: "src/assets/skills/skills_section/c.png" },
-        { name: "Java", icon: "src/assets/skills/skills_section/java.png" },
-        { name: "Python", icon: "src/assets/skills/skills_section/python.png" },
-        { name: "JavaScript", icon: "src/assets/skills/skills_section/js.png" },
-        { name: "TypeScript", icon: "src/assets/skills/skills_section/ts.png" },
+        { name: "C", icon: cIcon },
+        { name: "Java", icon: javaIcon },
+        { name: "Python", icon: pythonIcon },
+        { name: "JavaScript", icon: jsIcon },
+        { name: "TypeScript", icon: tsIcon },
     ],
     frontend: [
-        { name: "HTML 5", icon: "src/assets/skills/skills_section/html.png" },
-        { name: "CSS", icon: "src/assets/skills/skills_section/css.png" },
-        { name: "React", icon: "src/assets/skills/skills_section/react.png" },
-        { name: "Angular", icon: "src/assets/skills/skills_section/angular.webp" },
-        { name: "Bootstrap", icon: "src/assets/skills/skills_section/bootstrap.png" },
+        { name: "HTML 5", icon: htmlIcon },
+        { name: "CSS", icon: cssIcon },
+        { name: "React", icon: reactIcon },
+        { name: "Angular", icon: angularIcon },
+        { name: "Bootstrap", icon: bootstrapIcon },
     ],
     backend: [
-        { name: "Node.js", icon: "src/assets/skills/skills_section/node.webp" },
-        { name: "Express.js", icon: "src/assets/skills/skills_section/express.webp" },
-        { name: "ASP.NET Core", icon: "src/assets/skills/skills_section/asp.png" },
-        { name: "Flask", icon: "src/assets/skills/skills_section/flask.webp" },
+        { name: "Node.js", icon: nodeIcon },
+        { name: "Express.js", icon: expressIcon },
+        { name: "ASP.NET Core", icon: aspIcon },
+        { name: "Flask", icon: flaskIcon },
     ],
     database: [
-        { name: "MongoDB", icon: "src/assets/skills/skills_section/mongodb.png" },
-        { name: "PostgreSQL", icon: "src/assets/skills/skills_section/postgresql.webp" },
-        { name: "MySQL", icon: "src/assets/skills/skills_section/mysql.png" },
-        { name: "Firebase", icon: "src/assets/skills/skills_section/firebase.png" },
-        { name: "Supabase", icon: "src/assets/skills/skills_section/supabase.webp" },
+        { name: "MongoDB", icon: mongoIcon },
+        { name: "PostgreSQL", icon: postgresIcon },
+        { name: "MySQL", icon: mysqlIcon },
+        { name: "Firebase", icon: firebaseIcon },
+        { name: "Supabase", icon: supabaseIcon },
     ],
     aiml: [
         { name: "TensorFlow", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensorflow_logo.svg/960px-Tensorflow_logo.svg.png" },
@@ -36,119 +89,119 @@ export const skillsData = {
         { name: "MatPlotLib", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Matplotlib_icon.svg/3840px-Matplotlib_icon.svg.png" },
     ],
     tools: [
-        { name: "GitHub", icon: "src/assets/skills/skills_section/github.png" },
-        { name: "Docker", icon: "src/assets/skills/skills_section/docker.png" },
-        { name: "Vite", icon: "src/assets/skills/skills_section/vite.png" },
-        { name: "VS Code", icon: "src/assets/skills/skills_section/vscode.png" },
-        { name: "Figma", icon: "src/assets/skills/skills_section/figma.png" },
-        { name: "Postman", icon: "src/assets/skills/skills_section/postman.svg" },
+        { name: "GitHub", icon: githubIcon },
+        { name: "Docker", icon: dockerIcon },
+        { name: "Vite", icon: viteIcon },
+        { name: "VS Code", icon: vscodeIcon },
+        { name: "Figma", icon: figmaIcon },
+        { name: "Postman", icon: postmanIcon },
     ],
 };
 
 export const tabNames = ["languages", "frontend", "backend", "database", "aiml", "tools"];
 
 export const tabIcons = {
-    languages: "src/assets/skills/tab_icons/languages.png",
-    frontend: "src/assets/skills/tab_icons/frontend.png",
-    backend: "src/assets/skills/tab_icons/backend.png",
-    database: "src/assets/skills/tab_icons/database.png",
-    aiml: "src/assets/skills/tab_icons/aiml.png",
-    tools: "src/assets/skills/tab_icons/tools.png",
+    languages: langTabIcon,
+    frontend: frontendTabIcon,
+    backend: backendTabIcon,
+    database: databaseTabIcon,
+    aiml: aimlTabIcon,
+    tools: toolsTabIcon,
 };
 
 export const recipes = [
     {
         "ingredients": ["MongoDB", "Express.js", "React", "Node.js"],
         "result": "MERN Stack",
-        "icon": "src/assets/skills/recipes/mernstack.png"
+        "icon": mernStackIcon
     },
     {
         "ingredients": ["PostgreSQL", "Express.js", "React", "Node.js"],
         "result": "PERN Stack",
-        "icon": "src/assets/skills/recipes/pernstack.jpeg"
+        "icon": pernStackIcon
     },
     {
         "ingredients": ["MongoDB", "Express.js", "Angular", "Node.js"],
         "result": "MEAN Stack",
-        "icon": "src/assets/skills/recipes/meanstack.png"
+        "icon": meanStackIcon
     },
     {
         "ingredients": ["HTML 5", "CSS", "JavaScript"],
         "result": "Static Website",
-        "icon": "src/assets/skills/recipes/staticwebsite.png"
+        "icon": staticWebIcon
     },
 
     // Modern Serverless Stacks
     {
         "ingredients": ["React", "Supabase", "TypeScript"],
         "result": "Modern Serverless",
-        "icon": "src/assets/skills/recipes/modernserverless.png"
+        "icon": serverlessIcon
     },
 
     // Python Web Frameworks
     {
         "ingredients": ["Python", "Flask", "PostgreSQL", "React"],
         "result": "Flask Full-Stack",
-        "icon": "src/assets/skills/recipes/flaskfullstack.png"
+        "icon": flaskStackIcon
     },
     {
         "ingredients": ["Python", "Flask", "MongoDB"],
         "result": "Python REST API",
-        "icon": "src/assets/skills/recipes/pythonrestapi.png"
+        "icon": pythonApiIcon
     },
 
     // Enterprise & .NET Stacks
     {
         "ingredients": ["ASP.NET Core", "PostgreSQL", "Angular", "TypeScript"],
         "result": "Enterprise Stack",
-        "icon": "src/assets/skills/recipes/enterprisestack.png"
+        "icon": enterpriseStackIcon
     },
 
     // AI/ML Web Applications
     {
         "ingredients": ["Python", "TensorFlow", "Flask", "React"],
         "result": "ML Web App",
-        "icon": "src/assets/skills/recipes/mlwebapp.png"
+        "icon": mlWebAppIcon
     },
     {
         "ingredients": ["Python", "Hugging Face", "Flask", "React"],
         "result": "NLP Application",
-        "icon": "src/assets/skills/recipes/nlpapplication.png"
+        "icon": nlpAppIcon
     },
     {
         "ingredients": ["Node.js", "TensorFlow", "Express.js", "React"],
         "result": "TensorFlow.js App",
-        "icon": "src/assets/skills/recipes/tensorflowjsapp.png"
+        "icon": tfJsAppIcon
     },
 
     // Data Science & Analytics
     {
         "ingredients": ["Python", "Pandas", "NumPy", "MatPlotLib", "Jupyter"],
         "result": "Data Science Pipeline",
-        "icon": "src/assets/skills/recipes/datasciencepipeline.png"
+        "icon": dsPipelineIcon
     },
     {
         "ingredients": ["Python", "Scikit-learn", "Pandas", "NumPy"],
         "result": "ML Pipeline",
-        "icon": "src/assets/skills/recipes/mlpipeline.png"
+        "icon": mlPipelineIcon
     },
     {
         "ingredients": ["Python", "TensorFlow", "Pandas", "NumPy", "Jupyter"],
         "result": "Deep Learning Pipeline",
-        "icon": "src/assets/skills/recipes/deeplearningpipeline.png"
+        "icon": dlPipelineIcon
     },
 
     // Modern TypeScript Stacks
     {
         "ingredients": ["TypeScript", "Angular", "Node.js", "MongoDB"],
         "result": "TypeScript MEAN",
-        "icon": "src/assets/skills/recipes/typescriptmean.png"
+        "icon": tsMeanIcon
     },
 
     // Microservices & Containerized
     {
         "ingredients": ["Node.js", "Express.js", "MongoDB", "Docker"],
         "result": "Microservices Stack",
-        "icon": "src/assets/skills/recipes/microservicesstack.png"
+        "icon": microservicesIcon
     }
-]
+];
